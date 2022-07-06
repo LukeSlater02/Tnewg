@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+
+window.onload = function () {
+  const canvas = document.querySelector('canvas')
+  const c = canvas.getContext('2d')
+  c.fillRect(0, 0, canvas.width, canvas.height)
+  canvas.width = 1024
+  canvas.height = 576
+  const mapImg = new Image()
+  mapImg.src = 'img/testMap.png'
+
+  mapImg.onload = () => {
+    //if i want to change the starting position, change the 0s
+    c.drawImage(mapImg, 0, 0)
+  }
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <canvas></canvas>
+    </>
+
   );
 }
 
