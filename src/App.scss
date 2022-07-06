@@ -2,9 +2,13 @@ $vamp: #080808;
 
 body{
     background-color: lightgray;
+    overflow: hidden;
 }
+
 canvas
 {
-    margin: 1.5em;
-    transform: scale(4);
+    overflow: hidden;
+   display: flex;
+   margin: auto;
+   margin-top: 10em;
 }
