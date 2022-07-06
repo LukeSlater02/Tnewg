@@ -4,8 +4,8 @@ import { collisions } from './IntroMapData'
 window.onload = function () {
   const canvas = document.querySelector('canvas')
   const c = canvas.getContext('2d')
-  canvas.width = 1024
-  canvas.height = 576
+  canvas.width = 1440
+  canvas.height = 960
 
   const collisionsMap = []
   //90 is map width
@@ -52,7 +52,7 @@ window.onload = function () {
   })
 
   const mapImg = new Image()
-  mapImg.src = 'img/testMap.png'
+  mapImg.src = 'img/introMap.png'
 
   const playerImage = new Image()
   playerImage.src = 'img/down_walk1.png'
@@ -87,7 +87,7 @@ window.onload = function () {
   const player = new Sprite({
     position: {
       x: canvas.width / 2,
-      y: canvas.width / 4 + 20
+      y: canvas.width / 4 + 80
     },
     image: playerImage
   })

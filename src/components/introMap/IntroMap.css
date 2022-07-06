@@ -8,9 +8,8 @@ canvas {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: auto;
-  margin-top: 10em;
-  -webkit-transform: scale(4);
-          transform: scale(4);
+  margin-top: 5em;
+  -webkit-transform: scale(3.5);
+          transform: scale(3.5);
 }
 /*# sourceMappingURL=IntroMap.css.map */
