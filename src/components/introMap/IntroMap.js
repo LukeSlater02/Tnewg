@@ -25,7 +25,7 @@ window.onload = function () {
     }
 
     draw() {
-      c.fillStyle = 'red'
+      c.fillStyle = 'rgba(255, 0, 0, 0)'
       c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
   }
@@ -86,8 +86,8 @@ window.onload = function () {
 
   const player = new Sprite({
     position: {
-      x: canvas.width / 2 + 100,
-      y: canvas.width / 2 - 200
+      x: canvas.width / 2,
+      y: canvas.width / 4 + 20
     },
     image: playerImage
   })
@@ -168,19 +168,102 @@ window.onload = function () {
     //If i change the offset of the map, need to factor that in to the boundary placement
     boundaries.forEach(boundary => {
       boundary.draw()
-      if (rectangularCollision({
-        rectangle1: player,
-        rectangle2: boundary
-      })) {
-        console.log("COLLIDE");
-      }
     })
     player.draw()
 
-    if (keys.w.pressed && lastKey === 'w') movables.forEach(m => { m.position.y += 3 })
-    else if (keys.a.pressed && lastKey === 'a') movables.forEach(m => { m.position.x += 3 })
-    else if (keys.s.pressed && lastKey === 's') movables.forEach(m => { m.position.y -= 3 })
-    else if (keys.d.pressed && lastKey === 'd') movables.forEach(m => { m.position.x -= 3 })
+    let moving = true
+
+    if (keys.w.pressed && lastKey === 'w') {
+      for (let i = 0; i < boundaries.length; i++) {
+        const boundary = boundaries[i]
+        if (
+          rectangularCollision({
+            rectangle1: player,
+            rectangle2: {
+              ...boundary, position: {
+                x: boundary.position.x,
+                y: boundary.position.y + 3
+              }
+            }
+          })) {
+          console.log("COLLIDE");
+          moving = false
+          break
+        }
+      }
+
+      if (moving)
+        movables.forEach(m => { m.position.y += 3 })
+    }
+
+    else if (keys.a.pressed && lastKey === 'a') {
+      for (let i = 0; i < boundaries.length; i++) {
+        const boundary = boundaries[i]
+        if (
+          rectangularCollision({
+            rectangle1: player,
+            rectangle2: {
+              ...boundary, position: {
+                x: boundary.position.x + 3,
+                y: boundary.position.y
+              }
+            }
+          })) {
+          console.log("COLLIDE");
+          moving = false
+          break
+        }
+      }
+
+      if (moving)
+        movables.forEach(m => { m.position.x += 3 })
+    }
+
+    else if (keys.s.pressed && lastKey === 's') {
+      for (let i = 0; i < boundaries.length; i++) {
+        const boundary = boundaries[i]
+        if (
+          rectangularCollision({
+            rectangle1: player,
+            rectangle2: {
+              ...boundary, position: {
+                x: boundary.position.x,
+                y: boundary.position.y - 3
+              }
+            }
+          })) {
+          console.log("COLLIDE");
+          moving = false
+          break
+        }
+      }
+
+      if (moving)
+        movables.forEach(m => { m.position.y -= 3 })
+    }
+
+    else if (keys.d.pressed && lastKey === 'd') {
+      for (let i = 0; i < boundaries.length; i++) {
+        const boundary = boundaries[i]
+        if (
+          rectangularCollision({
+            rectangle1: player,
+            rectangle2: {
+              ...boundary, position: {
+                x: boundary.position.x - 3,
+                y: boundary.position.y
+              }
+            }
+          })) {
+          console.log("COLLIDE");
+          moving = false
+          break
+        }
+      }
+
+      if (moving)
+        movables.forEach(m => { m.position.x -= 3 })
+    }
 
   }
 

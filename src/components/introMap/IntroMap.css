@@ -10,7 +10,7 @@ canvas {
   display: flex;
   margin: auto;
   margin-top: 10em;
-  -webkit-transform: scale(3.5);
-          transform: scale(3.5);
+  -webkit-transform: scale(4);
+          transform: scale(4);
 }
-/*# sourceMappingURL=App.css.map */
+/*# sourceMappingURL=IntroMap.css.map */
