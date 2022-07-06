@@ -1,0 +1,14 @@
+$vamp: #080808;
+
+body {
+    background-color: lightgray;
+    overflow: hidden;
+}
+
+canvas {
+    overflow: hidden;
+    display: flex;
+    margin: auto;
+    margin-top: 10em;
+    transform: scale(3.5);
+}

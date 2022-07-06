@@ -1,0 +1,16 @@
+body {
+  background-color: lightgray;
+  overflow: hidden;
+}
+
+canvas {
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: auto;
+  margin-top: 10em;
+  -webkit-transform: scale(3.5);
+          transform: scale(3.5);
+}
+/*# sourceMappingURL=App.css.map */
