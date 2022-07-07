@@ -24,7 +24,7 @@ window.onload = function () {
   //
   collisionsMap.forEach((row, i) => {
     row.forEach((num, ind) => {
-      if (num === 7670 || num === 1986) {
+      if (num === 1986) {
         boundaries.push(new Boundary({
           position: {
             x: ind * Boundary.width + offset.x,
@@ -41,6 +41,9 @@ window.onload = function () {
   const playerImage = new Image()
   playerImage.src = 'img/down_walk1.png'
 
+  const foregroundImg = new Image()
+  foregroundImg.src = 'img/introForeground.png'
+
   const player = new Sprite({
     position: {
       x: canvas.width / 2,
@@ -54,6 +57,12 @@ window.onload = function () {
       x: offset.x,
       y: offset.y
     }, image: mapImg
+  })
+  const foreground = new Sprite({
+    position: {
+      x: offset.x,
+      y: offset.y
+    }, image: foregroundImg
   })
 
   //TRACKS MOVEMENT KEY BEING PRESSED / RELEASED
@@ -111,7 +120,7 @@ window.onload = function () {
     }
   })
 
-  const movables = [background, ...boundaries]
+  const movables = [background, ...boundaries, foreground]
 
   function rectangularCollision({ rectangle1, rectangle2 }) {
     return (
@@ -127,6 +136,7 @@ window.onload = function () {
       boundary.draw(c)
     })
     player.draw(c)
+    foreground.draw(c)
 
     let moving = true
 
