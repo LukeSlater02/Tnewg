@@ -40,7 +40,7 @@ window.onload = function () {
   //
   collisionsMap.forEach((row, i) => {
     row.forEach((num, ind) => {
-      if (num === 1985) {
+      if (num === 7670) {
         boundaries.push(new Boundary({
           position: {
             x: ind * Boundary.width + offset.x,
