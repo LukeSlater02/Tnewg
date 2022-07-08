@@ -239,7 +239,7 @@ window.onload = function () {
 
 
 
-function App() {
+export function IntroMap() {
   return (
     <>
       <canvas></canvas>
@@ -247,5 +247,3 @@ function App() {
 
   );
 }
-
-export default App;

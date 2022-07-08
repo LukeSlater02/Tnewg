@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import IntroMap from './components/introMap/IntroMap.js';
+import { BrowserRouter as Router } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
+import { ApplicationViews } from './components/ApplicationViews';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <IntroMap />
-  </React.StrictMode>
+  <Router>
+    <ApplicationViews />
+  </Router>
 );
 
 // If you want to start measuring performance in your app, pass a function
