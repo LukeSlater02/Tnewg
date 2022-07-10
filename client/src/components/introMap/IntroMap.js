@@ -22,8 +22,8 @@ window.onload = function () {
   }
 
   const offset = {
-    x: -400,
-    y: -250
+    x: -450,
+    y: -350
   }
 
   const boundaries = []
@@ -76,8 +76,8 @@ window.onload = function () {
 
   const player = new Sprite({
     position: {
-      x: canvas.width / 2 + 170,
-      y: canvas.width / 4 + 160
+      x: canvas.width / 2 + 40,
+      y: canvas.width / 4 + 85
     },
     frames: { max: 4 },
     image: playerDownImage,
