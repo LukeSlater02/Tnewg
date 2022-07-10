@@ -1,6 +1,7 @@
 import './IntroMap.scss';
 import { collisions } from './IntroMapData'
 import { Boundary, Sprite } from './classes.js'
+import { battleZonesData } from '../battles/battleZoneData'
 
 window.onload = function () {
   const canvas = document.querySelector('canvas')
@@ -14,14 +15,19 @@ window.onload = function () {
     collisionsMap.push(collisions.slice(i, 90 + i))
   }
 
+  const battleZonesMap = []
+  //90 is map width
+  for (let i = 0; i < battleZonesData.length; i += 90) {
+    battleZonesMap.push(battleZonesData.slice(i, 90 + i))
+  }
+
   const offset = {
-    x: 0,
-    y: 0
+    x: -400,
+    y: -250
   }
 
   const boundaries = []
 
-  //
   collisionsMap.forEach((row, i) => {
     row.forEach((num, ind) => {
       if (num === 1986) {
@@ -35,21 +41,52 @@ window.onload = function () {
     })
   })
 
+  const battleZones = []
+
+  battleZonesMap.forEach((row, i) => {
+    row.forEach((num, ind) => {
+      if (num === 2016) {
+        battleZones.push(new Boundary({
+          position: {
+            x: ind * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y
+          }
+        }))
+      }
+    })
+  })
+
   const mapImg = new Image()
   mapImg.src = 'img/introMap.png'
 
-  const playerImage = new Image()
-  playerImage.src = 'img/down_walk1.png'
+  const playerDownImage = new Image()
+  playerDownImage.src = 'img/downWalkCycle.png'
+
+  const playerUpImage = new Image()
+  playerUpImage.src = 'img/up_walk1.png'
+
+  const playerLeftImage = new Image()
+  playerLeftImage.src = 'img/left_walk1.png'
+
+  const playerRightImage = new Image()
+  playerRightImage.src = 'img/right_walk1.png'
 
   const foregroundImg = new Image()
   foregroundImg.src = 'img/introForeground.png'
 
   const player = new Sprite({
     position: {
-      x: canvas.width / 2,
-      y: canvas.width / 4 + 80
+      x: canvas.width / 2 + 170,
+      y: canvas.width / 4 + 160
     },
-    image: playerImage
+    frames: { max: 4 },
+    image: playerDownImage,
+    sprites: {
+      up: playerUpImage,
+      down: playerDownImage,
+      left: playerLeftImage,
+      right: playerRightImage
+    }
   })
   const background = new Sprite({
     position: {
@@ -120,7 +157,7 @@ window.onload = function () {
     }
   })
 
-  const movables = [background, ...boundaries, foreground]
+  const movables = [background, ...boundaries, foreground, ...battleZones]
 
   function rectangularCollision({ rectangle1, rectangle2 }) {
     return (
@@ -135,12 +172,32 @@ window.onload = function () {
     boundaries.forEach(boundary => {
       boundary.draw(c)
     })
+    battleZones.forEach(battleZone => {
+      battleZone.draw(c)
+    })
     player.draw(c)
     foreground.draw(c)
 
     let moving = true
+    player.moving = false
+
+    if (keys.w.pressed || keys.s.pressed || keys.a.pressed || keys.d.pressed) {
+      for (let i = 0; i < battleZones.length; i++) {
+        const battleZone = battleZones[i]
+        if (
+          rectangularCollision({
+            rectangle1: player,
+            rectangle2: battleZone
+          })) {
+            console.log("hello tere");
+          break
+        }
+      }
+    }
 
     if (keys.w.pressed && lastKey === 'w') {
+      player.moving = true
+      player.image = player.sprites.up
       for (let i = 0; i < boundaries.length; i++) {
         const boundary = boundaries[i]
         if (
@@ -149,21 +206,22 @@ window.onload = function () {
             rectangle2: {
               ...boundary, position: {
                 x: boundary.position.x,
-                y: boundary.position.y + 3
+                y: boundary.position.y + 2
               }
             }
           })) {
-          console.log("COLLIDE");
           moving = false
           break
         }
       }
 
       if (moving)
-        movables.forEach(m => { m.position.y += 3 })
+        movables.forEach(m => { m.position.y += 2 })
     }
 
     else if (keys.a.pressed && lastKey === 'a') {
+      player.moving = true
+      player.image = player.sprites.left
       for (let i = 0; i < boundaries.length; i++) {
         const boundary = boundaries[i]
         if (
@@ -171,22 +229,23 @@ window.onload = function () {
             rectangle1: player,
             rectangle2: {
               ...boundary, position: {
-                x: boundary.position.x + 3,
+                x: boundary.position.x + 2,
                 y: boundary.position.y
               }
             }
           })) {
-          console.log("COLLIDE");
           moving = false
           break
         }
       }
 
       if (moving)
-        movables.forEach(m => { m.position.x += 3 })
+        movables.forEach(m => { m.position.x += 2 })
     }
 
     else if (keys.s.pressed && lastKey === 's') {
+      player.moving = true
+      player.image = player.sprites.down
       for (let i = 0; i < boundaries.length; i++) {
         const boundary = boundaries[i]
         if (
@@ -195,21 +254,22 @@ window.onload = function () {
             rectangle2: {
               ...boundary, position: {
                 x: boundary.position.x,
-                y: boundary.position.y - 3
+                y: boundary.position.y - 2
               }
             }
           })) {
-          console.log("COLLIDE");
           moving = false
           break
         }
       }
 
       if (moving)
-        movables.forEach(m => { m.position.y -= 3 })
+        movables.forEach(m => { m.position.y -= 2 })
     }
 
     else if (keys.d.pressed && lastKey === 'd') {
+      player.moving = true
+      player.image = player.sprites.right
       for (let i = 0; i < boundaries.length; i++) {
         const boundary = boundaries[i]
         if (
@@ -217,19 +277,18 @@ window.onload = function () {
             rectangle1: player,
             rectangle2: {
               ...boundary, position: {
-                x: boundary.position.x - 3,
+                x: boundary.position.x - 2,
                 y: boundary.position.y
               }
             }
           })) {
-          console.log("COLLIDE");
           moving = false
           break
         }
       }
 
       if (moving)
-        movables.forEach(m => { m.position.x -= 3 })
+        movables.forEach(m => { m.position.x -= 2 })
     }
 
   }
