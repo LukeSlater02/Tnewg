@@ -1,43 +1,35 @@
-import React, { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import "./Login.scss";
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { login } from "../../modules/authManager";
+import './Login.scss'
 
-export const Login = ({setAuthUser}) => {
-	const [loginUser, setLoginUser ] = useState({ email: "" });
-	const [existDialog, setExistDialog] = useState(false);
+export function Login() {
+	let navigate = useNavigate();
 
-	const navigate = useNavigate();
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 
-	const handleInputChange = (event) => {
-		const newUser = { ...loginUser };
-		newUser[event.target.id] = event.target.value;
-		setLoginUser(newUser);
-	};
-
-	 const existingUserCheck = () => {
-		// If your json-server URL is different, please change it below!
-		return fetch(`http://localhost:8088/users?email=${loginUser.email}`)
-			.then((res) => res.json())
-			.then((user) => (user.length ? user[0] : false));
-	};
-
-	const handleLogin = (e) => {
+	const loginSubmit = (e) => {
 		e.preventDefault();
-
-		existingUserCheck().then((exists) => {
-			if (exists) {
-				// The user id is saved under the key nutshell_user in session Storage. Change below if needed!
-				setAuthUser(exists)
-				navigate("/home");
-			} else {
-				setExistDialog(true);
-			}
-		});
+		login(email, password)
+			.then(() => navigate("/"))
+			.catch(() => alert("Login Failed"));
 	};
+
+	const handleInputChange = event => {
+		if(event.target.id == 'email')
+		{
+			setEmail(event.target.value)
+		}
+		if(event.target.id == 'password')
+		{
+			setPassword(event.target.value)
+		}
+	}
 
 	return (
 		<main className="container--login">
-			<dialog className="dialog dialog--auth" open={existDialog}>
+			{/* <dialog className="dialog dialog--auth" open={existDialog}>
 				<div>User does not exist</div>
 				<button
 					className="button--close"
@@ -45,19 +37,31 @@ export const Login = ({setAuthUser}) => {
 				>
 					Close
 				</button>
-			</dialog>
+			</dialog> */}
 			<section className="dragon-img"></section>
 			<section >
-				<form className="form--login" onSubmit={handleLogin}>
+				<form className="form--login" onSubmit={loginSubmit}>
 					<fieldset>
 						<input
 							type="email"
 							id="email"
 							className="form-control"
-							placeholder="Email address"
+							placeholder="Email"
 							required
 							autoFocus
-							value={loginUser.email}
+							value={email}
+							onChange={handleInputChange}
+						/>
+					</fieldset>
+					<fieldset>
+						<input
+							type="password"
+							id="password"
+							className="form-control"
+							placeholder="Password"
+							required
+							autoFocus
+							value={password}
 							onChange={handleInputChange}
 						/>
 					</fieldset>
@@ -71,4 +75,4 @@ export const Login = ({setAuthUser}) => {
 			</section>
 		</main>
 	);
-};
+}

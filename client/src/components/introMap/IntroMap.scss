@@ -6,8 +6,8 @@ body {
 }
 
 canvas {
-    overflow: hidden;
     display: flex;
+    overflow: hidden;
     margin-top: 5em;
     transform: scale(3.5);
 }
