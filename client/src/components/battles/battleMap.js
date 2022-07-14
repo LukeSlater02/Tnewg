@@ -1,30 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
 import { Sprite, Boundry } from '../introMap/classes.js'
 import './battleMap.scss'
 
 export const BattleMap = () => {
+    const [cursor, setCursor] = useState('url(img/cardTarget.png), auto')
+
+
+    const changeCursor = () => {
+        setCursor(prevState => {
+            if (prevState === 'url(img/cardTarget.png), auto') {
+                return 'pointer';
+            }
+            return 'url(img/cardTarget.png), auto';
+        });
+    }
+
     return (
-        <body>
-            <div className="battle-background">
-                <div className="playerHand">
-                    <div className="card">
-                        <h4>Card Name</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum varius rutrum turpis, egestas vestibulum lacus vulputate vitae. Praesent est purus, malesuada sed diam nec, dapibus varius odio. Nulla facilisi. Aliquam orci elit, lobortis et aliquam elementum, posuere in nisl. Maecenas et dui a mi cursus vulputate. Mauris lorem tortor, semper in dignissim nec, molestie ac augue.</p>
+        <div className="battle-background" style={{ cursor: cursor }}>
+            <div className="playerHand">
+
+                <div className="card">
+                    <div className="cardHeroImage">
+                        <img src="img/wizardCard.png"></img>
                     </div>
-                    <div className="card">
-                        <h4>Card Name</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum varius rutrum turpis, egestas vestibulum lacus vulputate vitae. Praesent est purus, malesuada sed diam nec, dapibus varius odio. Nulla facilisi. Aliquam orci elit, lobortis et aliquam elementum, posuere in nisl. Maecenas et dui a mi cursus vulputate. Mauris lorem tortor, semper in dignissim nec, molestie ac augue.</p>
+                    <h2>Dark Mage</h2>
+                    <div className="statsContainer">
+                        <div className="stats">
+                            <img src="img/cardDmg.png"></img> ----------
+                        </div>
+                        <div className="stats">
+                            <img src="img/cardArmor.png"></img> ----------
+                        </div>
+                        <div className="stats">
+                            <img src="img/cardHp.png"></img> ----------
+                        </div>
                     </div>
-                    <div className="card">
-                        <h4>Card Name</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum varius rutrum turpis, egestas vestibulum lacus vulputate vitae. Praesent est purus, malesuada sed diam nec, dapibus varius odio. Nulla facilisi. Aliquam orci elit, lobortis et aliquam elementum, posuere in nisl. Maecenas et dui a mi cursus vulputate. Mauris lorem tortor, semper in dignissim nec, molestie ac augue.</p>
+                </div>
+
+                <div className="card">
+                    <div className="cardHeroImage">
+                        <img src="img/pose1.png"></img>
                     </div>
-                    <div className="card">
-                        <h4>Card Name</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum varius rutrum turpis, egestas vestibulum lacus vulputate vitae. Praesent est purus, malesuada sed diam nec, dapibus varius odio. Nulla facilisi. Aliquam orci elit, lobortis et aliquam elementum, posuere in nisl. Maecenas et dui a mi cursus vulputate. Mauris lorem tortor, semper in dignissim nec, molestie ac augue.</p>
+                    <h2>Valiant Knight</h2>
+                    <div className="statsContainer">
+                        <div className="stats">
+                            <img src="img/cardDmg.png"></img> ----------
+                        </div>
+                        <div className="stats">
+                            <img src="img/cardArmor.png"></img> ----------
+                        </div>
+                        <div className="stats">
+                            <img src="img/cardHp.png"></img> ----------
+                        </div>
                     </div>
                 </div>
             </div>
-        </body>
+        </div>
     )
 }
