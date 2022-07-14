@@ -1,0 +1,43 @@
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+.battle-background {
+  background-image: url(../../../public/img/battleBackground.png);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.playerHand {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-bottom: 4em;
+  color: lightgray;
+}
+
+.playerHand .card {
+  padding: .8em;
+  width: 240px;
+  border: 25px solid black;
+  background-color: #080808;
+  -webkit-transition: margin 0.3s ease-in-out;
+  transition: margin 0.3s ease-in-out;
+}
+
+.playerHand .card:hover {
+  cursor: pointer;
+  margin-bottom: 2.5em;
+}
+
+.playerHand .card h4 {
+  text-align: center;
+}
+/*# sourceMappingURL=battleMap.css.map */

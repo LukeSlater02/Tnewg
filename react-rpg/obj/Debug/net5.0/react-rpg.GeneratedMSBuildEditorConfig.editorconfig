@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = react_rpg
-build_property.ProjectDir = C:\Users\Luke\workspace\react-rpg\react-rpg\
+build_property.ProjectDir = c:\Users\Luke\workspace\react-rpg\react-rpg\

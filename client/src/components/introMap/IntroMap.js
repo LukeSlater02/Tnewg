@@ -3,10 +3,12 @@ import { useEffect, useRef } from 'react';
 import { collisions } from './IntroMapData'
 import { Boundary, Sprite } from './classes.js'
 import { battleZonesData } from '../battles/battleZoneData'
+import { Navigate, useNavigate } from 'react-router-dom';
 import React from 'react';
 
 export function IntroMap() {
 
+  const navigate = useNavigate()
   const ref = useRef(null)
   let canvas = null
   let c = null
@@ -172,6 +174,8 @@ export function IntroMap() {
         rectangle1.position.x + rectangle1.width >= rectangle2.position.x && rectangle1.position.x <= rectangle2.position.x + rectangle2.width && rectangle1.position.y <= rectangle2.position.y + rectangle2.height && rectangle1.position.y + rectangle1.height >= rectangle2.position.y
       )
     }
+
+
     //infinite loop, so the effect of the keypress conditionals will run for however long they remain true
     const animate = () => {
       window.requestAnimationFrame(animate)
@@ -303,7 +307,7 @@ export function IntroMap() {
 
     animate()
   }, [])
-  
+
   return (
     <>
       <canvas ref={ref}></canvas>
