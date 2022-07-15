@@ -16,8 +16,8 @@ $bordCol: #b88846;
     justify-content: space-around;
     color: lightgray;
     .card {
-        font-family: 'VT323', monospace;
-        transform: scale(.8);
+        font-family: "VT323", monospace;
+        transform: scale(0.8);
         height: 490px;
         margin-bottom: -2em;
         padding: 3em;
@@ -34,7 +34,10 @@ $bordCol: #b88846;
             cursor: pointer;
             margin-bottom: 0.5em;
         }
-        h2 {
+
+        .statsContainer {
+            display: flex;
+            justify-content: space-between;
             color: white;
             text-align: center;
             font-size: xx-large;
@@ -48,6 +51,14 @@ $bordCol: #b88846;
             height: 50px;
             margin-left: -30px;
             margin-top: 2px;
+            img {
+                width: 60px;
+                height: 60px;
+            }
+            .stats {
+                display: flex;
+                align-items: center;
+            }
         }
 
         .cardHeroImage {
@@ -60,23 +71,41 @@ $bordCol: #b88846;
             background-position: center;
             background-size: 300px;
             padding: 1em;
+
+            .circle {
+                position: absolute;
+                left: 45px;
+                top: 75px;
+                width: 73px;
+                height: 67px;
+                margin: 0;
+                padding: 0;
+                margin-right: -4em;
+            }
+
+            .cost {
+                position: absolute;
+                left: 80px;
+                top: 88px;
+                font-weight: bold;
+                color: $vamp;
+                font-size: 60px;
+                margin: -12px;
+            }
         }
 
-        .statsContainer {
+        h2 {
+            text-align: center;
+            font-size: 50px;
+            font-weight: bold;
             background-image: url(../../../public/img/statsBackground.png);
             background-repeat: no-repeat;
             background-position: center;
             background-size: 320px;
-            padding: 3px;
-            img {
-                width: 60px;
-                height: 60px;
-            }
-            display: flex;
-            .stats {
-                display: flex;
-                align-items: center;
-            }
+            padding: 20px;
+            margin-bottom: -16px;
+            margin-top: -12px;
+            color: $vamp;
         }
     }
 }
