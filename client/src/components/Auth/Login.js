@@ -17,12 +17,10 @@ export function Login() {
 	};
 
 	const handleInputChange = event => {
-		if(event.target.id == 'email')
-		{
+		if (event.target.id == 'email') {
 			setEmail(event.target.value)
 		}
-		if(event.target.id == 'password')
-		{
+		if (event.target.id == 'password') {
 			setPassword(event.target.value)
 		}
 	}
@@ -38,9 +36,15 @@ export function Login() {
 					Close
 				</button>
 			</dialog> */}
-			<section className="dragon-img"></section>
 			<section >
-				<form className="form--login" onSubmit={loginSubmit}>
+				<div>
+					<h1>LOG IN</h1>
+				</div>
+				<div>
+					<Link to="/register"><h1>Register</h1></Link>
+				</div>
+
+				{/* <form className="form--login" onSubmit={loginSubmit}>
 					<fieldset>
 						<input
 							type="email"
@@ -63,16 +67,14 @@ export function Login() {
 							autoFocus
 							value={password}
 							onChange={handleInputChange}
-						/>
+						/>																												
 					</fieldset>
 					<fieldset>
 						<button type="submit">Sign In</button>
 					</fieldset>
-				</form>
+				</form> */}
 			</section>
-			<section className="link--register"> <br></br>
-				<Link to="/register">Register for an account</Link>
-			</section>
+
 		</main>
 	);
 }

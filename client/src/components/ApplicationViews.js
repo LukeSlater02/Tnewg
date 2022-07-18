@@ -4,24 +4,25 @@ import { IntroMap } from "./introMap/IntroMap"
 import { Login } from "./Auth/Login"
 import { BattleMap } from "./battles/battleMap"
 import { CreateCard } from "./Cards/CreateCard"
+import { NavBar } from "./Nav/NavBar"
 
 export const ApplicationViews = ({ isLoggedIn }) => {
   if (!isLoggedIn) {
     return (
       <>
         <Routes>
-        <Route path="/" element={<Login />}></Route>
+          <Route path="/" element={<Login />}></Route>
         </Routes>
       </>
     )
   }
-  
+
   return (
     <>
       <Routes>
-        <Route path="/" element={<IntroMap />}></Route>
-        <Route path="/battle" element={<BattleMap/>}></Route>
-        <Route path="/card/create" element={<CreateCard/>}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/battle" element={<BattleMap />}></Route>
+        <Route path="/card/create" element={<><NavBar /><CreateCard /></>}></Route>
       </Routes>
     </>
   )
