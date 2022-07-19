@@ -92,7 +92,7 @@ export const CreateCard = () => {
                 <div className={`cardHeroImage ${cardBorder}`}>
                     <img src="../img/circleGray.png" className="circle"></img>
                     <span className="cost">{cost}</span>
-                    <img src={characterImage}></img>
+                    <img className="characterImage" src={characterImage}></img>
                 </div>
                 <h2>{name}</h2>
                 <div className={`statsContainer ${cardStatsBackground}`}>

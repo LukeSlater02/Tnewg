@@ -1,0 +1,164 @@
+@font-face {
+  font-family: PixelH;
+  src: url(../public/ka1.ttf);
+}
+
+$vamp: #080808;
+
+body {
+  margin: 0;
+  font-family: PixelH;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.card {
+  font-family: "VT323", monospace;
+  transform: scale(0.8);
+  height: 490px;
+  margin-top: -4em;
+  padding: 3em;
+  width: 310px;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAB7CAMAAAC8V3VSAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJUExURScnJ////wAAAGz/AEYAAAADdFJOU///ANfKDUEAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAB/SURBVGhD7dqhAQMxDARBx/0Xndj/fJCCdpmIpoFbe7gLrLEeYK3PUD/hGGP/j3CA9xgpgAWwABbAAlgAC2ABLIAFsAAWwAJYAAtgASyABbAAFsACWAALYAEsgAWwABbAAlgAC2ABLIAFsAAWwAJYAPsPMCjcUfH4LPoIU+39BVNGLdV3xIdLAAAAAElFTkSuQmCC);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 400px;
+  position: relative;
+  left: -50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .statsContainer {
+    display: flex;
+    justify-content: space-around;
+    color: white;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: normal;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 335px;
+    position: relative;
+    left: 2px;
+    padding: 1em;
+    width: 95%;
+    height: 50px;
+    align-items: center;
+    img {
+      width: 60px;
+      height: 60px;
+    }
+    .stats {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .shinyGoldStatsBackground {
+    background-image: url(../public/img/statsBackgroundShinyYellow.png);
+  }
+  .grayStatsBackground {
+    background-image: url(../public/img/statsBackgroundGray.png);
+  }
+  .brownStatsBackground {
+    background-image: url(../public/img/statsBackgroundBrown.png);
+  }
+  .goldStatsBackground {
+    background-image: url(../public/img/statsBackgroundYellow.png);
+  }
+
+  .cardHeroImage {
+    width: 100%;
+    margin-top: 2em;
+    height: 224px;
+    display: flex;
+    justify-content: center;
+    background-image: url(../public/img/baseCardBorder.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 300px;
+    padding: 1em;
+
+    img {
+      max-width: 280px;
+      max-height: 230px;
+    }
+
+    .characterImage {
+      min-width: 200px;
+    }
+
+    .circle {
+      position: absolute;
+      left: 45px;
+      top: 75px;
+      width: 73px;
+      height: 67px;
+      margin: 0;
+      padding: 0;
+      margin-right: -4em;
+    }
+
+    .cost {
+      position: absolute;
+      left: 80px;
+      top: 88px;
+      font-weight: bold;
+      color: $vamp;
+      font-size: 60px;
+      margin: -12px;
+    }
+  }
+
+  .goldBorder {
+    background-image: url(../public/img/yellowCardBorder.png);
+  }
+  .silverBorder {
+    background-image: url(../public/img/silverCardBorder.png);
+  }
+  .brownBorder {
+    background-image: url(../public/img/brownCardBorder.png);
+  }
+
+  h2 {
+    width: 100%;
+    text-align: center;
+    font-size: 55px;
+    font-weight: bold;
+    background-image: url(../public/img/nameBackground.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 320px;
+    padding: 20px;
+    margin-bottom: -16px;
+    margin-top: -12px;
+    color: $vamp;
+  }
+}
+
+.blueBackground {
+  background-image: url(../public/img/blueCard.png);
+}
+
+.redBackground {
+  background-image: url(../public/img/redCard.png);
+}
+
+.greenBackground {
+  background-image: url(../public/img/greenCard.png);
+}
+
+.yellowBackground {
+  background-image: url(../public/img/yellowCard.png);
+}
+
+.grayBackground {
+  background-image: url(../public/img/grayCard.png);
+}
