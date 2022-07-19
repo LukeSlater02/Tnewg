@@ -36,44 +36,23 @@ export function Login() {
 					Close
 				</button>
 			</dialog> */}
-			<section >
-				<div>
-					<h1>LOG IN</h1>
-				</div>
-				<div>
-					<Link to="/register"><h1>Register</h1></Link>
+
+			<div className="loginContentContainer">
+
+				<div className="loginTitle">
+					<img src="img/eyeCard.png"></img> <h1>T N E W G</h1> <img src="img/lichCard.png"></img>
 				</div>
 
-				{/* <form className="form--login" onSubmit={loginSubmit}>
-					<fieldset>
-						<input
-							type="email"
-							id="email"
-							className="form-control"
-							placeholder="Email"
-							required
-							autoFocus
-							value={email}
-							onChange={handleInputChange}
-						/>
-					</fieldset>
-					<fieldset>
-						<input
-							type="password"
-							id="password"
-							className="form-control"
-							placeholder="Password"
-							required
-							autoFocus
-							value={password}
-							onChange={handleInputChange}
-						/>																												
-					</fieldset>
-					<fieldset>
-						<button type="submit">Sign In</button>
-					</fieldset>
-				</form> */}
-			</section>
+				<section className="loginBody">
+					<div>
+						<h1>LOG IN</h1>
+					</div>
+					<div>
+						<Link to="/register"><h1>Register</h1></Link>
+					</div>
+				</section>
+
+			</div>
 
 		</main>
 	);

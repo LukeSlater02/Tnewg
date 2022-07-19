@@ -21,10 +21,10 @@ export const ApplicationViews = ({ isLoggedIn }) => {
   return (
     <>
       <Routes>
-        <Route path="/login" element={<Login />}></Route>
+        <Route path="/login" element={<><Login /></>}></Route>
         <Route path="/battle" element={<BattleMap />}></Route>
         <Route path="/cards/create" element={<><NavBar /><CreateCard /></>}></Route>
-        <Route path="/cards/list" element={<><NavBar/> <CardList/></>}></Route>
+        <Route path="/cards/list" element={<><NavBar /> <CardList /></>}></Route>
       </Routes>
     </>
   )

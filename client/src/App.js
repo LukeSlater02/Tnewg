@@ -18,9 +18,7 @@ function App() {
   }
 
   return (
-    <div className="App">
-        <ApplicationViews isLoggedIn={isLoggedIn} />
-    </div>
+    <ApplicationViews isLoggedIn={isLoggedIn} />
   );
 }
 

@@ -1,4 +1,68 @@
-main {
+a {
+  color: black;
+}
+
+.loginContentContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 50em;
+  margin-top: 3em;
+}
+
+.loginTitle {
+  opacity: 0.9;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 30px;
+  width: 750px;
+  height: 300px;
+  padding: 2em;
+  background-image: url(../../../public/img/titleBackground.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 900px;
+}
+
+.loginBody {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+}
+
+.loginBody h1 {
+  font-family: PixelH;
+  font-size: 50px;
+  padding: .7em;
+}
+
+.loginBody h1:hover {
+  border-radius: 0;
+  border-left: 15px solid black;
+  border-right: 15px solid black;
+  cursor: url(../../../public/img/pixelCursorPointer.png), pointer;
+}
+
+.container--login {
   height: 100vh;
   width: 100vw;
   display: -webkit-box;
@@ -14,53 +78,7 @@ main {
   background-image: url(../../../public/img/landingPage.png);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
-  background-color: black;
-  color: black;
-}
-
-h1 {
-  font-family: PixelH;
-  margin: 3em;
-  font-size: 50px;
-  padding: .7em;
-}
-
-h1:hover {
-  border-radius: 0;
-  border-left: 15px solid black;
-  border-right: 15px solid black;
-  cursor: pointer;
-}
-
-a {
-  color: black;
-}
-
-.container--login {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.container--login section {
-  width: 60%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 60%;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  background-size: cover;
+  background-color: #080808;
 }
 /*# sourceMappingURL=Login.css.map */
