@@ -1,249 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getAllCards } from "../../modules/cardManager";
 import './CardList.scss'
 
 export const CardList = () => {
+    const [cards, setCards] = useState([])
+
+    useEffect(() => {
+        getAllCards().then(data => setCards(data))
+    })
+
     return (
         <div className="cardsContainer">
-
-            <div>
-                <div className="card">
-                    <div className="cardHeroImage">
-                        <img src="/img/circleGray.png" className="circle"></img>
-                        <span className="cost">6</span>
-                        <img className="characterImage" src="/img/wizardCard2.png"></img>
-                    </div>
-                    <h2>The Arcanist</h2>
-                    <div className="statsContainer">
-                        <div className="stats">
-                            <img src="/img/cardDmg.png"></img>
+            {cards.map(c => {
+                return (
+                    <div>
+                        <div className="card" style={{ backgroundImage: `url(${c.backgroundColor})` }}>
+                            <div className="cardHeroImage" style={{ backgroundImage: `url(${c.borderColor})` }}>
+                                <img src="../img/circleGray.png" className="circle"></img>
+                                <span className="cost">{c.cost}</span>
+                                <img className="characterImage" src={c.image}></img>
+                            </div>
+                            <h2>{c.name}</h2>
+                            <div className="statsContainer" style={{ backgroundImage: `url(${c.statsBackgroundColor})` }} >
+                                <div className="stats">
+                                    <img src="../img/cardDmg.png"></img>
+                                </div>
+                                <div className="stats">
+                                    <img src="../img/cardArmor.png"></img>
+                                </div>
+                                <div className="stats">
+                                    <img src="../img/cardHp.png"></img>
+                                </div>
+                            </div>
                         </div>
-                        <div className="stats">
-                            <img src="/img/cardArmor.png"></img>
-                        </div>
-                        <div className="stats">
-                            <img src="/img/cardHp.png"></img>
-                        </div>
-                    </div>
-                </div>
-                <div className="buttons" >
-                    <div class="pixelButton add"><p>add</p></div>
-                </div>
-            </div>
-
-
-            <div>
-                <div className="card">
-                    <div className="cardHeroImage">
-                        <img src="/img/circleGray.png" className="circle"></img>
-                        <span className="cost">6</span>
-                        <img className="characterImage" src="/img/wizardCard2.png"></img>
-                    </div>
-                    <h2>The Arcanist</h2>
-                    <div className="statsContainer">
-                        <div className="stats">
-                            <img src="/img/cardDmg.png"></img>
-                        </div>
-                        <div className="stats">
-                            <img src="/img/cardArmor.png"></img>
-                        </div>
-                        <div className="stats">
-                            <img src="/img/cardHp.png"></img>
+                        <div className="buttons" >
+                            <div class="pixelButton add"><p>add</p></div>
+                            <div className="pixelButton edit"><p>edit</p></div>
+                            <div className="pixelButton delete"><p>delete</p></div>
                         </div>
                     </div>
-                </div>
-                <div className="buttons" >
-                    <div class="pixelButton add"><p>add</p></div>
-                </div>
-            </div>
-
-            <div>
-                <div className="card">
-                    <div className="cardHeroImage">
-                        <img src="/img/circleGray.png" className="circle"></img>
-                        <span className="cost">6</span>
-                        <img className="characterImage" src="/img/samurai.webp"></img>
-                    </div>
-                    <h2>The Ronin</h2>
-                    <div className="statsContainer">
-                        <div className="stats">
-                            <img src="/img/cardDmg.png"></img>
-                        </div>
-                        <div className="stats">
-                            <img src="/img/cardArmor.png"></img>
-                        </div>
-                        <div className="stats">
-                            <img src="/img/cardHp.png"></img>
-                        </div>
-                    </div>
-                </div>
-                <div className="buttons" >
-                    <div class="pixelButton add"><p>add</p></div>
-                    <div className="pixelButton edit"><p>edit</p></div>
-                    <div className="pixelButton delete"><p>delete</p></div>
-                </div>
-            </div>
-
-            <div>
-                <div className="card">
-                    <div className="cardHeroImage">
-                        <img src="/img/circleGray.png" className="circle"></img>
-                        <span className="cost">6</span>
-                        <img className="characterImage" src="/img/wizardCard2.png"></img>
-                    </div>
-                    <h2>The Arcanist</h2>
-                    <div className="statsContainer">
-                        <div className="stats">
-                            <img src="/img/cardDmg.png"></img>
-                        </div>
-                        <div className="stats">
-                            <img src="/img/cardArmor.png"></img>
-                        </div>
-                        <div className="stats">
-                            <img src="/img/cardHp.png"></img>
-                        </div>
-                    </div>
-                </div>
-                <div className="buttons" >
-                    <div class="pixelButton add"><p>add</p></div>
-                    <div className="pixelButton edit"><p>edit</p></div>
-                    <div className="pixelButton delete"><p>delete</p></div>
-                </div>
-            </div>
-
-            <div>
-                <div className="card">
-                    <div className="cardHeroImage">
-                        <img src="/img/circleGray.png" className="circle"></img>
-                        <span className="cost">6</span>
-                        <img className="characterImage" src="/img/skeletonCard.png"></img>
-                    </div>
-                    <h2>Skeleton</h2>
-                    <div className="statsContainer">
-                        <div className="stats">
-                            <img src="/img/cardDmg.png"></img>
-                        </div>
-                        <div className="stats">
-                            <img src="/img/cardArmor.png"></img>
-                        </div>
-                        <div className="stats">
-                            <img src="/img/cardHp.png"></img>
-                        </div>
-                    </div>
-                </div>
-                <div className="buttons" >
-                    <div class="pixelButton add"><p>add</p></div>
-                    <div className="pixelButton edit"><p>edit</p></div>
-                    <div className="pixelButton delete"><p>delete</p></div>
-                </div>
-            </div>
-
-            <div>
-                <div className="card">
-                    <div className="cardHeroImage">
-                        <img src="/img/circleGray.png" className="circle"></img>
-                        <span className="cost">6</span>
-                        <img className="characterImage" src="/img/samurai.webp"></img>
-                    </div>
-                    <h2>The Ronin</h2>
-                    <div className="statsContainer">
-                        <div className="stats">
-                            <img src="/img/cardDmg.png"></img>
-                        </div>
-                        <div className="stats">
-                            <img src="/img/cardArmor.png"></img>
-                        </div>
-                        <div className="stats">
-                            <img src="/img/cardHp.png"></img>
-                        </div>
-                    </div>
-                </div>
-                <div className="buttons" >
-                    <div class="pixelButton add"><p>add</p></div>
-                    <div className="pixelButton edit"><p>edit</p></div>
-                    <div className="pixelButton delete"><p>delete</p></div>
-                </div>
-            </div>
-
-            <div>
-                <div className="card">
-                    <div className="cardHeroImage">
-                        <img src="/img/circleGray.png" className="circle"></img>
-                        <span className="cost">6</span>
-                        <img className="characterImage" src="/img/wizardCard2.png"></img>
-                    </div>
-                    <h2>The Arcanist</h2>
-                    <div className="statsContainer">
-                        <div className="stats">
-                            <img src="/img/cardDmg.png"></img>
-                        </div>
-                        <div className="stats">
-                            <img src="/img/cardArmor.png"></img>
-                        </div>
-                        <div className="stats">
-                            <img src="/img/cardHp.png"></img>
-                        </div>
-                    </div>
-                </div>
-                <div className="buttons" >
-                    <div class="pixelButton add"><p>add</p></div>
-                    <div className="pixelButton edit"><p>edit</p></div>
-                    <div className="pixelButton delete"><p>delete</p></div>
-                </div>
-            </div>
-
-            <div>
-                <div className="card">
-                    <div className="cardHeroImage">
-                        <img src="/img/circleGray.png" className="circle"></img>
-                        <span className="cost">6</span>
-                        <img className="characterImage" src="/img/skeletonCard.png"></img>
-                    </div>
-                    <h2>Skeleton</h2>
-                    <div className="statsContainer">
-                        <div className="stats">
-                            <img src="/img/cardDmg.png"></img>
-                        </div>
-                        <div className="stats">
-                            <img src="/img/cardArmor.png"></img>
-                        </div>
-                        <div className="stats">
-                            <img src="/img/cardHp.png"></img>
-                        </div>
-                    </div>
-                </div>
-                <div className="buttons" >
-                    <div class="pixelButton add"><p>add</p></div>
-                    <div className="pixelButton edit"><p>edit</p></div>
-                    <div className="pixelButton delete"><p>delete</p></div>
-                </div>
-            </div>
-
-            <div>
-                <div className="card">
-                    <div className="cardHeroImage">
-                        <img src="/img/circleGray.png" className="circle"></img>
-                        <span className="cost">6</span>
-                        <img className="characterImage" src="/img/wizardCard2.png"></img>
-                    </div>
-                    <h2>The Arcanist</h2>
-                    <div className="statsContainer">
-                        <div className="stats">
-                            <img src="/img/cardDmg.png"></img>
-                        </div>
-                        <div className="stats">
-                            <img src="/img/cardArmor.png"></img>
-                        </div>
-                        <div className="stats">
-                            <img src="/img/cardHp.png"></img>
-                        </div>
-                    </div>
-                </div>
-                <div className="buttons" >
-                    <div class="pixelButton add"><p>add</p></div>
-                    <div className="pixelButton edit"><p>edit</p></div>
-                    <div className="pixelButton delete"><p>delete</p></div>
-                </div>
-            </div>
+                )
+            })}
         </div>
     )
 }

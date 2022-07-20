@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
-using react_rpg.Models;
-using react_rpg.Utils;
+using Tnewg.Models;
+using Tnewg.Utils;
 
-namespace react_rpg.Repositories
+namespace Tnewg.Repositories
 {
     public class UserProfileRepository : BaseRepository, IUserProfileRepository
     {

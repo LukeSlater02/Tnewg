@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using react_rpg.Models;
-using react_rpg.Repositories;
+using Tnewg.Models;
+using Tnewg.Repositories;
 
-namespace react_rpg.Controllers
+namespace Tnewg.Controllers
 {
     
     [Route("api/[controller]")]

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ev8igXAs8CFI2q1Ag8OMcBWaWkcpTePrC9wtBygmVIeYoabwnEiHByPdEh40FEoh8vgamWe5z7l8w2R1Tmv5rQ==",
+  "dgSpecHash": "B9eVbEoyveGM5b/k69hm4QOKG13T7SmSyd2JIs2k3IyDjdVDmvROC7l1jENuop/AzdYSmTu4wsxR9UHWCb45dw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Luke\\workspace\\react-rpg\\react-rpg\\react-rpg.csproj",
+  "projectFilePath": "C:\\Users\\Luke\\workspace\\react-rpg\\react-rpg\\Tnewg.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Luke\\.nuget\\packages\\azure.core\\1.6.0\\azure.core.1.6.0.nupkg.sha512",
     "C:\\Users\\Luke\\.nuget\\packages\\azure.identity\\1.3.0\\azure.identity.1.3.0.nupkg.sha512",

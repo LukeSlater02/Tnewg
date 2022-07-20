@@ -62,6 +62,13 @@ a {
   cursor: url(../../../public/img/pixelCursorPointer.png), pointer;
 }
 
+.loginBody input {
+  margin-top: 1em;
+  border: 5px dashed black;
+  padding: 5px;
+  background-color: rgba(127, 153, 166, 0.8);
+}
+
 .container--login {
   height: 100vh;
   width: 100vw;

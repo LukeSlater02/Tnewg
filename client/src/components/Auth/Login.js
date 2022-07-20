@@ -9,6 +9,9 @@ export function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
+	const [loginClicked, setLoginClicked] = useState(false)
+	const [registerClicked, setRegisterClicked] = useState(false)
+
 	const loginSubmit = (e) => {
 		e.preventDefault();
 		login(email, password)
@@ -45,11 +48,28 @@ export function Login() {
 
 				<section className="loginBody">
 					<div>
-						<h1>LOG IN</h1>
+						<h1 onClick={() => {
+							setLoginClicked(!loginClicked)
+							setRegisterClicked(false)
+						}}>LOG IN</h1>
 					</div>
-					<div>
-						<Link to="/register"><h1>Register</h1></Link>
+					{loginClicked ? <>
+						<div>
+							<input placeholder="Email"></input>
+							<br></br>
+							<input placeholder="password"></input>
+						</div></> : ""}
+					<div><h1 onClick={() => {
+						setRegisterClicked(!registerClicked)
+						setLoginClicked(false)
+					}}>Register</h1>
 					</div>
+					{registerClicked ? <>
+						<div>
+							<input></input>
+							<br></br>
+							<input></input>
+						</div></> : ""}
 				</section>
 
 			</div>

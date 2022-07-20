@@ -1,6 +1,6 @@
-﻿using react_rpg.Models;
+﻿using Tnewg.Models;
 
-namespace react_rpg.Repositories
+namespace Tnewg.Repositories
 {
     public interface IUserProfileRepository
     {

@@ -70,19 +70,6 @@ code {
     }
   }
 
-  .shinyGoldStatsBackground {
-    background-image: url(../public/img/statsBackgroundShinyYellow.png);
-  }
-  .grayStatsBackground {
-    background-image: url(../public/img/statsBackgroundGray.png);
-  }
-  .brownStatsBackground {
-    background-image: url(../public/img/statsBackgroundBrown.png);
-  }
-  .goldStatsBackground {
-    background-image: url(../public/img/statsBackgroundYellow.png);
-  }
-
   .cardHeroImage {
     width: 100%;
     margin-top: 2em;
@@ -124,16 +111,6 @@ code {
       font-size: 60px;
       margin: -12px;
     }
-  }
-
-  .goldBorder {
-    background-image: url(../public/img/yellowCardBorder.png);
-  }
-  .silverBorder {
-    background-image: url(../public/img/silverCardBorder.png);
-  }
-  .brownBorder {
-    background-image: url(../public/img/brownCardBorder.png);
   }
 
   h2 {

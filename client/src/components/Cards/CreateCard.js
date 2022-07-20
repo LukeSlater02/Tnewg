@@ -53,30 +53,30 @@ export const CreateCard = () => {
                     BORDER <br></br>
                     <select id="borderSelect" onChange={handleInput}>
                         <option>----</option>
-                        <option value={"goldBorder"}>Gold</option>
-                        <option value={"silverBorder"}>Silver</option>
-                        <option value={"brownBorder"}>Brown</option>
+                        <option value={"../img/yellowCardBorder.png"}>Gold</option>
+                        <option value={"../img/silverCardBorder.png"}>Silver</option>
+                        <option value={"../img/brownCardBorder.png"}>Brown</option>
                     </select>
                 </div>
                 <div>
                     BACKGROUND<br></br>
                     <select id="backgroundSelect" onChange={handleInput}>
                         <option>----</option>
-                        <option value={"grayBackground"}>Gray</option>
-                        <option value={"blueBackground"}>Blue</option>
-                        <option value={"redBackground"}>Red</option>
-                        <option value={"greenBackground"}>Green</option>
-                        <option value={"yellowBackground"}>Gold</option>
+                        <option value={"../img/grayCard.png"}>Gray</option>
+                        <option value={"../img/blueCard.png"}>Blue</option>
+                        <option value={"../img/redCard.png"}>Red</option>
+                        <option value={"../img/greenCard.png"}>Green</option>
+                        <option value={"../img/yellowCard.png"}>Gold</option>
                     </select>
                 </div>
                 <div>
                     STATS BACKGROUND<br></br>
                     <select id="statsBackgroundSelect" onChange={handleInput}>
                         <option>----</option>
-                        <option value={"grayStatsBackground"}>Gray</option>
-                        <option value={"brownStatsBackground"}>Brown</option>
-                        <option value={"goldStatsBackground"}>Gold</option>
-                        <option value={"shinyGoldStatsBackground"}>Shiny Gold</option>
+                        <option value={"../img/statsBackgroundGray.png"}>Gray</option>
+                        <option value={"../img/statsBackgroundBrown.png"}>Brown</option>
+                        <option value={"../img/statsBackgroundYellow.png"}>Gold</option>
+                        <option value={"../img/statsBackgroundShinyYellow.png"}>Shiny Gold</option>
                     </select>
                 </div>
                 <div>
@@ -88,14 +88,14 @@ export const CreateCard = () => {
                     <input id="cost" type="number" max={9} onChange={handleInput} />
                 </div>
             </div>
-            <div className={`card ${cardBackground}`}>
-                <div className={`cardHeroImage ${cardBorder}`}>
+            <div className="card" style={{backgroundImage: `url(${cardBackground})`}}>
+                <div className="cardHeroImage" style={{backgroundImage: `url(${cardBorder})`}}>
                     <img src="../img/circleGray.png" className="circle"></img>
                     <span className="cost">{cost}</span>
                     <img className="characterImage" src={characterImage}></img>
                 </div>
                 <h2>{name}</h2>
-                <div className={`statsContainer ${cardStatsBackground}`}>
+                <div className="statsContainer" style={{backgroundImage: `url(${cardStatsBackground})`}} >
                     <div className="stats">
                         <img src="../img/cardDmg.png"></img>
                     </div>

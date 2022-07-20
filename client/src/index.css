@@ -86,22 +86,6 @@ code {
           align-items: center;
 }
 
-.card .shinyGoldStatsBackground {
-  background-image: url(../public/img/statsBackgroundShinyYellow.png);
-}
-
-.card .grayStatsBackground {
-  background-image: url(../public/img/statsBackgroundGray.png);
-}
-
-.card .brownStatsBackground {
-  background-image: url(../public/img/statsBackgroundBrown.png);
-}
-
-.card .goldStatsBackground {
-  background-image: url(../public/img/statsBackgroundYellow.png);
-}
-
 .card .cardHeroImage {
   width: 100%;
   margin-top: 2em;
@@ -147,18 +131,6 @@ code {
   color: #080808;
   font-size: 60px;
   margin: -12px;
-}
-
-.card .goldBorder {
-  background-image: url(../public/img/yellowCardBorder.png);
-}
-
-.card .silverBorder {
-  background-image: url(../public/img/silverCardBorder.png);
-}
-
-.card .brownBorder {
-  background-image: url(../public/img/brownCardBorder.png);
 }
 
 .card h2 {

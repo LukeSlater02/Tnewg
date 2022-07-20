@@ -41,6 +41,13 @@ a {
             cursor: url(../../../public/img/pixelCursorPointer.png), pointer;
         }
     }
+
+    input{
+        margin-top: 1em;
+        border: 5px dashed black;
+        padding: 5px;
+        background-color: rgba($color: #7F99A6, $alpha: .8);
+    }
 }
 
 .container--login {

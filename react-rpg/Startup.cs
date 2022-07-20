@@ -13,9 +13,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using react_rpg.Repositories;
+using Tnewg.Repositories;
 
-namespace react_rpg
+namespace Tnewg
 {
     public class Startup
     {
@@ -32,9 +32,10 @@ namespace react_rpg
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "react_rpg", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Tnewg", Version = "v1" });
             });
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
+            services.AddTransient<ICardRepository, CardRepository>();
 
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
             var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";
@@ -61,7 +62,7 @@ namespace react_rpg
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "react_rpg v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tnewg v1"));
             }
 
             app.UseHttpsRedirection();

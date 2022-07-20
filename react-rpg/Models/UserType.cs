@@ -1,4 +1,4 @@
-﻿namespace react_rpg.Models
+﻿namespace Tnewg.Models
 {
     public class UserType
     {

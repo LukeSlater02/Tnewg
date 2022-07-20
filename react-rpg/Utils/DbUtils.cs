@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Data.SqlClient;
 
-namespace react_rpg.Utils
+namespace Tnewg.Utils
 {
     /// <summary>
     ///  A set of useful function for interacting with ADO.NET

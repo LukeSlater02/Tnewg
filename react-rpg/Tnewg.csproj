@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>react_rpg</RootNamespace>
+    <RootNamespace>Tnewg</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
