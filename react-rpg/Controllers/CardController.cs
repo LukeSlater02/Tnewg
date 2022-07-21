@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Tnewg.Repositories;
+using Tnewg.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -33,8 +34,9 @@ namespace Tnewg.Controllers
 
         // POST api/<CardController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post(Card card)
         {
+            _cardRepository.Add(card);  
         }
 
         // PUT api/<CardController>/5

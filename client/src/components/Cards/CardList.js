@@ -13,7 +13,7 @@ export const CardList = () => {
         <div className="cardsContainer">
             {cards.map(c => {
                 return (
-                    <div>
+                    <div key={c.id}>
                         <div className="card" style={{ backgroundImage: `url(${c.backgroundColor})` }}>
                             <div className="cardHeroImage" style={{ backgroundImage: `url(${c.borderColor})` }}>
                                 <img src="../img/circleGray.png" className="circle"></img>
@@ -34,7 +34,7 @@ export const CardList = () => {
                             </div>
                         </div>
                         <div className="buttons" >
-                            <div class="pixelButton add"><p>add</p></div>
+                            <div className="pixelButton add"><p>add</p></div>
                             <div className="pixelButton edit"><p>edit</p></div>
                             <div className="pixelButton delete"><p>delete</p></div>
                         </div>

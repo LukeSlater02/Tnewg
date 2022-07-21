@@ -39,40 +39,37 @@ export function Login() {
 					Close
 				</button>
 			</dialog> */}
-
 			<div className="loginContentContainer">
-
 				<div className="loginTitle">
 					<img src="img/eyeCard.png"></img> <h1>T N E W G</h1> <img src="img/lichCard.png"></img>
 				</div>
-
-				<section className="loginBody">
-					<div>
-						<h1 onClick={() => {
-							setLoginClicked(!loginClicked)
-							setRegisterClicked(false)
-						}}>LOG IN</h1>
-					</div>
-					{loginClicked ? <>
-						<div>
-							<input placeholder="Email"></input>
-							<br></br>
-							<input placeholder="password"></input>
-						</div></> : ""}
-					<div><h1 onClick={() => {
-						setRegisterClicked(!registerClicked)
-						setLoginClicked(false)
-					}}>Register</h1>
-					</div>
-					{registerClicked ? <>
-						<div>
-							<input></input>
-							<br></br>
-							<input></input>
-						</div></> : ""}
-				</section>
-
 			</div>
+
+			<section className="loginBody">
+				<div>
+					<h1 onClick={() => {
+						setLoginClicked(!loginClicked)
+						setRegisterClicked(false)
+					}}>LOG IN</h1>
+				</div>
+				{loginClicked ? <>
+					<div>
+						<input placeholder="Email" size={30}></input>
+						<br></br>
+						<input placeholder="password"></input>
+					</div></> : ""}
+				<div><h1 onClick={() => {
+					setRegisterClicked(!registerClicked)
+					setLoginClicked(false)
+				}}>Register</h1>
+				</div>
+				{registerClicked ? <>
+					<div>
+						<input placeholder="Email" size={30}></input>
+						<br></br>
+						<input placeholder="password"></input>
+					</div></> : ""}
+			</section>
 
 		</main>
 	);

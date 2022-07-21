@@ -7,7 +7,7 @@ a {
     flex-direction: column;
     align-items: center;
     margin-left: 50em;
-    margin-top: 3em;
+    transform: scale(1);
 }
 
 .loginTitle {
@@ -29,11 +29,11 @@ a {
     display: flex;
     flex-direction: column;
     text-align: center;
+    margin-left: 50em;
     h1 {
         font-family: PixelH;
         font-size: 50px;
-        padding: .7em;
-
+        margin-bottom: 0;
         &:hover {
             border-radius: 0;
             border-left: 15px solid black;
@@ -43,9 +43,9 @@ a {
     }
 
     input{
-        margin-top: 1em;
         border: 5px dashed black;
         padding: 5px;
+        margin-bottom: 0;
         background-color: rgba($color: #7F99A6, $alpha: .8);
     }
 }
@@ -59,6 +59,6 @@ a {
     background-image: url(../../../public/img/landingPage.png);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: 1800px;
     background-color: #080808;
 }

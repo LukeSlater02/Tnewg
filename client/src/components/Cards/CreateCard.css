@@ -2,7 +2,7 @@
 input {
   font-family: "VT323", monospace;
   font-size: x-large;
-  margin: 12px;
+  margin: 30px;
   background-color: transparent;
   border: none;
   border-bottom: 2px solid black;
@@ -17,20 +17,22 @@ select {
   font-size: x-large;
   border: none;
   border-radius: 5px;
-  margin: 12px;
+  margin: 30px;
   background-color: rgba(8, 8, 8, 0.2);
   padding: 3.5px;
 }
 
 .create-container {
-  width: 100vw;
-  height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding-top: 10em;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  margin-top: 5em;
+}
+
+.create-container h2 {
+  text-transform: capitalize;
 }
 /*# sourceMappingURL=CreateCard.css.map */

@@ -6,5 +6,6 @@ namespace Tnewg.Repositories
     public interface ICardRepository
     {
         List<Card> GetAll();
+        void Add(Card card);
     }
 }

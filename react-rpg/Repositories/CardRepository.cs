@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using Tnewg.Models;
+using Tnewg.Utils;
 
 namespace Tnewg.Repositories
 {
@@ -43,5 +44,30 @@ namespace Tnewg.Repositories
                 }
             }
         }
+
+        public void Add(Card card)
+        {
+            var conn = Connection;
+            {
+                conn.Open();
+                var cmd = conn.CreateCommand();
+                {
+                    cmd.CommandText = @"INSERT INTO Card(Name, Damage, HitPoints, Cost, BackgroundColor, BorderColor, StatsBackgroundColor, Image)
+                      VALUES(@Name, @Damage, @HitPoints, @Cost, @BackgroundColor, @BorderColor, @StatsBackgroundColor, @Image)";
+                    cmd.Parameters.AddWithValue("@Name", card.Name);
+                    DbUtils.AddParameter(cmd, "@Damage", card.Name);
+                    DbUtils.AddParameter(cmd, "@HitPoints", card.HitPoints);
+                    DbUtils.AddParameter(cmd, "@Cost", card.Cost);
+                    DbUtils.AddParameter(cmd, "@BackgroundColor", card.BackgroundColor);
+                    DbUtils.AddParameter(cmd, "@BorderColor", card.BorderColor);
+                    DbUtils.AddParameter(cmd, "@StatsBackgroundColor", card.StatsBackgroundColor);
+                    DbUtils.AddParameter(cmd, "@Image", card.Image);
+
+                    card.Id = (int)cmd.ExecuteScalar();
+                    conn.Close();
+                }
+            }
+        }
+
     }
 }

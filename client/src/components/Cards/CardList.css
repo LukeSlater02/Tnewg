@@ -10,11 +10,6 @@
   justify-items: center;
 }
 
-.cardsContainer div {
-  height: 490px;
-  width: 318px;
-}
-
 .cardsContainer .buttons {
   height: 50px;
   margin-top: -5.5em;

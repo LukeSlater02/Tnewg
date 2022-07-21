@@ -14,7 +14,8 @@ a {
       -ms-flex-align: center;
           align-items: center;
   margin-left: 50em;
-  margin-top: 3em;
+  -webkit-transform: scale(1);
+          transform: scale(1);
 }
 
 .loginTitle {
@@ -47,12 +48,13 @@ a {
       -ms-flex-direction: column;
           flex-direction: column;
   text-align: center;
+  margin-left: 50em;
 }
 
 .loginBody h1 {
   font-family: PixelH;
   font-size: 50px;
-  padding: .7em;
+  margin-bottom: 0;
 }
 
 .loginBody h1:hover {
@@ -63,9 +65,9 @@ a {
 }
 
 .loginBody input {
-  margin-top: 1em;
   border: 5px dashed black;
   padding: 5px;
+  margin-bottom: 0;
   background-color: rgba(127, 153, 166, 0.8);
 }
 
@@ -85,7 +87,7 @@ a {
   background-image: url(../../../public/img/landingPage.png);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: 1800px;
   background-color: #080808;
 }
 /*# sourceMappingURL=Login.css.map */

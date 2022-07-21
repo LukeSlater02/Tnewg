@@ -8,8 +8,9 @@ $vamp: #080808;
 body {
   margin: 0;
   background-image: url(../public/img/battleBackground.png);
-  background-repeat: repeat-y;
-  background-position: center;
+  //background-repeat: repeat-y;
+  background-repeat: no-repeat;
+  background-position: top;
   background-size: cover;
   min-height: 100vh;
   min-width: 100vw;
@@ -29,7 +30,6 @@ code {
 
 .card {
   font-family: "VT323", monospace;
-  transform: scale(0.8);
   height: 490px;
   margin-top: -4em;
   padding: 3em;
@@ -83,12 +83,13 @@ code {
     padding: 1em;
 
     img {
+      margin-top: 5px;
       max-width: 280px;
-      max-height: 230px;
+      max-height: 210px;
     }
 
     .characterImage {
-      min-width: 200px;
+      min-width: 170px;
     }
 
     .circle {
@@ -127,6 +128,8 @@ code {
     margin-top: -12px;
     color: $vamp;
   }
+
+  transform: scale(0.6);
 }
 
 .blueBackground {

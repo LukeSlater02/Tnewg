@@ -4,8 +4,8 @@ import './CreateCard.scss'
 export const CreateCard = () => {
     const [name, setName] = useState("Name")
     const [cost, setCost] = useState(0)
-    const [cardBackground, setCardBackground] = useState("")
-    const [cardBorder, setCardBorder] = useState("")
+    const [cardBackground, setCardBackground] = useState("../img/baseCardBackground.png")
+    const [cardBorder, setCardBorder] = useState("../img/baseCardBorder.png")
     const [cardStatsBackground, setCardStatsBackground] = useState("")
     const [characterImage, setCharacterImage] = useState("")
 

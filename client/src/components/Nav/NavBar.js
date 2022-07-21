@@ -3,7 +3,7 @@ import './NavBar.scss'
 
 export const NavBar = () => {
     return(
-       <div>
+       <div className="div">
         NAVVY BAR
        </div>
     )
