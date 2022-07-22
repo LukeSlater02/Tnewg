@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllCards } from "../../modules/cardManager";
+import { getAllCards, deleteCard } from "../../modules/cardManager";
 import './CardList.scss'
 
 export const CardList = () => {
@@ -8,6 +8,12 @@ export const CardList = () => {
     useEffect(() => {
         getAllCards().then(data => setCards(data))
     })
+
+    const handleButtonClick = event => {
+        if (event.target.id.includes("delete")) {
+            deleteCard(event.target.id.split(" ")[1]).then(() => getAllCards().then(data => setCards(data)))
+        }
+    }
 
     return (
         <div className="cardsContainer">
@@ -36,7 +42,7 @@ export const CardList = () => {
                         <div className="buttons" >
                             <div className="pixelButton add"><p>add</p></div>
                             <div className="pixelButton edit"><p>edit</p></div>
-                            <div className="pixelButton delete"><p>delete</p></div>
+                            <div className="pixelButton delete"><p id={`delete ${c.id}`} onClick={handleButtonClick}>delete</p></div>
                         </div>
                     </div>
                 )
