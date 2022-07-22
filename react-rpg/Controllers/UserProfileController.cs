@@ -42,7 +42,7 @@ namespace Tnewg.Controllers
         public IActionResult Register(UserProfile userProfile)
         {
             // All newly registered users start out as a "user" user type (i.e. they are not admins)
-            userProfile.UserTypeId = 2;
+            userProfile.UserType = "user";
             _userProfileRepository.Add(userProfile);
             return CreatedAtAction(
                 nameof(GetByFirebaseUserId), new { firebaseUserId = userProfile.FirebaseUserId }, userProfile);

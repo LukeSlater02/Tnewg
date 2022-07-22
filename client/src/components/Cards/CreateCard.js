@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import './CreateCard.scss'
-
+import { addCard } from "../../modules/cardManager";
+import { borderColor } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 export const CreateCard = () => {
     const [name, setName] = useState("Name")
     const [cost, setCost] = useState(0)
@@ -8,6 +10,8 @@ export const CreateCard = () => {
     const [cardBorder, setCardBorder] = useState("../img/baseCardBorder.png")
     const [cardStatsBackground, setCardStatsBackground] = useState("")
     const [characterImage, setCharacterImage] = useState("")
+
+    let navigate = useNavigate()
 
     const handleInput = event => {
         switch (event.target.id) {
@@ -35,6 +39,20 @@ export const CreateCard = () => {
                 setCharacterImage(event.target.value)
                 break;
         }
+    }
+
+    const handleAddClick = () => {
+        const card = {
+            name: name,
+            damage: 0,
+            hitPoints: 0,
+            cost: cost,
+            backgroundColor: cardBackground,
+            borderColor: cardBorder,
+            statsBackgroundColor: cardStatsBackground,
+            image: characterImage,
+        }
+        addCard(card).then(() => navigate("/cards/list"))
     }
 
     return (
@@ -86,6 +104,9 @@ export const CreateCard = () => {
                 <div>
                     Cost<br></br>
                     <input id="cost" type="number" max={9} onChange={handleInput} />
+                </div>
+                <div>
+                    <button onClick={handleAddClick}>Submit</button>
                 </div>
             </div>
             <div className="card" style={{backgroundImage: `url(${cardBackground})`}}>

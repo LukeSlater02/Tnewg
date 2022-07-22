@@ -16,7 +16,7 @@ export function Login() {
 		e.preventDefault();
 		login(email, password)
 			.then(() => navigate("/"))
-			.catch(() => alert("Login Failed"));
+			.catch(() => console.error());
 	};
 
 	const handleInputChange = event => {
@@ -54,14 +54,16 @@ export function Login() {
 				</div>
 				{loginClicked ? <>
 					<div>
-						<input placeholder="Email" size={30}></input>
+						<input placeholder="Email" id="email" size={30} value={email} onChange={handleInputChange}></input>
 						<br></br>
-						<input placeholder="password"></input>
+						<input placeholder="password" id="password" type="password" value={password} onChange={handleInputChange}></input>
+						<button onClick={loginSubmit}>sign in</button>
 					</div></> : ""}
-				<div><h1 onClick={() => {
-					setRegisterClicked(!registerClicked)
-					setLoginClicked(false)
-				}}>Register</h1>
+				<div>
+					<h1 onClick={() => {
+						setRegisterClicked(!registerClicked)
+						setLoginClicked(false)
+					}}>Register</h1>
 				</div>
 				{registerClicked ? <>
 					<div>

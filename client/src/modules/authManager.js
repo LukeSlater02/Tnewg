@@ -51,6 +51,7 @@ export const login = (email, pw) => {
         _onLoginStatusChangedHandler(true);
       }
     }).catch(err => {
+      window.alert(err)
       console.error(err);
       throw err;
     });
