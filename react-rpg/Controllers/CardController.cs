@@ -41,14 +41,16 @@ namespace Tnewg.Controllers
 
         // PUT api/<CardController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(Card card, int id)
         {
+            _cardRepository.Update(card, id);
         }
 
         // DELETE api/<CardController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            _cardRepository.Delete(id);
         }
     }
 }

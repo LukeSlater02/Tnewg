@@ -11,10 +11,10 @@ namespace Tnewg.Repositories
 
         public List<Card> GetAll()
         {
-            var conn = Connection;
+            using var conn = Connection;
             {
                 conn.Open();
-                var cmd = conn.CreateCommand();
+                using var cmd = conn.CreateCommand();
                 {
                     cmd.CommandText = @"SELECT Id, Name, Damage, HitPoints, Cost,
                     BackgroundColor, BorderColor, StatsBackgroundColor, Image
@@ -38,7 +38,6 @@ namespace Tnewg.Repositories
                             };
                             cardList.Add(card);
                         }
-                        conn.Close();
                         return cardList;
                     }
                 }
@@ -47,24 +46,68 @@ namespace Tnewg.Repositories
 
         public void Add(Card card)
         {
-            var conn = Connection;
+            using var conn = Connection;
             {
                 conn.Open();
-                var cmd = conn.CreateCommand();
+                using var cmd = conn.CreateCommand();
                 {
                     cmd.CommandText = @"INSERT INTO Card(Name, Damage, HitPoints, Cost, BackgroundColor, BorderColor, StatsBackgroundColor, Image)
                       VALUES(@Name, @Damage, @HitPoints, @Cost, @BackgroundColor, @BorderColor, @StatsBackgroundColor, @Image)";
                     cmd.Parameters.AddWithValue("@Name", card.Name);
-                    DbUtils.AddParameter(cmd, "@Damage", card.Name);
-                    DbUtils.AddParameter(cmd, "@HitPoints", card.HitPoints);
-                    DbUtils.AddParameter(cmd, "@Cost", card.Cost);
-                    DbUtils.AddParameter(cmd, "@BackgroundColor", card.BackgroundColor);
-                    DbUtils.AddParameter(cmd, "@BorderColor", card.BorderColor);
-                    DbUtils.AddParameter(cmd, "@StatsBackgroundColor", card.StatsBackgroundColor);
-                    DbUtils.AddParameter(cmd, "@Image", card.Image);
+                    cmd.Parameters.AddWithValue("@Damage", card.Damage);
+                    cmd.Parameters.AddWithValue("@HitPoints", card.HitPoints);
+                    cmd.Parameters.AddWithValue("@Cost", card.Cost);
+                    cmd.Parameters.AddWithValue("@BackgroundColor", card.BackgroundColor);
+                    cmd.Parameters.AddWithValue("@BorderColor", card.BorderColor);
+                    cmd.Parameters.AddWithValue("@StatsBackgroundColor", card.StatsBackgroundColor);
+                    cmd.Parameters.AddWithValue("@Image", card.Image);
 
-                    card.Id = (int)cmd.ExecuteScalar();
-                    conn.Close();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void Delete(int id)
+        {
+            using var conn = Connection;
+            {
+                conn.Open();
+                using var cmd = conn.CreateCommand();
+                {
+                    cmd.CommandText = @"DELETE FROM Card WHERE Id = @id";
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void Update(Card card, int id)
+        {
+            using var conn = Connection;
+            {
+                conn.Open();
+                using var cmd = conn.CreateCommand();
+                {
+                    cmd.CommandText = @"UPDATE Card
+                                    SET Name = @Name,
+                                    Damage = @Damage,
+                                    HitPoints = @HitPoints,
+                                    BackgroundColor = @BackgroundColor,
+                                    BorderColor = @BorderColor,
+                                    StatsBackgroundColor = @StatsBackgroundColor,
+                                    Image = @Image
+                                    WHERE Id = @Id";
+                    cmd.Parameters.AddWithValue("@Name", card.Name);
+                    cmd.Parameters.AddWithValue("@Damage", card.Damage);
+                    cmd.Parameters.AddWithValue("@HitPoints", card.HitPoints);
+                    cmd.Parameters.AddWithValue("@Cost", card.Cost);
+                    cmd.Parameters.AddWithValue("@BackgroundColor", card.BackgroundColor);
+                    cmd.Parameters.AddWithValue("@BorderColor", card.BorderColor);
+                    cmd.Parameters.AddWithValue("@StatsBackgroundColor", card.StatsBackgroundColor);
+                    cmd.Parameters.AddWithValue("@Image", card.Image);
+                    cmd.Parameters.AddWithValue("@Id", id);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
