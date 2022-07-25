@@ -27,6 +27,12 @@ export const DeckList = () => {
     const handleButtonClick = event => {
         const deckId = event.target.id.split(" ")[1]
 
+        if(newName == "")
+        {
+            setIsEditing(0)
+            return
+        }
+
         if (event.target.id.includes("edit")) {
             setNewName("")
             const deck = {
