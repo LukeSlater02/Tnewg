@@ -1,11 +1,13 @@
-.deckList{
+$vamp: #080808;
+
+.deckList {
     display: grid;
     gap: 2em;
     grid-template-columns: repeat(auto-fit, minmax(24em, 24em));
     justify-content: space-evenly;
     justify-items: center;
 }
-.deck{
+.deck {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -15,9 +17,28 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: 350px;
-    transform: scale(.9);
-    .deckEdit{
+    transform: scale(0.9);
+    .deckEdit {
         font-size: 38px;
         width: 220px;
     }
 }
+
+.deckAdd {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5em;
+    button {
+        background-color: $vamp;
+        cursor: pointer;
+        font-family: "VT323", monospace;
+        font-size: xx-large;
+        color: whitesmoke;
+        border: none;
+        box-shadow: -15px 0 0 0 $vamp, 15px 0 0 0 $vamp, 0 -15px 0 0 $vamp, 0 15px 0 0 $vamp;
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+}
+

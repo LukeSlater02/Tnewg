@@ -1,5 +1,16 @@
-.div{
+$vamp: #080808;
+.nav {
     height: 140px;
     margin: 0;
-    background-color: black;
+    background-color: $vamp;
+    color: white;
+    display: flex;
+    align-items: center;
+
+    justify-content: space-evenly;
+    a {
+        color: white;
+        text-align: center;
+        font-weight: 100 !important;
+    }
 }

@@ -37,4 +37,30 @@
   font-size: 38px;
   width: 220px;
 }
+
+.deckAdd {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 1.5em;
+}
+
+.deckAdd button {
+  background-color: #080808;
+  cursor: pointer;
+  font-family: "VT323", monospace;
+  font-size: xx-large;
+  color: whitesmoke;
+  border: none;
+  -webkit-box-shadow: -15px 0 0 0 #080808, 15px 0 0 0 #080808, 0 -15px 0 0 #080808, 0 15px 0 0 #080808;
+          box-shadow: -15px 0 0 0 #080808, 15px 0 0 0 #080808, 0 -15px 0 0 #080808, 0 15px 0 0 #080808;
+}
+
+.deckAdd button:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
 /*# sourceMappingURL=DeckList.css.map */

@@ -83,8 +83,8 @@ export const CardList = () => {
                 )
             })}
 
-            <div ref={modal} className="deckModel">
-                <div className="deckModelContent">
+            <div ref={modal} className="deckModal">
+                <div className="deckModalContent">
                     <button className="close-button" onClick={closeModal}>&times;</button>
                     <h4>Select the Deck to add Card to</h4>
                     <select onChange={handleSelect}>

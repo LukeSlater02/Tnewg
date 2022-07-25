@@ -44,10 +44,11 @@ namespace Tnewg.Repositories
                 conn.Open();
                 using var cmd = conn.CreateCommand();
                 {
-                    cmd.CommandText = @"INSERT INTO Deck(Name, UserProfileId)
-                                        VALUES(@Name, @UserProfileId)";
+                    cmd.CommandText = @"INSERT INTO Deck(Name, UserProfileId, BackgroundImage)
+                                        VALUES(@Name, @UserProfileId, @BackgroundImage)";
                     cmd.Parameters.AddWithValue("@Name", deck.Name);
                     cmd.Parameters.AddWithValue("@UserProfileId", deck.UserProfileId);
+                    cmd.Parameters.AddWithValue("@BackgroundImage", deck.BackgroundImage);
                     cmd.ExecuteNonQuery();
                 }
             }

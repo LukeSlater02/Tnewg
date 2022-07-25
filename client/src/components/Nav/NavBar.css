@@ -1,6 +1,22 @@
-.div {
+.nav {
   height: 140px;
   margin: 0;
-  background-color: black;
+  background-color: #080808;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.nav a {
+  color: white;
+  text-align: center;
+  font-weight: 100 !important;
 }
 /*# sourceMappingURL=NavBar.css.map */

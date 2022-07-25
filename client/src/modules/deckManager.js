@@ -23,3 +23,16 @@ export const deleteDeck = deckId => {
         method: "DELETE"
     })
 }
+
+export const addDeck = deck => {
+    return getToken().then((token => {
+        return fetch(_apiUrl, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(deck)
+        })
+    }))
+}
