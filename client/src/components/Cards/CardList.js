@@ -1,18 +1,53 @@
-import React, { useEffect, useState } from "react";
-import { getAllCards, deleteCard } from "../../modules/cardManager";
+import React, { useEffect, useRef, useState } from "react";
+import { getAllCards, deleteCard, addCard } from "../../modules/cardManager";
+import { getCurrentUser } from "../../modules/authManager";
+import { getDeckByUserId } from "../../modules/deckManager";
+import { addCardToDeck } from "../../modules/deckCardManager";
 import './CardList.scss'
+import firebase from "firebase";
+import { useNavigate } from "react-router-dom";
 
 export const CardList = () => {
     const [cards, setCards] = useState([])
+    const [decks, setDecks] = useState([])
+    const [selectedDeck, setSelectedDeck] = useState(0)
+    const [selectedCard, setSelectedCard] = useState(0)
+    const modal = useRef()
+    const navigate = useNavigate()
 
     useEffect(() => {
         getAllCards().then(data => setCards(data))
-    })
+    }, [])
+
+    useEffect(() => {
+        getCurrentUser(firebase.auth().currentUser.uid).then(userData => getDeckByUserId(userData.id).then(data => setDecks(data)))
+    }, [])
 
     const handleButtonClick = event => {
+        let cardId = event.target.id.split(" ")[1]
         if (event.target.id.includes("delete")) {
-            deleteCard(event.target.id.split(" ")[1]).then(() => getAllCards().then(data => setCards(data)))
+            deleteCard(cardId).then(() => getAllCards().then(data => setCards(data)))
         }
+        if (event.target.id.includes("openAddModal")) {
+            modal.current.classList.add('activeModal')
+            setSelectedCard(cardId)
+        }
+        if (event.target.id == "add") {
+            const deckCard = {
+                deckId: selectedDeck,
+                cardId: selectedCard
+            }
+            addCardToDeck(deckCard).then(() => navigate("/deck"))
+        }
+    }
+
+    const closeModal = () => {
+        modal.current.classList.remove('activeModal')
+        setSelectedCard(0)
+    }
+
+    const handleSelect = event => {
+        setSelectedDeck(event.target.value)
     }
 
     return (
@@ -40,13 +75,29 @@ export const CardList = () => {
                             </div>
                         </div>
                         <div className="buttons" >
-                            <div className="pixelButton add"><p>add</p></div>
+                            <div className="pixelButton add"><p id={`openAddModal ${c.id}`} onClick={handleButtonClick}>add</p></div>
                             <div className="pixelButton edit"><p>edit</p></div>
                             <div className="pixelButton delete"><p id={`delete ${c.id}`} onClick={handleButtonClick}>delete</p></div>
                         </div>
                     </div>
                 )
             })}
+
+            <div ref={modal} className="deckModel">
+                <div className="deckModelContent">
+                    <button className="close-button" onClick={closeModal}>&times;</button>
+                    <h4>Select the Deck to add Card to</h4>
+                    <select onChange={handleSelect}>
+                        <option value={0}>----</option>
+                        {decks.map(d => {
+                            return (
+                                <option key={d.id} value={d.id}>{d.name}</option>
+                            )
+                        })}
+                    </select>
+                    <div className="pixelButton add"><p id="add" onClick={handleButtonClick}>add</p></div>
+                </div>
+            </div>
         </div>
     )
 }

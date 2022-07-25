@@ -2,28 +2,6 @@ $vamp: #080808;
 
 @import url(../../index.css);
 
-input {
-    font-family: "VT323", monospace;
-    font-size: x-large;
-    margin: 30px;
-    background-color: transparent;
-    border: none;
-    border-bottom: 2px solid black;
-    &:focus {
-        outline: none;
-    }
-}
-
-select {
-    font-family: "VT323", monospace;
-    font-size: x-large;
-    border: none;
-    border-radius: 5px;
-    margin: 30px;
-    background-color: rgba($color: $vamp, $alpha: 0.2);
-    padding: 3.5px;
-}
-
 .create-container {
     display: flex;
     justify-content: space-evenly;

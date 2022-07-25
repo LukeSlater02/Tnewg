@@ -17,7 +17,7 @@ function App() {
     return <p>LOADING</p>;
   }
 
-  return (
+  return (  
     <ApplicationViews isLoggedIn={isLoggedIn} />
   );
 }

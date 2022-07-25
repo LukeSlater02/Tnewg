@@ -149,23 +149,27 @@ code {
   color: #080808;
 }
 
-.blueBackground {
-  background-image: url(../public/img/blueCard.png);
+input {
+  font-family: "VT323", monospace;
+  font-size: x-large;
+  margin: 30px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid black;
 }
 
-.redBackground {
-  background-image: url(../public/img/redCard.png);
+input:focus {
+  outline: none;
 }
 
-.greenBackground {
-  background-image: url(../public/img/greenCard.png);
-}
-
-.yellowBackground {
-  background-image: url(../public/img/yellowCard.png);
-}
-
-.grayBackground {
-  background-image: url(../public/img/grayCard.png);
+select {
+  font-family: "VT323", monospace;
+  font-size: x-large;
+  border: none;
+  border-radius: 5px;
+  margin: 30px;
+  background-color: rgba(8, 8, 8, 0.2);
+  padding: 3.5px;
+  outline: none;
 }
 /*# sourceMappingURL=index.css.map */

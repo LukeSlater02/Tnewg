@@ -7,7 +7,7 @@ namespace Tnewg.Repositories
     {
         void Add(DeckCard dc);
         void Delete(int id);
-        List<DeckCard> GetAllByDeckId(int id);
+        List<Card> GetAllByDeckId(int id);
         void Update(DeckCard dc, int id);
     }
 }

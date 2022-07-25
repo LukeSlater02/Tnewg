@@ -9,29 +9,35 @@ namespace Tnewg.Repositories
     {
         public DeckCardRepository(IConfiguration configuration) : base(configuration) { }
 
-        public List<DeckCard> GetAllByDeckId(int id)
+        public List<Card> GetAllByDeckId(int id)
         {
             using var conn = Connection;
             {
                 conn.Open();
                 using var cmd = conn.CreateCommand();
                 {
-                    cmd.CommandText = @"SELECT Id, CardId, DeckId FROM DeckCard WHERE DeckId = @Id";
+                    cmd.CommandText = @"SELECT Card.Id as CardId, Damage, HitPoints, BackgroundColor, BorderColor, Cost, StatsBackgroundColor, Image, Name FROM DeckCard JOIN Card on CardId = Card.Id WHERE DeckId = 7";
                     cmd.Parameters.AddWithValue("@Id", id);
                     var reader = cmd.ExecuteReader();
                     {
-                        List<DeckCard> deckCardList = new();
+                        List<Card> cardList = new();
                         while (reader.Read())
                         {
-                            DeckCard deckCard = new()
+                            Card card = new()
                             {
-                                Id = DbUtils.GetInt(reader, "Id"),
-                                DeckId = DbUtils.GetInt(reader, "DeckId"),
-                                CardId = DbUtils.GetInt(reader, "CardId")
+                                Id = DbUtils.GetInt(reader, "CardId"),
+                                Name = reader.GetString(reader.GetOrdinal("Name")),
+                                Damage = reader.GetInt32(reader.GetOrdinal("Damage")),
+                                HitPoints = reader.GetInt32(reader.GetOrdinal("HitPoints")),
+                                Cost = reader.GetInt32(reader.GetOrdinal("Cost")),
+                                BackgroundColor = reader.GetString(reader.GetOrdinal("BackgroundColor")),
+                                BorderColor = reader.GetString(reader.GetOrdinal("BorderColor")),
+                                StatsBackgroundColor = reader.GetString(reader.GetOrdinal("StatsBackgroundColor")),
+                                Image = reader.GetString(reader.GetOrdinal("Image"))
                             };
-                            deckCardList.Add(deckCard);
+                            cardList.Add(card);
                         }
-                        return deckCardList;
+                        return cardList;
                     }
                 }
             }
