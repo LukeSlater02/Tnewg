@@ -1,5 +1,5 @@
 const _apiUrl = "/api/deck";
 
-export const getDeckByUserId = userId => {
+export const getDecksByUserId = userId => {
     return fetch(`${_apiUrl}/${userId}`).then(res => res.json())
 }

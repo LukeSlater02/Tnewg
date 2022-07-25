@@ -16,7 +16,7 @@ namespace Tnewg.Repositories
                 conn.Open();
                 using var cmd = conn.CreateCommand();
                 {
-                    cmd.CommandText = @"SELECT Id, Name, UserProfileId FROM Deck
+                    cmd.CommandText = @"SELECT Id, Name, UserProfileId, BackgroundImage FROM Deck
                                         WHERE UserProfileId = @id";
                     cmd.Parameters.AddWithValue("@id", id);
                     var reader = cmd.ExecuteReader();
@@ -28,7 +28,8 @@ namespace Tnewg.Repositories
                         {
                             Id = DbUtils.GetInt(reader, "Id"),
                             Name = DbUtils.GetString(reader, "Name"),
-                            UserProfileId = DbUtils.GetInt(reader, "UserProfileId")
+                            UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
+                            BackgroundImage = DbUtils.GetString(reader, "BackgroundImage")
                         });
                     }
                     return deckList;

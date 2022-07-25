@@ -16,7 +16,7 @@ namespace Tnewg.Repositories
                 conn.Open();
                 using var cmd = conn.CreateCommand();
                 {
-                    cmd.CommandText = @"SELECT Card.Id as CardId, Damage, HitPoints, BackgroundColor, BorderColor, Cost, StatsBackgroundColor, Image, Name FROM DeckCard JOIN Card on CardId = Card.Id WHERE DeckId = 7";
+                    cmd.CommandText = @"SELECT Card.Id as CardId, Damage, HitPoints, BackgroundColor, BorderColor, Cost, StatsBackgroundColor, Image, Name FROM DeckCard JOIN Card on CardId = Card.Id WHERE DeckId = @Id ";
                     cmd.Parameters.AddWithValue("@Id", id);
                     var reader = cmd.ExecuteReader();
                     {

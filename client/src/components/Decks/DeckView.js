@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { getAllByDeck } from "../../modules/deckCardManager";
 
 export const DeckView = () => {
-    const [deckCards, setDeckCards] = useState([])
-
+    const [deckCards, setDeckCards] = useState([])  
+    let {deckId} = useParams()
     useEffect(() => {
-        getAllByDeck(7).then(data => setDeckCards(data))
+        console.log(deckId);
+        getAllByDeck(deckId).then(data => setDeckCards(data))
     }, [])
 
     return (

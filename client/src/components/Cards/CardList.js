@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { getAllCards, deleteCard, addCard } from "../../modules/cardManager";
 import { getCurrentUser } from "../../modules/authManager";
-import { getDeckByUserId } from "../../modules/deckManager";
+import { getDecksByUserId } from "../../modules/deckManager";
 import { addCardToDeck } from "../../modules/deckCardManager";
 import './CardList.scss'
 import firebase from "firebase";
@@ -20,7 +20,7 @@ export const CardList = () => {
     }, [])
 
     useEffect(() => {
-        getCurrentUser(firebase.auth().currentUser.uid).then(userData => getDeckByUserId(userData.id).then(data => setDecks(data)))
+        getCurrentUser(firebase.auth().currentUser.uid).then(userData => getDecksByUserId(userData.id).then(data => setDecks(data)))
     }, [])
 
     const handleButtonClick = event => {
@@ -37,7 +37,7 @@ export const CardList = () => {
                 deckId: selectedDeck,
                 cardId: selectedCard
             }
-            addCardToDeck(deckCard).then(() => navigate("/deck"))
+            addCardToDeck(deckCard).then(() => navigate(`/deck/${selectedDeck}`))
         }
     }
 
