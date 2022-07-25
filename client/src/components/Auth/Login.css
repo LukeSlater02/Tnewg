@@ -55,13 +55,14 @@ a {
   font-family: PixelH;
   font-size: 50px;
   margin-bottom: 0;
+  padding-left: .5em;
+  padding-right: .5em;
 }
 
 .loginBody h1:hover {
-  border-radius: 0;
   border-left: 15px solid black;
   border-right: 15px solid black;
-  cursor: url(../../../public/img/pixelCursorPointer.png), pointer;
+  cursor: pointer;
 }
 
 .loginBody input {

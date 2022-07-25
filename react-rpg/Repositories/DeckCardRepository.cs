@@ -59,15 +59,16 @@ namespace Tnewg.Repositories
             }
         }
 
-        public void Delete(int id)
+        public void Delete(int cardId, int deckId)
         {
             using var conn = Connection;
             {
                 conn.Open();
                 using var cmd = conn.CreateCommand();
                 {
-                    cmd.CommandText = @"DELETE FROM DeckCard WHERE Id = @id";
-                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.CommandText = @"DELETE FROM DeckCard WHERE CardId = @CardId AND DeckId = @DeckId";
+                    cmd.Parameters.AddWithValue("@CardId", cardId);
+                    cmd.Parameters.AddWithValue("@DeckId", deckId);
                     cmd.ExecuteNonQuery();
                 }
             }

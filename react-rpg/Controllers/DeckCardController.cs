@@ -47,10 +47,10 @@ namespace Tnewg.Controllers
         }
 
         // DELETE api/<DeckCardController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{cardId}/{deckId}")]
+        public void Delete(int cardId, int deckId)
         {
-            _deckCardRepository.Delete(id);
+            _deckCardRepository.Delete(cardId, deckId);
         }
     }
 }

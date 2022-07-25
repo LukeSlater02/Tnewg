@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getAllByDeck } from "../../modules/deckCardManager";
+import { deleteCard } from "../../modules/cardManager";
+import { getAllByDeck, deleteCardFromDeck } from "../../modules/deckCardManager";
 
 export const DeckView = () => {
-    const [deckCards, setDeckCards] = useState([])  
-    let {deckId} = useParams()
-    useEffect(() => {
-        console.log(deckId);
+    const [deckCards, setDeckCards] = useState([])
+    let { deckId } = useParams()
+
+    const getDeckCards = () => {
         getAllByDeck(deckId).then(data => setDeckCards(data))
+    }
+
+    useEffect(() => {
+        getDeckCards()
     }, [])
+
+    const removeCard = event => {
+        let cardId = event.target.id.split(" ")[1]
+        deleteCardFromDeck(cardId, deckId).then(() => getDeckCards())
+    }
 
     return (
         <div>
@@ -33,6 +43,9 @@ export const DeckView = () => {
                                     <img src="../img/cardHp.png"></img>
                                 </div>
                             </div>
+                        </div>
+                        <div className="buttons">
+                            <div className="pixelButton add"><p onClick={removeCard} id={`remove ${c.id}`}>remove</p></div>
                         </div>
                     </div>
                 )
