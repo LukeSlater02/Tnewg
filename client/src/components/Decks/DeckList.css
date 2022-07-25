@@ -32,4 +32,9 @@
   -webkit-transform: scale(0.9);
           transform: scale(0.9);
 }
+
+.deck .deckEdit {
+  font-size: 38px;
+  width: 220px;
+}
 /*# sourceMappingURL=DeckList.css.map */
