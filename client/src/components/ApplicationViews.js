@@ -19,7 +19,7 @@ export const ApplicationViews = ({ isLoggedIn }) => {
     if (firebase.auth().currentUser) {
       getCurrentUser(firebase.auth().currentUser.uid).then(data => setUser(data))
     }
-  })
+  }, [])
 
   if (!isLoggedIn) {
     return (

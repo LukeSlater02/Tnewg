@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import './NavBar.scss'
-import { logout, getCurrentUser } from "../../modules/authManager";
+import { logout } from "../../modules/authManager";
 
 export const NavBar = ({ currentUser }) => {
     const navigate = useNavigate()

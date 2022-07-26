@@ -130,7 +130,8 @@ namespace Tnewg.Repositories
                                     BackgroundColor = @BackgroundColor,
                                     BorderColor = @BorderColor,
                                     StatsBackgroundColor = @StatsBackgroundColor,
-                                    Image = @Image
+                                    Image = @Image,
+                                    Cost = @Cost
                                     WHERE Id = @Id";
                     cmd.Parameters.AddWithValue("@Name", card.Name);
                     cmd.Parameters.AddWithValue("@Damage", card.Damage);

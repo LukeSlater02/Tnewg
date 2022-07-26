@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './CreateCard.scss'
 import { useNavigate, useParams } from "react-router-dom";
-import { getCardById } from "../../modules/cardManager";
+import { getCardById, editCard } from "../../modules/cardManager";
 
 export const EditCard = () => {
     const [card, setCard] = useState(
@@ -9,7 +9,7 @@ export const EditCard = () => {
             name: "",
             damage: "",
             hitPoints: "",
-            cost: "",
+            cost: 0,
             backgroundColor: "",
             borderColor: "",
             statsBackgroundColor: "",
@@ -25,44 +25,37 @@ export const EditCard = () => {
     }, [])
 
     const handleInput = event => {
+        let newCard = {...card}
         switch (event.target.id) {
             case "cost":
-                if (parseInt(event.target.value) > 9) {
-  
+                if (parseInt(event.target.value) > 9 || event.target.value == "") {
+                    newCard.cost = 0
                 }
                 else {
-        
+                    newCard.cost = parseInt(event.target.value)
                 }
                 break;
             case "backgroundSelect":
-
+                newCard.backgroundColor = event.target.value
                 break;
             case "borderSelect":
-
+                newCard.borderColor = event.target.value
                 break;
             case "statsBackgroundSelect":
-
+                newCard.statsBackgroundColor = event.target.value
                 break;
             case "name":
-
+                newCard.name = event.target.value
                 break;
             case "characterImage":
-      
+                newCard.image = event.target.value
                 break;
         }
+        setCard(newCard)
     }
 
     const handleAddClick = () => {
-        // const card = {
-        //     name: name,
-        //     damage: 0,
-        //     hitPoints: 0,
-        //     cost: cost,
-        //     backgroundColor: cardBackground,
-        //     borderColor: cardBorder,
-        //     statsBackgroundColor: cardStatsBackground,
-        //     image: characterImage,
-        // }
+        editCard(card, card.id).then(() => navigate("/cards/list"))
     }
 
     return (
@@ -113,7 +106,7 @@ export const EditCard = () => {
                 </div>
                 <div>
                     Cost<br></br>
-                    <input id="cost" type="number" max={9} onChange={handleInput} />
+                    <input id="cost" type="number" max={9} onChange={handleInput} value={card.cost} />
                 </div>
                 <div>
                     <button onClick={handleAddClick}>Submit</button>
