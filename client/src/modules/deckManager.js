@@ -1,8 +1,14 @@
 import { getToken } from "./authManager";
 const _apiUrl = "/api/deck";
 
-export const getDecksByUserId = userId => {
-    return fetch(`${_apiUrl}/${userId}`).then(res => res.json())
+export const getCurrentUserDecks = () => {
+    return getToken().then(token => {
+        return fetch(_apiUrl, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(res => res.json())
+    })
 }
 
 export const editDeck = (deck, deckId) => {
@@ -19,9 +25,15 @@ export const editDeck = (deck, deckId) => {
 }
 
 export const deleteDeck = deckId => {
-    return fetch(`${_apiUrl}/${deckId}`, {
-        method: "DELETE"
+    return getToken().then(token => {
+        return fetch(`${_apiUrl}/${deckId}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
     })
+
 }
 
 export const addDeck = deck => {

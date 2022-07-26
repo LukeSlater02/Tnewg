@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { getAllCards, deleteCard, addCard } from "../../modules/cardManager";
 import { getCurrentUser } from "../../modules/authManager";
-import { getDecksByUserId } from "../../modules/deckManager";
+import { getCurrentUserDecks } from "../../modules/deckManager";
 import { addCardToDeck } from "../../modules/deckCardManager";
 import './CardList.scss'
 import firebase from "firebase";
@@ -23,7 +23,7 @@ export const CardList = () => {
     useEffect(() => {
         getCurrentUser(firebase.auth().currentUser.uid).then(userData => {
             setUser(userData)
-            getDecksByUserId(userData.id).then(data => setDecks(data))
+            getCurrentUserDecks().then(data => setDecks(data))
         })
     }, [])
 
@@ -61,20 +61,20 @@ export const CardList = () => {
                     <div key={c.id}>
                         <div className="card" style={{ backgroundImage: `url(${c.backgroundColor})` }}>
                             <div className="cardHeroImage" style={{ backgroundImage: `url(${c.borderColor})` }}>
-                                <img src="../img/circleGray.png" className="circle"></img>
+                                <img src="/img/circleGray.png" className="circle"></img>
                                 <span className="cost">{c.cost}</span>
                                 <img className="characterImage" src={c.image}></img>
                             </div>
                             <h2>{c.name}</h2>
                             <div className="statsContainer" style={{ backgroundImage: `url(${c.statsBackgroundColor})` }} >
                                 <div className="stats">
-                                    <img src="../img/cardDmg.png"></img>
+                                    <img src="/img/cardDmg.png"></img>
                                 </div>
                                 <div className="stats">
-                                    <img src="../img/cardArmor.png"></img>
+                                    <img src="/img/cardArmor.png"></img>
                                 </div>
                                 <div className="stats">
-                                    <img src="../img/cardHp.png"></img>
+                                    <img src="/img/cardHp.png"></img>
                                 </div>
                             </div>
                         </div>

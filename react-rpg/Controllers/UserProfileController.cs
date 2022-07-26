@@ -5,7 +5,7 @@ using Tnewg.Repositories;
 
 namespace Tnewg.Controllers
 {
-    
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserProfileController : ControllerBase

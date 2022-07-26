@@ -15,11 +15,22 @@ export const addCardToDeck = deckCard => {
 }
 
 export const getAllByDeck = deckId => {
-    return fetch(`${_apiUrl}/${deckId}`).then(res => res.json())
+    return getToken(token => {
+        return fetch(`${_apiUrl}/${deckId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(res => res.json())
+    })
 }
 
 export const deleteCardFromDeck = (cardId, deckId) => {
-    return fetch(`${_apiUrl}/${cardId}/${deckId}`, {
-        method: "DELETE"
+    return getToken(token => {
+        return fetch(`${_apiUrl}/${cardId}/${deckId}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
     })
 }

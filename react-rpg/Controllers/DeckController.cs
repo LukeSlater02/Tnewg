@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Security.Claims;
 using Tnewg.Models;
 using Tnewg.Repositories;
 
@@ -7,30 +9,33 @@ using Tnewg.Repositories;
 
 namespace Tnewg.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DeckController : ControllerBase
     {
         private readonly IDeckRepository _deckRepository;
+        private readonly IUserProfileRepository _userProfileRepository;
 
-        public DeckController(IDeckRepository deckRepository)
+        public DeckController(IDeckRepository deckRepository, IUserProfileRepository userProfileRepository)
         {
             _deckRepository = deckRepository;
+            _userProfileRepository = userProfileRepository;
+        }
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
         }
 
 
         // GET: api/<DeckController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<DeckController>/5
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
-        {
-            return Ok(_deckRepository.GetAllByUser(id));
+            var userProfileId = GetCurrentUserProfile().Id;
+            return Ok(_deckRepository.GetAllByUser(userProfileId));
         }
 
         // POST api/<DeckController>

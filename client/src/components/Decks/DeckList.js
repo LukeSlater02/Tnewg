@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { getDecksByUserId, editDeck, deleteDeck, addDeck } from "../../modules/deckManager";
+import { getCurrentUserDecks, editDeck, deleteDeck, addDeck } from "../../modules/deckManager";
 import firebase from "firebase";
 import { getCurrentUser } from "../../modules/authManager";
 import './DeckList.scss'
@@ -16,7 +16,7 @@ export const DeckList = () => {
     const modalInput = useRef()
 
     const getDecks = () => {
-        getCurrentUser(firebase.auth().currentUser.uid).then(userData => getDecksByUserId(userData.id).then(data => setDecks(data)))
+        getCurrentUser(firebase.auth().currentUser.uid).then(() => getCurrentUserDecks().then(data => setDecks(data)))
     }
 
     useEffect(() => {
