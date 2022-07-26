@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react"
-import { Routes, Route, Outlet, Navigate } from "react-router-dom"
-import { IntroMap } from "./introMap/IntroMap"
+import React, {useState, useEffect} from "react"
+import { Routes, Route, Navigate } from "react-router-dom"
 import { Login } from "./Auth/Login"
-import { BattleMap } from "./battles/battleMap"
 import { CreateCard } from "./Cards/CreateCard"
 import { NavBar } from "./Nav/NavBar"
 import { CardList } from "./Cards/CardList"
@@ -35,17 +33,16 @@ export const ApplicationViews = ({ isLoggedIn }) => {
   return (
     <>
       <Routes>
-        <Route path="/card/:cardId/edit" element={<><NavBar currentUser={user} /><EditCard /></>}></Route>
-        <Route path="/battle" element={<BattleMap />}></Route>
-        <Route path="/cards/list" element={<><NavBar currentUser={user} /> <CardList /></>}></Route>
-        <Route path="/deck/:deckId" element={<><NavBar currentUser={user} /><DeckView /></>}></Route>
-        <Route path="/decks/list" element={<><NavBar currentUser={user} /><DeckList /></>}></Route>
+        <Route path="/card/:cardId/edit" element={<><NavBar /><EditCard /></>}></Route>
+        <Route path="/cards/list" element={<><NavBar /> <CardList /></>}></Route>
+        <Route path="/deck/:deckId" element={<><NavBar /><DeckView /></>}></Route>
+        <Route path="/decks/list" element={<><NavBar /><DeckList /></>}></Route>
         {user.userType == "admin" ?
-          <Route path="/cards/create" element={<><NavBar currentUser={user} /><CreateCard /></>}></Route>
+          <Route path="/cards/create" element={<><NavBar /><CreateCard /></>}></Route>
           :
           ""
         }
-        <Route path="*" element={<><NavBar currentUser={user} /><Navigate to="/decks/list" /></>}></Route>
+        <Route path="*" element={<><NavBar /><Navigate to="/decks/list" /></>}></Route>
       </Routes>
     </>
   )

@@ -16,7 +16,7 @@ export const DeckList = () => {
     const modalInput = useRef()
 
     const getDecks = () => {
-        getCurrentUser(firebase.auth().currentUser.uid).then(() => getCurrentUserDecks().then(data => setDecks(data)))
+        getCurrentUser(firebase.auth().currentUser?.uid).then(() => getCurrentUserDecks().then(data => setDecks(data)))
     }
 
     useEffect(() => {

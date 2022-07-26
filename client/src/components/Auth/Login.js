@@ -16,7 +16,7 @@ export function Login() {
 	const loginSubmit = (e) => {
 		e.preventDefault();
 		login(email, password)
-			.then(() => navigate("/decks/list"))
+			.then(() => navigate("/"))
 			.catch(() => console.error());
 	};
 
