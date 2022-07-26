@@ -24,6 +24,17 @@ export const addCard = card => {
     }))
 }
 
+export const searchCards = input => {
+    return getToken().then(token => {
+        return fetch(`${_apiUrl}/search/?q=${input}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(res => res.json())
+    })
+}
+
 export const getCardById = cardId => {
     return getToken().then(token => {
         return fetch(`${_apiUrl}/${cardId}`, {

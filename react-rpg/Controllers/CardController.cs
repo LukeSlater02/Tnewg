@@ -34,6 +34,12 @@ namespace Tnewg.Controllers
             return Ok(_cardRepository.GetById(id));
         }
 
+        [HttpGet("search")]
+        public IActionResult Search(string input)
+        {
+            return Ok(_cardRepository.Search(input));
+        }
+
         // POST api/<CardController>
         [HttpPost]
         public void Post(Card card)

@@ -10,5 +10,6 @@ namespace Tnewg.Repositories
         void Delete(int id);
         void Update(Card card, int id);
         Card GetById(int id);
+        List<Card> Search(string input);
     }
 }

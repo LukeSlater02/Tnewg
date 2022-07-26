@@ -44,6 +44,43 @@ namespace Tnewg.Repositories
             }
         }
 
+        public List<Card> Search(string input)
+        {
+            using var conn = Connection;
+            {
+                conn.Open();
+                using var cmd = conn.CreateCommand();
+                {
+                    cmd.CommandText = @"SELECT Id, Name, Damage, HitPoints, Cost,
+                    BackgroundColor, BorderColor, StatsBackgroundColor, Image
+                    FROM Card
+                    WHERE Name LIKE @input";
+                    cmd.Parameters.AddWithValue("@input", $"%{input}%");
+                    var reader = cmd.ExecuteReader();
+                    {
+                        List<Card> cardList = new();
+                        while (reader.Read())
+                        {
+                            Card card = new()
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                Name = reader.GetString(reader.GetOrdinal("Name")),
+                                Damage = reader.GetInt32(reader.GetOrdinal("Damage")),
+                                HitPoints = reader.GetInt32(reader.GetOrdinal("HitPoints")),
+                                Cost = reader.GetInt32(reader.GetOrdinal("Cost")),
+                                BackgroundColor = reader.GetString(reader.GetOrdinal("BackgroundColor")),
+                                BorderColor = reader.GetString(reader.GetOrdinal("BorderColor")),
+                                StatsBackgroundColor = reader.GetString(reader.GetOrdinal("StatsBackgroundColor")),
+                                Image = reader.GetString(reader.GetOrdinal("Image"))
+                            };
+                            cardList.Add(card);
+                        }
+                        return cardList;
+                    }
+                }
+            }
+        }
+
         public Card GetById(int id)
         {
             using var conn = Connection;

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { deleteCard } from "../../modules/cardManager";
 import { getAllByDeck, deleteCardFromDeck } from "../../modules/deckCardManager";
 
 export const DeckView = () => {
