@@ -9,5 +9,6 @@ namespace Tnewg.Repositories
         void Add(Card card);
         void Delete(int id);
         void Update(Card card, int id);
+        Card GetById(int id);
     }
 }

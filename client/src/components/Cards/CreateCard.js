@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import './CreateCard.scss'
 import { addCard } from "../../modules/cardManager";
-import { borderColor } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 export const CreateCard = () => {
     const [name, setName] = useState("Name")

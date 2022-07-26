@@ -76,7 +76,7 @@ export const CardList = () => {
                         </div>
                         <div className="buttons" >
                             <div className="pixelButton add"><p id={`openAddModal ${c.id}`} onClick={handleButtonClick}>add</p></div>
-                            <div className="pixelButton edit"><p>edit</p></div>
+                            <div className="pixelButton edit" onClick={() => navigate(`/card/${c.id}/edit`)}><p>edit</p></div>
                             <div className="pixelButton delete"><p id={`delete ${c.id}`} onClick={handleButtonClick}>delete</p></div>
                         </div>
                     </div>

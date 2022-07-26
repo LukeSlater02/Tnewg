@@ -18,6 +18,10 @@ export const addCard = card => {
     }))
 }
 
+export const getCardById = cardId => {
+    return fetch(`${_apiUrl}/${cardId}`).then(res => res.json())
+}
+
 export const editCard = ( card, id )=> {
     return getToken().then((token => {
         return fetch(`${_apiUrl}/${id}`, {

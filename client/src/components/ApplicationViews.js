@@ -8,6 +8,7 @@ import { NavBar } from "./Nav/NavBar"
 import { CardList } from "./Cards/CardList"
 import { DeckView } from "./Decks/DeckView"
 import { DeckList } from "./Decks/DeckList"
+import { EditCard } from "./Cards/EditCard"
 
 export const ApplicationViews = ({ isLoggedIn }) => {
   if (!isLoggedIn) {
@@ -23,12 +24,14 @@ export const ApplicationViews = ({ isLoggedIn }) => {
   return (
     <>
       <Routes>
+        <Route path="/" element={<Login />}></Route>
+        <Route path="/card/:cardId/edit" element={<><NavBar/><EditCard/></>}></Route>
         <Route path="/login" element={<><Login /></>}></Route>
         <Route path="/battle" element={<BattleMap />}></Route>
         <Route path="/cards/create" element={<><NavBar /><CreateCard /></>}></Route>
         <Route path="/cards/list" element={<><NavBar /> <CardList /></>}></Route>
-        <Route path="/deck/:deckId" element={<><NavBar/><DeckView/></>}></Route>
-        <Route path="/decks/list" element={<><NavBar/><DeckList/></>}></Route>
+        <Route path="/deck/:deckId" element={<><NavBar /><DeckView /></>}></Route>
+        <Route path="/decks/list" element={<><NavBar /><DeckList /></>}></Route>
       </Routes>
     </>
   )

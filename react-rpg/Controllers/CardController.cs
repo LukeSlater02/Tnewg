@@ -27,9 +27,9 @@ namespace Tnewg.Controllers
 
         // GET api/<CardController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            return Ok(_cardRepository.GetById(id));
         }
 
         // POST api/<CardController>
