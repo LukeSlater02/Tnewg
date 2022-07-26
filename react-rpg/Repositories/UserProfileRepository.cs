@@ -16,7 +16,7 @@ namespace Tnewg.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT Id, FirebaseUserId, FirstName, LastName, DisplayName, UserType
+                        SELECT Id, FirebaseUserId, DisplayName, UserType
                           FROM UserProfile
                          WHERE FirebaseUserId = @FirebaseuserId";
 
@@ -31,8 +31,6 @@ namespace Tnewg.Repositories
                         {
                             Id = DbUtils.GetInt(reader, "Id"),
                             FirebaseUserId = DbUtils.GetString(reader, "FirebaseUserId"),
-                            FirstName = DbUtils.GetString(reader, "FirstName"),
-                            LastName = DbUtils.GetString(reader, "LastName"),
                             DisplayName = DbUtils.GetString(reader, "DisplayName"),
                             UserType = DbUtils.GetString(reader, "UserType"),
                         };
@@ -51,16 +49,14 @@ namespace Tnewg.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"INSERT INTO UserProfile (FirebaseUserId, FirstName, LastName, DisplayName, UserType)
+                    cmd.CommandText = @"INSERT INTO UserProfile (FirebaseUserId, DisplayName, UserType)
                                         OUTPUT INSERTED.ID
-                                        VALUES (@Id, @FirebaseUserId, @FirstName, @LastName, @DisplayName, @UserType)";
+                                        VALUES (@FirebaseUserId, @DisplayName, @UserType)";
                     DbUtils.AddParameter(cmd, "@FirebaseUserId", userProfile.FirebaseUserId);
-                    DbUtils.AddParameter(cmd, "@FirstName", userProfile.FirstName);
-                    DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);
+                    DbUtils.AddParameter(cmd, "@UserType", "user");
                     DbUtils.AddParameter(cmd, "@DisplayName", userProfile.DisplayName);
-                    DbUtils.AddParameter(cmd, "@UserType", userProfile.UserType);
 
-                    userProfile.Id = (int)cmd.ExecuteScalar();
+                    cmd.ExecuteNonQuery();
                 }
             }
         }

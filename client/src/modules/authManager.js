@@ -78,7 +78,11 @@ export const register = (userProfile, password) => {
     .then((createResponse) => _saveUser({
       ...userProfile,
       firebaseUserId: createResponse.user.uid
-    }).then(() => _onLoginStatusChangedHandler(true)));
+    }).then(() => _onLoginStatusChangedHandler(true))).catch(err => {
+      window.alert(err)
+      console.error(err);
+      throw err;
+    });
 };
 
 

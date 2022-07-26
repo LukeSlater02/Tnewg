@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { login } from "../../modules/authManager";
+import { login, register } from "../../modules/authManager";
 import './Login.scss'
 
 export function Login() {
@@ -8,6 +8,7 @@ export function Login() {
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [displayName, setDisplayName] = useState("")
 
 	const [loginClicked, setLoginClicked] = useState(false)
 	const [registerClicked, setRegisterClicked] = useState(false)
@@ -19,6 +20,14 @@ export function Login() {
 			.catch(() => console.error());
 	};
 
+	const registerClick = (e) => {
+		e.preventDefault();
+		const userProfile = { email, displayName };
+		register(userProfile, password).then(() => navigate("/"))
+			.catch(() => console.error());
+
+	};
+
 	const handleInputChange = event => {
 		if (event.target.id == 'email') {
 			setEmail(event.target.value)
@@ -26,19 +35,13 @@ export function Login() {
 		if (event.target.id == 'password') {
 			setPassword(event.target.value)
 		}
+		if (event.target.id == 'username') {
+			setDisplayName(event.target.value)
+		}
 	}
 
 	return (
 		<main className="container--login">
-			{/* <dialog className="dialog dialog--auth" open={existDialog}>
-				<div>User does not exist</div>
-				<button
-					className="button--close"
-					onClick={(e) => setExistDialog(false)}
-				>
-					Close
-				</button>
-			</dialog> */}
 			<div className="loginContentContainer">
 				<div className="loginTitle">
 					<img src="img/eyeCard.png"></img> <h1>T N E W G</h1> <img src="img/lichCard.png"></img>
@@ -57,6 +60,7 @@ export function Login() {
 						<input placeholder="Email" id="email" size={30} value={email} onChange={handleInputChange}></input>
 						<br></br>
 						<input placeholder="password" id="password" type="password" value={password} onChange={handleInputChange}></input>
+						<br></br>
 						<button onClick={loginSubmit}>sign in</button>
 					</div></> : ""}
 				<div>
@@ -67,9 +71,12 @@ export function Login() {
 				</div>
 				{registerClicked ? <>
 					<div>
-						<input placeholder="Email" size={30}></input>
+						<input placeholder="Email" id="email" size={30} value={email} onChange={handleInputChange}></input>
+						<input placeholder="Username" id="username" size={30} value={displayName} onChange={handleInputChange}></input>
 						<br></br>
-						<input placeholder="password"></input>
+						<input placeholder="password" id="password" type="password" value={password} onChange={handleInputChange}></input>
+						<br></br>
+						<button onClick={registerClick}>register</button>
 					</div></> : ""}
 			</section>
 
