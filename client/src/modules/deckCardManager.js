@@ -15,7 +15,7 @@ export const addCardToDeck = deckCard => {
 }
 
 export const getAllByDeck = deckId => {
-    return getToken(token => {
+    return getToken().then(token => {
         return fetch(`${_apiUrl}/${deckId}`, {
             headers: {
                 Authorization: `Bearer ${token}`

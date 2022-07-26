@@ -48,7 +48,12 @@ export const editCard = (card, id) => {
 }
 
 export const deleteCard = cardId => {
-    return fetch(`${_apiUrl}/${cardId}`, {
-        method: "DELETE"
+    return getToken().then(token => {
+        return fetch(`${_apiUrl}/${cardId}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
     })
 }
