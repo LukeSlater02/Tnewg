@@ -25,7 +25,7 @@ export const getAllByDeck = deckId => {
 }
 
 export const deleteCardFromDeck = (cardId, deckId) => {
-    return getToken(token => {
+    return getToken().then(token => {
         return fetch(`${_apiUrl}/${cardId}/${deckId}`, {
             method: "DELETE",
             headers: {
