@@ -12,6 +12,7 @@ export const CardList = () => {
     const [decks, setDecks] = useState([])
     const [selectedDeck, setSelectedDeck] = useState(0)
     const [selectedCard, setSelectedCard] = useState(0)
+    const [user, setUser] = useState({})
     const modal = useRef()
     const navigate = useNavigate()
 
@@ -20,7 +21,10 @@ export const CardList = () => {
     }, [])
 
     useEffect(() => {
-        getCurrentUser(firebase.auth().currentUser.uid).then(userData => getDecksByUserId(userData.id).then(data => setDecks(data)))
+        getCurrentUser(firebase.auth().currentUser.uid).then(userData => {
+            setUser(userData)
+            getDecksByUserId(userData.id).then(data => setDecks(data))
+        })
     }, [])
 
     const handleButtonClick = event => {
@@ -76,8 +80,11 @@ export const CardList = () => {
                         </div>
                         <div className="buttons" >
                             <div className="pixelButton add"><p id={`openAddModal ${c.id}`} onClick={handleButtonClick}>add</p></div>
-                            <div className="pixelButton edit" onClick={() => navigate(`/card/${c.id}/edit`)}><p>edit</p></div>
-                            <div className="pixelButton delete"><p id={`delete ${c.id}`} onClick={handleButtonClick}>delete</p></div>
+                            {user.userType == "admin" ? <>
+                                <div className="pixelButton edit" onClick={() => navigate(`/card/${c.id}/edit`)}><p>edit</p></div>
+
+                                <div className="pixelButton delete"><p id={`delete ${c.id}`} onClick={handleButtonClick}>delete</p></div>
+                            </> : ""}
                         </div>
                     </div>
                 )

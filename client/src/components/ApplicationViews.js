@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Routes, Route, Outlet, Navigate } from "react-router-dom"
 import { IntroMap } from "./introMap/IntroMap"
 import { Login } from "./Auth/Login"
@@ -9,13 +9,24 @@ import { CardList } from "./Cards/CardList"
 import { DeckView } from "./Decks/DeckView"
 import { DeckList } from "./Decks/DeckList"
 import { EditCard } from "./Cards/EditCard"
+import { getCurrentUser } from "../modules/authManager"
+import firebase from "firebase"
 
 export const ApplicationViews = ({ isLoggedIn }) => {
+  const [user, setUser] = useState({})
+
+  useEffect(() => {
+    if (firebase.auth().currentUser) {
+      getCurrentUser(firebase.auth().currentUser.uid).then(data => setUser(data))
+    }
+  })
+
   if (!isLoggedIn) {
     return (
       <>
         <Routes>
-          <Route path="/" element={<Login />}></Route>
+          <Route path="*" element={<Navigate to="/login" />}></Route>
+          <Route path="/login" element={<><Login /></>}></Route>
         </Routes>
       </>
     )
@@ -24,14 +35,17 @@ export const ApplicationViews = ({ isLoggedIn }) => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Login />}></Route>
-        <Route path="/card/:cardId/edit" element={<><NavBar/><EditCard/></>}></Route>
-        <Route path="/login" element={<><Login /></>}></Route>
+        <Route path="/card/:cardId/edit" element={<><NavBar currentUser={user} /><EditCard /></>}></Route>
         <Route path="/battle" element={<BattleMap />}></Route>
-        <Route path="/cards/create" element={<><NavBar /><CreateCard /></>}></Route>
-        <Route path="/cards/list" element={<><NavBar /> <CardList /></>}></Route>
-        <Route path="/deck/:deckId" element={<><NavBar /><DeckView /></>}></Route>
-        <Route path="/decks/list" element={<><NavBar /><DeckList /></>}></Route>
+        <Route path="/cards/list" element={<><NavBar currentUser={user} /> <CardList /></>}></Route>
+        <Route path="/deck/:deckId" element={<><NavBar currentUser={user} /><DeckView /></>}></Route>
+        <Route path="/decks/list" element={<><NavBar currentUser={user} /><DeckList /></>}></Route>
+        {user.userType == "admin" ?
+          <Route path="/cards/create" element={<><NavBar currentUser={user} /><CreateCard /></>}></Route>
+          :
+          ""
+        }
+        <Route path="*" element={<><NavBar currentUser={user} /><Navigate to="/decks/list" /></>}></Route>
       </Routes>
     </>
   )

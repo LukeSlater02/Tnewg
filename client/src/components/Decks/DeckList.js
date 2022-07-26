@@ -94,7 +94,7 @@ export const DeckList = () => {
                     return (
                         <div key={d.id} className="deck" style={{ backgroundImage: `url(${d.backgroundImage})` }}>
                             {isEditing == d.id ?
-                                <input id="deckEditInput" ref={nameEditField} placeholder={d.name} className="deckEdit" value={deckNameUpdate} onChange={handleInput}></input>
+                                <input maxLength={14} id="deckEditInput" ref={nameEditField} placeholder={d.name} className="deckEdit" value={deckNameUpdate} onChange={handleInput}></input>
                                 :
                                 <h2>{d.name}</h2>}
                             <div className="buttons">
