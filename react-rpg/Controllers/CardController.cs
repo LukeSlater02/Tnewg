@@ -35,9 +35,9 @@ namespace Tnewg.Controllers
         }
 
         [HttpGet("search")]
-        public IActionResult Search(string input)
+        public IActionResult Search(string q)
         {
-            return Ok(_cardRepository.Search(input));
+            return Ok(_cardRepository.Search(q));
         }
 
         // POST api/<CardController>

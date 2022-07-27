@@ -22,6 +22,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+a:hover {
+  cursor: pointer;
+}
+
 .card {
   font-family: "VT323", monospace;
   height: 490px;
@@ -146,6 +150,7 @@ code {
   margin-bottom: -16px;
   margin-top: -12px;
   color: #080808;
+  text-transform: capitalize;
 }
 
 input {

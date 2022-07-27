@@ -48,7 +48,7 @@ export const CardList = () => {
 
     const handleSearchInput = event => {
         setSearchInput(event.target.value)
-        searchCards(searchInput).then(data => console.log(data))
+        searchCards(searchInput).then(data => setCards(data))
     }
 
     const closeModal = () => {
