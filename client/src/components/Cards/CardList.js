@@ -46,9 +46,11 @@ export const CardList = () => {
         }
     }
 
-    const handleSearchInput = event => {
-        setSearchInput(event.target.value)
-        searchCards(searchInput).then(data => setCards(data))
+    async function handleSearchInput(event) {
+        let searchInput = event.target.value
+        setSearchInput(searchInput)
+        let filteredCards = await searchCards(searchInput).then(data => data)
+        setCards(filteredCards)
     }
 
     const closeModal = () => {
@@ -62,7 +64,7 @@ export const CardList = () => {
 
     return (
         <>
-            <input onChange={handleSearchInput} placeholder="Search by name..." value={searchInput} id="search"></input>
+            <input onChange={handleSearchInput} className="cardSearch" placeholder="Search by name..." value={searchInput} id="search"></input>
             <div className="cardsContainer">
                 {cards.map(c => {
                     return (

@@ -5,7 +5,8 @@
 
 body {
   margin: 0;
-  background-image: url(../public/img/battleBackground.png);
+  background-image: url(../public/img/landingPage.png);
+  background-repeat: repeat-y;
   background-repeat: no-repeat;
   background-position: top;
   background-size: cover;

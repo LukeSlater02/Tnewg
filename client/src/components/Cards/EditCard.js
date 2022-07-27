@@ -102,7 +102,7 @@ export const EditCard = () => {
                 </div>
                 <div>
                     NAME<br></br>
-                    <input id="name" onChange={handleInput} maxLength={13} />
+                    <input id="name" onChange={handleInput} maxLength={13} value={card.name} />
                 </div>
                 <div>
                     Cost<br></br>
@@ -112,14 +112,14 @@ export const EditCard = () => {
                     <button onClick={handleAddClick}>Submit</button>
                 </div>
             </div>
-            <div className="card" style={{ backgroundImage: `url(../${card.backgroundColor})` }}>
-                <div className="cardHeroImage" style={{ backgroundImage: `url(../${card.borderColor})` }}>
+            <div className="card" style={{ backgroundImage: `url(${card.backgroundColor})` }}>
+                <div className="cardHeroImage" style={{ backgroundImage: `url(${card.borderColor})` }}>
                     <img src="/img/circleGray.png" className="circle"></img>
                     <span className="cost">{card.cost}</span>
-                    <img className="characterImage" src={`../${card.image}`}></img>
+                    <img className="characterImage" src={`${card.image}`}></img>
                 </div>
-                <h2>{card.name}</h2>
-                <div className="statsContainer" style={{ backgroundImage: `url(../${card.statsBackgroundColor})` }} >
+                <h2>{card.name || "Name"}</h2>
+                <div className="statsContainer" style={{ backgroundImage: `url(${card.statsBackgroundColor})` }} >
                     <div className="stats">
                         <img src="/img/cardDmg.png"></img>
                     </div>

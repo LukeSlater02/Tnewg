@@ -107,4 +107,30 @@
   opacity: 1;
   z-index: 1;
 }
+
+.cardSearch {
+  color: black;
+  display: block;
+  width: 10em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  font-size: xx-large;
+}
+
+::-webkit-input-placeholder {
+  color: black;
+}
+
+:-ms-input-placeholder {
+  color: black;
+}
+
+::-ms-input-placeholder {
+  color: black;
+}
+
+::placeholder {
+  color: black;
+}
 /*# sourceMappingURL=CardList.css.map */

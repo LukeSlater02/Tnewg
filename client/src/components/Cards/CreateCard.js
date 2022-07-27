@@ -108,7 +108,7 @@ export const CreateCard = () => {
                     <button onClick={handleAddClick}>Submit</button>
                 </div>
             </div>
-            <div className="card" style={{backgroundImage: `url(${cardBackground})`}}>
+            <div className="card createCard" style={{backgroundImage: `url(${cardBackground})`}}>
                 <div className="cardHeroImage" style={{backgroundImage: `url(${cardBorder})`}}>
                     <img src="/img/circleGray.png" className="circle"></img>
                     <span className="cost">{cost}</span>

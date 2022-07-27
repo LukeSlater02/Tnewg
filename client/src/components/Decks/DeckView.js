@@ -20,7 +20,7 @@ export const DeckView = () => {
     }
 
     return (
-        <div>
+        <div className="cardsContainer">
             {deckCards.map(c => {
                 return (
                     <div key={c.id}>
