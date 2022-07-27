@@ -109,7 +109,7 @@ export const EditCard = () => {
                     <input id="cost" type="number" max={9} onChange={handleInput} value={card.cost} />
                 </div>
                 <div>
-                    <button onClick={handleAddClick}>Submit</button>
+                <div className="pixelButton add"><p onClick={handleAddClick}>submit</p></div>
                 </div>
             </div>
             <div className="card" style={{ backgroundImage: `url(${card.backgroundColor})` }}>

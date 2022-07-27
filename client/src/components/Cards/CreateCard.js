@@ -105,7 +105,7 @@ export const CreateCard = () => {
                     <input id="cost" type="number" max={9} onChange={handleInput} />
                 </div>
                 <div>
-                    <button onClick={handleAddClick}>Submit</button>
+                <div className="pixelButton add"><p onClick={handleAddClick}>submit</p></div>
                 </div>
             </div>
             <div className="card createCard" style={{backgroundImage: `url(${cardBackground})`}}>
