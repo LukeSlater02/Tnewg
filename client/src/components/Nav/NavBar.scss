@@ -2,7 +2,7 @@ $vamp: #080808;
 .nav {
     height: 140px;
     margin: 0;
-    background-color: $vamp;
+    background-color: rgba($color: $vamp, $alpha: .9);
     color: white;
     display: flex;
     align-items: center;
@@ -13,22 +13,4 @@ $vamp: #080808;
         text-align: center;
         font-weight: 100 !important;
     }
-    // .navTitle {
-    //     color: black;
-    //     opacity: 0.9;
-    //     display: flex;
-    //     align-items: center;
-    //     justify-content: space-between;
-    //     width: 330px;
-    //     padding: 1em;
-    //     background-image: url("../../../public/img/titleBackground.png");
-    //     background-image: url(../../../public/img/titleBackground.png);
-    //     background-repeat: no-repeat;
-    //     background-position: center;
-    //     background-size: 110%;
-    //     height: 90%;
-    //     img {
-    //         height: 80%;
-    //     }
-    // }
 }

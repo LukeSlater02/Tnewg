@@ -61,7 +61,7 @@ export function Login() {
 						<br></br>
 						<input placeholder="password" id="password" type="password" value={password} onChange={handleInputChange}></input>
 						<br></br>
-						<button onClick={loginSubmit}>sign in</button>
+						<div className="pixelButton add"><p onClick={loginSubmit}><img src="img/powerSymbol.png"></img></p></div>
 					</div></> : ""}
 				<div>
 					<h1 onClick={() => {
@@ -76,7 +76,7 @@ export function Login() {
 						<br></br>
 						<input placeholder="password" id="password" type="password" value={password} onChange={handleInputChange}></input>
 						<br></br>
-						<button onClick={registerClick}>register</button>
+						<div className="pixelButton add"><p onClick={registerClick}>submit</p></div>
 					</div></> : ""}
 			</section>
 
