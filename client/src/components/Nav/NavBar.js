@@ -18,7 +18,7 @@ export const NavBar = ({ }) => {
         <div className="nav">
             <Link to={"/cards/list"}>Card List</Link>
             {user.userType == "admin" ? <Link to={"/cards/create"}>Create Card</Link> : ""}
-            <Link to={"/decks/list"}>Deck List</Link>
+            <Link to={"/decks/list"} className="active">Deck List</Link>
             <a onClick={() => {
                 logout()
                 setUser({})

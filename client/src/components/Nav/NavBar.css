@@ -19,4 +19,8 @@
   text-align: center;
   font-weight: 100 !important;
 }
+
+.nav .active {
+  color: red;
+}
 /*# sourceMappingURL=NavBar.css.map */

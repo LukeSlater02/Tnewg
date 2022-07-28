@@ -61,10 +61,17 @@ export const CreateCard = () => {
                     Character <br></br>
                     <select id="characterImage" onChange={handleInput}>
                         <option>----</option>
-                        <option value={"/img/samurai.webp"}>The Ronin</option>
-                        <option value={"/img/wizardCard2.png"}>The Arcanist</option>
-                        <option value={"/img/highwaymanCard.png"}>Highwayman</option>
+                        <option value={"/img/warlock.png"}>Warlock</option>
+                        <option value={"/img/wizard.png"}>Wizard</option>
+                        <option value={"/img/paladin.png"}>Paladin</option>
                         <option value={"/img/druid.png"}>Druid</option>
+                        <option value={"/img/Vampire.png"}>Vampire</option>
+                        <option value={"/img/Rogue.png"}>Rogue</option>
+                        <option value={"/img/Lich.png"}>Lich</option>
+                        <option value={"/img/Mimic.png"}>Mimic</option>
+                        <option value={"/img/Spectre.png"}>Spectre</option>
+                        <option value={"/img/Orc.png"}>Orc</option>
+
                     </select>
                 </div>
                 <div>

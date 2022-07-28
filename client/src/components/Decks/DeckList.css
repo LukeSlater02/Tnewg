@@ -1,7 +1,6 @@
 .deckList {
   display: -ms-grid;
   display: grid;
-  gap: 2em;
   -ms-grid-columns: (minmax(24em, 24em))[auto-fit];
       grid-template-columns: repeat(auto-fit, minmax(24em, 24em));
   -webkit-box-pack: space-evenly;
