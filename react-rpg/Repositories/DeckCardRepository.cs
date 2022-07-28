@@ -14,31 +14,35 @@ namespace Tnewg.Repositories
     {
         public DeckCardRepository(IConfiguration configuration) : base(configuration) { }
 
-        public List<Card> GetAllByDeckId(int id)
+        public List<DeckCard> GetAllByDeckId(int id)
         {
             using var conn = Connection;
             {
                 conn.Open();
                 using var cmd = conn.CreateCommand();
                 {
-                    cmd.CommandText = @"SELECT Card.Id as CardId, Damage, HitPoints, BackgroundColor, BorderColor, Cost, StatsBackgroundColor, Image, Name FROM DeckCard JOIN Card on CardId = Card.Id WHERE DeckId = @Id";
+                    cmd.CommandText = @"SELECT DeckCard.Id as Id, Card.Id as CardId, Damage, HitPoints, BackgroundColor, BorderColor, Cost, StatsBackgroundColor, Image, Name FROM DeckCard JOIN Card on CardId = Card.Id WHERE DeckId = @Id";
                     cmd.Parameters.AddWithValue("@Id", id);
                     using var reader = cmd.ExecuteReader();
                     {
-                        List<Card> cardList = new();
+                        List<DeckCard> cardList = new();
                         while (reader.Read())
                         {
-                            Card card = new()
+                            DeckCard card = new DeckCard()
                             {
-                                Id = DbUtils.GetInt(reader, "CardId"),
-                                Name = reader.GetString(reader.GetOrdinal("Name")),
-                                Damage = reader.GetInt32(reader.GetOrdinal("Damage")),
-                                HitPoints = reader.GetInt32(reader.GetOrdinal("HitPoints")),
-                                Cost = reader.GetInt32(reader.GetOrdinal("Cost")),
-                                BackgroundColor = reader.GetString(reader.GetOrdinal("BackgroundColor")),
-                                BorderColor = reader.GetString(reader.GetOrdinal("BorderColor")),
-                                StatsBackgroundColor = reader.GetString(reader.GetOrdinal("StatsBackgroundColor")),
-                                Image = reader.GetString(reader.GetOrdinal("Image"))
+                                Id = DbUtils.GetInt(reader, "Id"),
+                                Card = new()
+                                {
+                                    Id = DbUtils.GetInt(reader, "CardId"),
+                                    Name = reader.GetString(reader.GetOrdinal("Name")),
+                                    Damage = reader.GetInt32(reader.GetOrdinal("Damage")),
+                                    HitPoints = reader.GetInt32(reader.GetOrdinal("HitPoints")),
+                                    Cost = reader.GetInt32(reader.GetOrdinal("Cost")),
+                                    BackgroundColor = reader.GetString(reader.GetOrdinal("BackgroundColor")),
+                                    BorderColor = reader.GetString(reader.GetOrdinal("BorderColor")),
+                                    StatsBackgroundColor = reader.GetString(reader.GetOrdinal("StatsBackgroundColor")),
+                                    Image = reader.GetString(reader.GetOrdinal("Image"))
+                                }
                             };
                             cardList.Add(card);
                         }

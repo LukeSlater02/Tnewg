@@ -64,6 +64,7 @@ export const CreateCard = () => {
                         <option value={"/img/samurai.webp"}>The Ronin</option>
                         <option value={"/img/wizardCard2.png"}>The Arcanist</option>
                         <option value={"/img/highwaymanCard.png"}>Highwayman</option>
+                        <option value={"/img/druid.png"}>Druid</option>
                     </select>
                 </div>
                 <div>

@@ -50,7 +50,7 @@ namespace Tnewg.Controllers
         }
 
         // DELETE api/<DeckCardController>/5
-        [HttpDelete("{cardId}/{deckId}")]
+        [HttpDelete("{id}")]
         public void Delete(int id)
         {
             _deckCardRepository.Delete(id);
