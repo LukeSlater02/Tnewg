@@ -18,7 +18,7 @@ namespace Tnewg.Repositories
                 {
                     cmd.CommandText = @"SELECT Id, Name, Damage, HitPoints, Cost,
                     BackgroundColor, BorderColor, StatsBackgroundColor, Image
-                    FROM Card";
+                    FROM Card ORDER BY Name ASC";
                     var reader = cmd.ExecuteReader();
                     {
                         List<Card> cardList = new();
@@ -54,7 +54,7 @@ namespace Tnewg.Repositories
                     cmd.CommandText = @"SELECT Id, Name, Damage, HitPoints, Cost,
                     BackgroundColor, BorderColor, StatsBackgroundColor, Image
                     FROM Card
-                    WHERE Name LIKE @input";
+                    WHERE Name LIKE @input ORDER BY Name ASC";
                     cmd.Parameters.AddWithValue("@input", $"%{input}%");
                     var reader = cmd.ExecuteReader();
                     {
