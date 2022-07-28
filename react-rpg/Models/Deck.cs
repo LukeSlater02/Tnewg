@@ -6,5 +6,6 @@
         public string Name { get; set; }
         public int UserProfileId { get; set; }
         public string BackgroundImage { get; set; }
+        public int CardCount { get; set; }
     }
 }

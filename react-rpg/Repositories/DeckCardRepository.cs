@@ -1,5 +1,10 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Web.Mvc;
 using Tnewg.Models;
 using Tnewg.Utils;
 
@@ -16,7 +21,7 @@ namespace Tnewg.Repositories
                 conn.Open();
                 using var cmd = conn.CreateCommand();
                 {
-                    cmd.CommandText = @"SELECT Card.Id as CardId, Damage, HitPoints, BackgroundColor, BorderColor, Cost, StatsBackgroundColor, Image, Name FROM DeckCard JOIN Card on CardId = Card.Id WHERE DeckId = @Id ";
+                    cmd.CommandText = @"SELECT Card.Id as CardId, Damage, HitPoints, BackgroundColor, BorderColor, Cost, StatsBackgroundColor, Image, Name FROM DeckCard JOIN Card on CardId = Card.Id WHERE DeckId = @Id";
                     cmd.Parameters.AddWithValue("@Id", id);
                     using var reader = cmd.ExecuteReader();
                     {
@@ -43,10 +48,24 @@ namespace Tnewg.Repositories
             }
         }
 
-        public void Add(DeckCard dc)
+        bool HandleSqlException(SqlException e)
+        {
+            if (e.Message.Contains("The transaction ended in the trigger. The batch has been aborted."))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public bool Add(DeckCard dc)
         {
             using var conn = Connection;
             {
+                bool cardMax = false;
                 conn.Open();
                 using var cmd = conn.CreateCommand();
                 {
@@ -54,21 +73,43 @@ namespace Tnewg.Repositories
                                         VALUES(@CardId, @DeckId)";
                     cmd.Parameters.AddWithValue("@CardId", dc.CardId);
                     cmd.Parameters.AddWithValue("@DeckId", dc.DeckId);
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException dex)
+                    {
+                        cardMax = HandleSqlException((SqlException)dex);
+                    }
                 }
+                return cardMax;
             }
         }
 
-        public void Delete(int cardId, int deckId)
+        public int GetCardsInDeckCount(int id)
         {
             using var conn = Connection;
             {
                 conn.Open();
                 using var cmd = conn.CreateCommand();
                 {
-                    cmd.CommandText = @"DELETE FROM DeckCard WHERE CardId = @CardId AND DeckId = @DeckId";
-                    cmd.Parameters.AddWithValue("@CardId", cardId);
-                    cmd.Parameters.AddWithValue("@DeckId", deckId);
+                    cmd.CommandText = @"SELECT count(CardId) FROM DeckCard WHERE DeckId = @id";
+                    cmd.Parameters.AddWithValue("@id", id);
+                    int count = (int)cmd.ExecuteScalar();
+                    return count;
+                }
+            }
+        }
+
+        public void Delete(int id)
+        {
+            using var conn = Connection;
+            {
+                conn.Open();
+                using var cmd = conn.CreateCommand();
+                {
+                    cmd.CommandText = @"DELETE FROM DeckCard WHERE Id = @Id";
+                    cmd.Parameters.AddWithValue("@Id", id);
                     cmd.ExecuteNonQuery();
                 }
             }

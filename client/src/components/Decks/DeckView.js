@@ -15,8 +15,8 @@ export const DeckView = () => {
     }, [])
 
     const removeCard = event => {
-        let cardId = event.target.id.split(" ")[1]
-        deleteCardFromDeck(cardId, deckId).then(() => getDeckCards())
+        let deckCardId = event.target.id.split(" ")[1]
+        deleteCardFromDeck(deckCardId).then(() => getDeckCards())
     }
 
     return (

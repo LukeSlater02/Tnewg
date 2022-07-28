@@ -63,4 +63,12 @@
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
 }
+
+.cardCount {
+  font-family: "VT323", monospace;
+  font-size: xx-large;
+  font-weight: bold;
+  margin: 8px;
+  margin-bottom: 14px;
+}
 /*# sourceMappingURL=DeckList.css.map */

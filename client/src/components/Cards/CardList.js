@@ -42,7 +42,15 @@ export const CardList = () => {
                 deckId: selectedDeck,
                 cardId: selectedCard
             }
-            addCardToDeck(deckCard).then(() => navigate(`/deck/${selectedDeck}`))
+            addCardToDeck(deckCard).then(data => {
+                if (data) {
+                    window.alert(`That deck is full.`)
+                }
+                else {
+                    navigate(`/deck/${selectedDeck}`)
+                }
+
+            })
         }
     }
 

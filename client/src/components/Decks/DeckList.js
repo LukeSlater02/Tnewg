@@ -97,6 +97,7 @@ export const DeckList = () => {
                                 <input maxLength={14} id="deckEditInput" ref={nameEditField} placeholder={d.name} className="deckEdit" value={deckNameUpdate} onChange={handleInput}></input>
                                 :
                                 <h2>{d.name}</h2>}
+                                <span className="cardCount">{d.cardCount} / 30</span>
                             <div className="buttons">
                                 <div className="pixelButton"><p onClick={() => navigate(`/deck/${d.id}`)}>view</p></div>
                                 {isEditing == d.id ?

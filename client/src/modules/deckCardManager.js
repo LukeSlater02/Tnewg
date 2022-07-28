@@ -10,7 +10,7 @@ export const addCardToDeck = deckCard => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(deckCard)
-        })
+        }).then(res => res.json())
     }))
 }
 
@@ -24,9 +24,9 @@ export const getAllByDeck = deckId => {
     })
 }
 
-export const deleteCardFromDeck = (cardId, deckId) => {
+export const deleteCardFromDeck = (id) => {
     return getToken().then(token => {
-        return fetch(`${_apiUrl}/${cardId}/${deckId}`, {
+        return fetch(`${_apiUrl}/${id}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`

@@ -16,8 +16,7 @@ namespace Tnewg.Repositories
                 conn.Open();
                 using var cmd = conn.CreateCommand();
                 {
-                    cmd.CommandText = @"SELECT Id, Name, UserProfileId, BackgroundImage FROM Deck
-                                        WHERE UserProfileId = @id";
+                    cmd.CommandText = @"SELECT MAX(Deck.Id) as Id, count(deckId) as CardCount, MAX(Name) as Name, MAX(BackgroundImage) as BackgroundImage, MAX(UserProfileId) as UserProfileId FROM Deck LEFT JOIN DeckCard on Deck.Id = DeckId WHERE UserProfileId = 1 GROUP BY Deck.Id";
                     cmd.Parameters.AddWithValue("@id", id);
                     var reader = cmd.ExecuteReader();
 
@@ -29,7 +28,8 @@ namespace Tnewg.Repositories
                             Id = DbUtils.GetInt(reader, "Id"),
                             Name = DbUtils.GetString(reader, "Name"),
                             UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
-                            BackgroundImage = DbUtils.GetString(reader, "BackgroundImage")
+                            BackgroundImage = DbUtils.GetString(reader, "BackgroundImage"),
+                            CardCount = DbUtils.GetInt(reader, "CardCount")
                         });
                     }
                     return deckList;

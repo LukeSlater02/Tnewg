@@ -3,6 +3,7 @@ using Tnewg.Repositories;
 using Tnewg.Models;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
+using System;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Tnewg.Controllers
@@ -36,9 +37,9 @@ namespace Tnewg.Controllers
 
         // POST api/<DeckCardController>
         [HttpPost]
-        public void Post(DeckCard dc)
+        public bool Post(DeckCard dc)
         {
-            _deckCardRepository.Add(dc);
+           return _deckCardRepository.Add(dc);
         }
 
         // PUT api/<DeckCardController>/5
@@ -50,9 +51,9 @@ namespace Tnewg.Controllers
 
         // DELETE api/<DeckCardController>/5
         [HttpDelete("{cardId}/{deckId}")]
-        public void Delete(int cardId, int deckId)
+        public void Delete(int id)
         {
-            _deckCardRepository.Delete(cardId, deckId);
+            _deckCardRepository.Delete(id);
         }
     }
 }
