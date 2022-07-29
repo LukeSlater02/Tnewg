@@ -5,6 +5,7 @@ import { getAllByDeck, deleteCardFromDeck } from "../../modules/deckCardManager"
 export const DeckView = () => {
     const [deckCards, setDeckCards] = useState([])
     let { deckId } = useParams()
+    let { deckName } = useParams()
 
     const getDeckCards = () => {
         getAllByDeck(deckId).then(data => setDeckCards(data))
@@ -20,35 +21,38 @@ export const DeckView = () => {
     }
 
     return (
-        <div className="cardsContainer">
-            {deckCards.map(c => {
-                return (
-                    <div key={c.id}>
-                        <div className="card" style={{ backgroundImage: `url(${c.card.backgroundColor})` }}>
-                            <div className="cardHeroImage" style={{ backgroundImage: `url(${c.card.borderColor})` }}>
-                                <img src="../img/circleGray.png" className="circle"></img>
-                                <span className="cost">{c.card.cost}</span>
-                                <img className="characterImage" src={c.card.image}></img>
+        <>
+            <h1 className="deckViewTitle">{deckName}</h1>
+            <div className="cardsContainer">
+                {deckCards.map(c => {
+                    return (
+                        <div key={c.id}>
+                            <div className="card" style={{ backgroundImage: `url(${c.card.backgroundColor})` }}>
+                                <div className="cardHeroImage" style={{ backgroundImage: `url(${c.card.borderColor})` }}>
+                                    <img src="../../img/circleGray.png" className="circle"></img>
+                                    <span className="cost">{c.card.cost}</span>
+                                    <img className="characterImage" src={c.card.image}></img>
+                                </div>
+                                <h2>{c.card.name}</h2>
+                                <div className="statsContainer" style={{ backgroundImage: `url(${c.card.statsBackgroundColor})` }} >
+                                    <div className="stats">
+                                        <img src="../../img/cardDmg.png"></img>
+                                    </div>
+                                    <div className="stats">
+                                        <img src="../../img/cardArmor.png"></img>
+                                    </div>
+                                    <div className="stats">
+                                        <img src="../../img/cardHp.png"></img>
+                                    </div>
+                                </div>
                             </div>
-                            <h2>{c.card.name}</h2>
-                            <div className="statsContainer" style={{ backgroundImage: `url(${c.card.statsBackgroundColor})` }} >
-                                <div className="stats">
-                                    <img src="../img/cardDmg.png"></img>
-                                </div>
-                                <div className="stats">
-                                    <img src="../img/cardArmor.png"></img>
-                                </div>
-                                <div className="stats">
-                                    <img src="../img/cardHp.png"></img>
-                                </div>
+                            <div className="buttons">
+                                <div className="pixelButton delete"><p onClick={removeCard} id={`remove ${c.id}`}>remove</p></div>
                             </div>
                         </div>
-                        <div className="buttons">
-                            <div className="pixelButton delete"><p onClick={removeCard} id={`remove ${c.id}`}>remove</p></div>
-                        </div>
-                    </div>
-                )
-            })}
-        </div>
+                    )
+                })}
+            </div>
+        </>
     )
 }

@@ -1,7 +1,7 @@
 .cardsContainer {
   display: -ms-grid;
   display: grid;
-  gap: 3em;
+  gap: 2em;
   -ms-grid-columns: (minmax(24em, 24em))[auto-fit];
       grid-template-columns: repeat(auto-fit, minmax(24em, 24em));
   -webkit-box-pack: space-evenly;
@@ -10,9 +10,17 @@
   justify-items: center;
 }
 
+.cardsContainer div {
+  width: 300px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
 .cardsContainer .buttons {
   height: 50px;
-  margin-top: -5.5em;
+  margin-top: -7.5em;
+  margin-bottom: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -56,12 +64,12 @@
 }
 
 .deckModal .deckModalContent {
-  background-color: burlywood;
+  background-color: #808080;
   padding: 1em;
   height: 200px;
   width: 400px;
-  -webkit-box-shadow: -15px 0 0 0 saddlebrown, 15px 0 0 0 saddlebrown, 0 -15px 0 0 saddlebrown, 0 15px 0 0 saddlebrown;
-          box-shadow: -15px 0 0 0 saddlebrown, 15px 0 0 0 saddlebrown, 0 -15px 0 0 saddlebrown, 0 15px 0 0 saddlebrown;
+  -webkit-box-shadow: -15px 0 0 0 #080808, 15px 0 0 0 #080808, 0 -15px 0 0 #080808, 0 15px 0 0 #080808;
+          box-shadow: -15px 0 0 0 #080808, 15px 0 0 0 #080808, 0 -15px 0 0 #080808, 0 15px 0 0 #080808;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

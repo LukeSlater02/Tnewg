@@ -59,7 +59,50 @@ export const CreateCard = () => {
             <div>
                 <div>
                     Character <br></br>
-                    <select id="characterImage" onChange={handleInput}>
+                    <div className="selectBox">
+                        <div className="optionsContainer active">
+                            <div className="option">
+                                <input type="radio" class="radio" id="warlock" name="category"></input>
+                                <label for="warlock">Warlock</label>
+                            </div>
+                            <div className="option">
+                                <input type="radio" class="radio" id="wizard" name="category"></input>
+                                <label for="wizard">wizard</label>
+                            </div>
+                            <div className="option">
+                                <input type="radio" class="radio" id="paladin" name="category"></input>
+                                <label for="paladin">Paladin</label>
+                            </div>
+                            <div className="option">
+                                <input type="radio" class="radio" id="druid" name="category"></input>
+                                <label for="druid">druid</label>
+                            </div>
+                            <div className="option">
+                                <input type="radio" class="radio" id="vampire" name="category"></input>
+                                <label for="vampire">vampire</label>
+                            </div>
+                            <div className="option">
+                                <input type="radio" class="radio" id="vampire" name="category"></input>
+                                <label for="vampire">vampire</label>
+                            </div>
+                            <div className="option">
+                                <input type="radio" class="radio" id="vampire" name="category"></input>
+                                <label for="vampire">vampire</label>
+                            </div>
+                            <div className="option">
+                                <input type="radio" class="radio" id="vampire" name="category"></input>
+                                <label for="vampire">vampire</label>
+                            </div>
+                            <div className="option">
+                                <input type="radio" class="radio" id="vampire" name="category"></input>
+                                <label for="vampire">vampire</label>
+                            </div>
+                        </div>
+                        <div className="selected">
+                            Select an Image
+                        </div>
+                    </div>
+                    {/* <select id="characterImage" onChange={handleInput}>
                         <option>----</option>
                         <option value={"/img/warlock.png"}>Warlock</option>
                         <option value={"/img/wizard.png"}>Wizard</option>
@@ -72,7 +115,8 @@ export const CreateCard = () => {
                         <option value={"/img/Spectre.png"}>Spectre</option>
                         <option value={"/img/Orc.png"}>Orc</option>
 
-                    </select>
+                    </select> */}
+
                 </div>
                 <div>
                     BORDER <br></br>
@@ -113,17 +157,17 @@ export const CreateCard = () => {
                     <input id="cost" type="number" max={9} onChange={handleInput} />
                 </div>
                 <div>
-                <div className="pixelButton add"><p onClick={handleAddClick}>submit</p></div>
+                    <div className="pixelButton add"><p onClick={handleAddClick}>submit</p></div>
                 </div>
             </div>
-            <div className="card createCard" style={{backgroundImage: `url(${cardBackground})`}}>
-                <div className="cardHeroImage" style={{backgroundImage: `url(${cardBorder})`}}>
+            <div className="card createCard" style={{ backgroundImage: `url(${cardBackground})` }}>
+                <div className="cardHeroImage" style={{ backgroundImage: `url(${cardBorder})` }}>
                     <img src="/img/circleGray.png" className="circle"></img>
                     <span className="cost">{cost}</span>
                     <img className="characterImage" src={characterImage}></img>
                 </div>
                 <h2>{name}</h2>
-                <div className="statsContainer" style={{backgroundImage: `url(${cardStatsBackground})`}} >
+                <div className="statsContainer" style={{ backgroundImage: `url(${cardStatsBackground})` }} >
                     <div className="stats">
                         <img src="/img/cardDmg.png"></img>
                     </div>

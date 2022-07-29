@@ -29,13 +29,13 @@ export function Login() {
 	};
 
 	const handleInputChange = event => {
-		if (event.target.id == 'email') {
+		if (event.target.id === 'email') {
 			setEmail(event.target.value)
 		}
-		if (event.target.id == 'password') {
+		if (event.target.id === 'password') {
 			setPassword(event.target.value)
 		}
-		if (event.target.id == 'username') {
+		if (event.target.id === 'username') {
 			setDisplayName(event.target.value)
 		}
 	}
@@ -73,7 +73,6 @@ export function Login() {
 					<div>
 						<input placeholder="Email" id="email" size={30} value={email} onChange={handleInputChange}></input>
 						<input placeholder="Username" id="username" size={30} value={displayName} onChange={handleInputChange}></input>
-						<br></br>
 						<input placeholder="password" id="password" type="password" value={password} onChange={handleInputChange}></input>
 						<br></br>
 						<div className="pixelButton add"><p onClick={registerClick}>submit</p></div>

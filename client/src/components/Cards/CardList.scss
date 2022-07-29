@@ -1,13 +1,19 @@
 .cardsContainer {
     display: grid;
-    gap: 3em;
+    gap: 2em;
     grid-template-columns: repeat(auto-fit, minmax(24em, 24em));
     justify-content: space-evenly;
     justify-items: center;
 
+    div{
+        width: 300px;
+        height: fit-content;
+    }
+
     .buttons {
         height: 50px;
-        margin-top: -5.5em;
+        margin-top: -7.5em;
+        margin-bottom: 0;
         display: flex;
         align-items: center;
 
@@ -48,11 +54,11 @@
     opacity: 0;
 
     .deckModalContent {
-        background-color: burlywood;
+        background-color: #808080;
         padding: 1em;
         height: 200px;
         width: 400px;
-        box-shadow: -15px 0 0 0 saddlebrown, 15px 0 0 0 saddlebrown, 0 -15px 0 0 saddlebrown, 0 15px 0 0 saddlebrown;
+        box-shadow: -15px 0 0 0 #080808, 15px 0 0 0 #080808, 0 -15px 0 0 #080808, 0 15px 0 0 #080808;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -81,6 +87,10 @@
             margin-bottom: 0;
             font-weight: normal;
         }
+    }
+
+    .customSelectArrow{
+        
     }
 }
 

@@ -33,9 +33,9 @@ export const ApplicationViews = ({ isLoggedIn }) => {
   return (
     <>
       <Routes>
-        <Route path="/card/:cardId/edit" element={<><NavBar /><EditCard /></>}></Route>
+        <Route path="/card/:cardId/:cardName/edit" element={<><NavBar /><EditCard /></>}></Route>
         <Route path="/cards/list" element={<><NavBar /> <CardList /></>}></Route>
-        <Route path="/deck/:deckId" element={<><NavBar /><DeckView /></>}></Route>
+        <Route path="/deck/:deckId/:deckName" element={<><NavBar /><DeckView /></>}></Route>
         <Route path="/decks/list" element={<><NavBar /><DeckList /></>}></Route>
         {user.userType == "admin" ?
           <Route path="/cards/create" element={<><NavBar /><CreateCard /></>}></Route>

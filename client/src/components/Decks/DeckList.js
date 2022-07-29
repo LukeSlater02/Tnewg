@@ -99,7 +99,7 @@ export const DeckList = () => {
                                 <h2>{d.name}</h2>}
                                 <span className="cardCount">{d.cardCount} / 30</span>
                             <div className="buttons">
-                                <div className="pixelButton"><p onClick={() => navigate(`/deck/${d.id}`)}>view</p></div>
+                                <div className="pixelButton"><p onClick={() => navigate(`/deck/${d.id}/${d.name}`)}>view</p></div>
                                 {isEditing == d.id ?
                                     <div className="pixelButton save"><p id={`save ${d.id}`} onClick={handleButtonClick}>save</p></div>
                                     :

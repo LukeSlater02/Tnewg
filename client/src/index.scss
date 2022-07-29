@@ -7,7 +7,7 @@ $vamp: #080808;
 
 body {
   margin: 0;
-  background-image: url(../public/img/battleBackground.png);
+  background-image: url(../public/img/woodBackground.png);
   background-color: #090909;
   background-repeat: repeat-y;
   background-position: top;
@@ -157,6 +157,88 @@ select {
   background-color: rgba($color: $vamp, $alpha: 0.2);
   padding: 3.5px;
   outline: none;
+  box-shadow: 0 10px 25px rgba($color: #000000, $alpha: 0.6);
+}
+
+.selectBox {
+  margin: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+
+  .optionsContainer {
+    background-color: whitesmoke;
+    width: 80%;
+    //max-height: 0;
+    //opacity: 0;
+    transition: all 0.4s;
+    overflow: hidden;
+    border-radius: 8px;
+    order: 1;
+  }
+
+  ::-webkit-scrollbar{
+    width: 8px;
+    background-color: $vamp;
+    border-radius: 0 8px 8px 0;
+  }
+
+  ::-webkit-scrollbar-thumb{
+    background-color: darkgray;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .active {
+    max-height: 240px;
+    opacity: 1;
+    overflow-y: scroll;
+  }
+
+  .option,
+  .selected {
+    padding: 12px 24px;
+    cursor: pointer;
+  }
+
+  .selected{
+    border-radius: 8px;
+    background-color: whitesmoke;
+    margin-bottom: 8px;
+    position: relative;
+    order: 0;
+    &::after{
+      content: "";
+      background-image: url(../public/img/arrow-down.svg);
+      background-size: contain;
+      background-repeat: no-repeat;
+
+      position: absolute;
+      height: 100%;
+      width: 32px;
+      right: 10px;
+      right: 5px;
+
+      transition: all 0.4s;
+    }
+  }
+
+  .active + .selected::after{
+    transform: rotateX(180deg);
+    top: -6px;
+  }
+
+  .radio {
+    display: none;
+  }
+
+  .option:hover {
+    background-color: lightgray;
+  }
+
+  label {
+    cursor: pointer;
+  }
 }
 
 .pixelButton {
@@ -223,4 +305,15 @@ select {
     radial-gradient(circle at 100% 0, rgba(204, 0, 0, 0) 14px, #000000 15px),
     radial-gradient(circle at 100% 100%, rgba(204, 0, 0, 0) 14px, #000000 15px),
     radial-gradient(circle at 0 100%, rgba(204, 0, 0, 0) 14px, #000000 15px);
+}
+
+.deckViewTitle {
+  text-transform: capitalize;
+  text-align: center;
+  margin-top: 12px;
+  margin-bottom: -14px;
+  color: white;
+  font-family: "VT323", monospace;
+  font-size: 60px;
+  padding: 0;
 }

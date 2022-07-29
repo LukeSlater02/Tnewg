@@ -40,15 +40,20 @@ a {
             cursor: pointer;
         }
 
-        padding-left: .5em;
-        padding-right: .5em;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
     }
 
-    input{
+    input {
         border: 5px dashed black;
         padding: 5px;
         margin-bottom: 0;
-        background-color: rgba($color: #7F99A6, $alpha: .8);
+        background-color: rgba($color: #7f99a6, $alpha: 0.8);
+    }
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
 

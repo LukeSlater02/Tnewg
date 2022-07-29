@@ -37,7 +37,7 @@ export const CardList = () => {
             modal.current.classList.add('activeModal')
             setSelectedCard(cardId)
         }
-        if (event.target.id == "add") {
+        if (event.target.id == "add" && selectedDeck != 0) {
             const deckCard = {
                 deckId: selectedDeck,
                 cardId: selectedCard
@@ -99,7 +99,7 @@ export const CardList = () => {
                             <div className="buttons" >
                                 <div className="pixelButton add"><p id={`openAddModal ${c.id}`} onClick={handleButtonClick}>add</p></div>
                                 {user.userType == "admin" ? <>
-                                    <div className="pixelButton edit" onClick={() => navigate(`/card/${c.id}/edit`)}><p>edit</p></div>
+                                    <div className="pixelButton edit" onClick={() => navigate(`/card/${c.id}/${c.name}/edit`)}><p>edit</p></div>
 
                                     <div className="pixelButton delete"><p id={`delete ${c.id}`} onClick={handleButtonClick}>delete</p></div>
                                 </> : ""}
@@ -107,21 +107,20 @@ export const CardList = () => {
                         </div>
                     )
                 })}
-
-                <div ref={modal} className="deckModal">
-                    <div className="deckModalContent">
-                        <button className="close-button" onClick={closeModal}>&times;</button>
-                        <h4>Select the Deck to add Card to</h4>
-                        <select onChange={handleSelect}>
-                            <option value={0}>----</option>
-                            {decks.map(d => {
-                                return (
-                                    <option key={d.id} value={d.id}>{d.name}</option>
-                                )
-                            })}
-                        </select>
-                        <div className="pixelButton add"><p id="add" onClick={handleButtonClick}>add</p></div>
-                    </div>
+            </div>
+            <div ref={modal} className="deckModal">
+                <div className="deckModalContent">
+                    <button className="close-button" onClick={closeModal}>&times;</button>
+                    <h4>Select the Deck to add Card to</h4>
+                    <select onChange={handleSelect}>
+                        <option value={0}>----</option>
+                        {decks.map(d => {
+                            return (
+                                <option key={d.id} value={d.id}>{d.name}</option>
+                            )
+                        })}
+                    </select>
+                    <div className="pixelButton add"><p id="add" onClick={handleButtonClick}>add</p></div>
                 </div>
             </div>
         </>

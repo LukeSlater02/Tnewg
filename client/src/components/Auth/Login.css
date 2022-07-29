@@ -55,8 +55,8 @@ a {
   font-family: PixelH;
   font-size: 50px;
   margin-bottom: 0;
-  padding-left: .5em;
-  padding-right: .5em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }
 
 .loginBody h1:hover {
@@ -70,6 +70,19 @@ a {
   padding: 5px;
   margin-bottom: 0;
   background-color: rgba(127, 153, 166, 0.8);
+}
+
+.loginBody div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .container--login {
