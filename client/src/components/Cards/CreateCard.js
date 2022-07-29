@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 export const CreateCard = () => {
     const [name, setName] = useState("Name")
     const [cost, setCost] = useState(0)
-    const [cardBackground, setCardBackground] = useState("/img/baseCardBackground.png")
-    const [cardBorder, setCardBorder] = useState("/img/baseCardBorder.png")
+    const [cardBackground, setCardBackground] = useState("")
+    const [cardBorder, setCardBorder] = useState("")
     const [cardStatsBackground, setCardStatsBackground] = useState("")
     const [characterImage, setCharacterImage] = useState("")
 
@@ -23,42 +23,44 @@ export const CreateCard = () => {
     let navigate = useNavigate()
 
     const handleSelect = event => {
-        // switch (event.target.id) {
-        //     case "cost":
-        //         if (parseInt(event.target.value) > 9) {
-        //             setCost(9)
-        //         }
-        //         else {
-        //             setCost(event.target.value)
-        //         }
-        //         break;
-        //     case "backgroundSelect":
-        //         setCardBackground(event.target.value)
-        //         break;
-        //     case "borderSelect":
-        //         setCardBorder(event.target.value)
-        //         break;
-        //     case "statsBackgroundSelect":
-        //         setCardStatsBackground(event.target.value)
-        //         break;
-        //     case "name":
-        //         setName(event.target.value)
-        //         break;
-        //     case "characterImage":
-        //         event.stopPropagation()
-        //         console.log("hello");
-        //         setCharacterImage(event.target.value)
-        //         break;
-        // }
         if (event.target.id.includes("characterImage")) {
             let imgUrl = event.target.id.split(" ")[1]
             event.stopPropagation()
             setCharacterImage(imgUrl)
+            setCharacterImageSelected(false)
+            imageSelect.current.classList.remove("active")
         }
-        if (event.target.id.includes("characterImage")) {
+        if (event.target.id.includes("borderColor")) {
             let imgUrl = event.target.id.split(" ")[1]
             event.stopPropagation()
-            setCharacterImage(imgUrl)
+            setCardBorder(imgUrl)
+            setborderColorSelected(false)
+            borderSelect.current.classList.remove("active")
+        }
+        if (event.target.id.includes("statsBackground")) {
+            let imgUrl = event.target.id.split(" ")[1]
+            event.stopPropagation()
+            setCardStatsBackground(imgUrl)
+            setStatsBackgroundSelected(false)
+            statsBackgroundSelect.current.classList.remove("active")
+        }
+        if (event.target.id.includes("backgroundColor")) {
+            let imgUrl = event.target.id.split(" ")[1]
+            event.stopPropagation()
+            setCardBackground(imgUrl)
+            setBackgroundSelected(false)
+            backgroundSelect.current.classList.remove("active")
+        }
+        if (event.target.id === "cost") {
+            if (parseInt(event.target.value) > 9) {
+                setCost(9)
+            }
+            else {
+                setCost(event.target.value)
+            }
+        }
+        if (event.target.id === "name") {
+            setName(event.target.value)
         }
     }
 
@@ -77,14 +79,14 @@ export const CreateCard = () => {
     }
 
     const submitButtonVisible = () => {
-        if (cardBackground === "" || cardBorder === "" || cardStatsBackground === "" || characterImage === "" || name === "" || cost === 0) {
+        while (cardBackground === "" || cardBorder === "" || cardStatsBackground === "" || characterImage === "" || name === "" || cost === "") {
             return (
                 <>
-                    <p>Please select/input a value for all fields.</p>
+                    <p style={{ fontFamily: "VT323", fontSize: "30px" }}>Please select/input a value for all fields.</p>
                 </>
             )
         }
-        else {
+        {
             return (
                 <>
                     <div className="pixelButton add"><p onClick={handleAddClick}>submit</p></div>
@@ -122,6 +124,15 @@ export const CreateCard = () => {
                                 <div className="option" id="characterImage Sphinx" onClick={handleSelect}>
                                     <span id="characterImage Sphinx">Sphinx</span>
                                 </div>
+                                <div className="option" id="characterImage Swordsman" onClick={handleSelect}>
+                                    <span id="characterImage Swordsman">Swordsman</span>
+                                </div>
+                                <div className="option" id="characterImage Seraphine" onClick={handleSelect}>
+                                    <span id="characterImage Seraphine">Seraphine</span>
+                                </div>
+                                <div className="option" id="characterImage Minotaur" onClick={handleSelect}>
+                                    <span id="characterImage Minotaur">Minotaur</span>
+                                </div>
                                 <div className="option" id="characterImage Devil" onClick={handleSelect}>
                                     <span id="characterImage Devil">Devil</span>
                                 </div></> : ""
@@ -134,44 +145,20 @@ export const CreateCard = () => {
                             {characterImage || "----"}
                         </div>
                     </div>
-                    {/* <select id="characterImage" onChange={handleSelect}>
-                        <option>----</option>
-                        <option value={"/img/warlock.png"}>Warlock</option>
-                        <option value={"/img/wizard.png"}>Wizard</option>
-                        <option value={"/img/paladin.png"}>Paladin</option>
-                        <option value={"/img/druid.png"}>Druid</option>
-                        <option value={"/img/Vampire.png"}>Vampire</option>
-                        <option value={"/img/Rogue.png"}>Rogue</option>
-                        <option value={"/img/Lich.png"}>Lich</option>
-                        <option value={"/img/Mimic.png"}>Mimic</option>
-                        <option value={"/img/Spectre.png"}>Spectre</option>
-                        <option value={"/img/Orc.png"}>Orc</option>
-
-                    </select> */}
-
                 </div>
                 <div>
                     BORDER <br></br>
-                    {/* <select id="borderSelect" onChange={handleSelect}>
-                        <option>----</option>
-                        <option value={"/img/yellowCardBorder.png"}>Gold</option>
-                        <option value={"/img/silverCardBorder.png"}>Silver</option>
-                        <option value={"/img/brownCardBorder.png"}>Brown</option>
-                    </select> */}
                     <div className="selectBox">
                         <div className="optionsContainer" ref={borderSelect}>
                             {borderColorSelected ? <>
-                                <div className="option" id="characterImage Warlock" onClick={handleSelect}>
-                                    <span id="characterImage Warlock">Warlock</span>
+                                <div className="option" id="borderColor Gold" onClick={handleSelect}>
+                                    <span id="borderColor Gold">Gold</span>
                                 </div>
-                                <div className="option" id="characterImage Wizard" onClick={handleSelect}>
-                                    <span id="characterImage Wizard">Wizard</span>
+                                <div className="option" id="borderColor Brown" onClick={handleSelect}>
+                                    <span id="borderColor Brown">Brown</span>
                                 </div>
-                                <div className="option" id="characterImage Paladin" onClick={handleSelect}>
-                                    <span id="characterImage Paladin">Paladin</span>
-                                </div>
-                                <div className="option" id="characterImage Druid" onClick={handleSelect}>
-                                    <span id="characterImage Druid">Druid</span>
+                                <div className="option" id="borderColor Silver" onClick={handleSelect}>
+                                    <span id="borderColor Silver">Silver</span>
                                 </div>
                             </> : ""
                             }
@@ -197,29 +184,20 @@ export const CreateCard = () => {
                     <div className="selectBox">
                         <div className="optionsContainer" ref={backgroundSelect}>
                             {backgroundSelected ? <>
-                                <div className="option" id="characterImage Warlock" onClick={handleSelect}>
-                                    <span id="characterImage Warlock">Warlock</span>
+                                <div className="option" id="backgroundColor Gray" onClick={handleSelect}>
+                                    <span id="backgroundColor Gray">Gray</span>
                                 </div>
-                                <div className="option" id="characterImage Wizard" onClick={handleSelect}>
-                                    <span id="characterImage Wizard">Wizard</span>
+                                <div className="option" id="backgroundColor Blue" onClick={handleSelect}>
+                                    <span id="backgroundColor Blue">Blue</span>
                                 </div>
-                                <div className="option" id="characterImage Paladin" onClick={handleSelect}>
-                                    <span id="characterImage Paladin">Paladin</span>
+                                <div className="option" id="backgroundColor Red" onClick={handleSelect}>
+                                    <span id="backgroundColor Red">Red</span>
                                 </div>
-                                <div className="option" id="characterImage Druid" onClick={handleSelect}>
-                                    <span id="characterImage Druid">Druid</span>
+                                <div className="option" id="backgroundColor Green" onClick={handleSelect}>
+                                    <span id="backgroundColor Green">Green</span>
                                 </div>
-                                <div className="option" id="characterImage Warlock" onClick={handleSelect}>
-                                    <span id="characterImage Warlock">Warlock</span>
-                                </div>
-                                <div className="option" id="characterImage Warlock" onClick={handleSelect}>
-                                    <span id="characterImage Warlock">Warlock</span>
-                                </div>
-                                <div className="option" id="characterImage Warlock" onClick={handleSelect}>
-                                    <span id="characterImage Warlock">Warlock</span>
-                                </div>
-                                <div className="option" id="characterImage Warlock" onClick={handleSelect}>
-                                    <span id="characterImage Warlock">Warlock</span>
+                                <div className="option" id="backgroundColor Gold" onClick={handleSelect}>
+                                    <span id="backgroundColor Gold">Gold</span>
                                 </div></> : ""
                             }
                         </div>
@@ -227,7 +205,7 @@ export const CreateCard = () => {
                             backgroundSelect.current.classList.toggle("active")
                             setBackgroundSelected(!backgroundSelected)
                         }}>
-                            {characterImage || "----"}
+                            {cardBackground || "----"}
                         </div>
                     </div>
                 </div>
@@ -245,29 +223,17 @@ export const CreateCard = () => {
                     <div className="selectBox">
                         <div className="optionsContainer" ref={statsBackgroundSelect}>
                             {statsBackgroundSelected ? <>
-                                <div className="option" id="characterImage Warlock" onClick={handleSelect}>
-                                    <span id="characterImage Warlock">Warlock</span>
+                                <div className="option" id="statsBackground Gray" onClick={handleSelect}>
+                                    <span id="statsBackground Gray">Gray</span>
                                 </div>
-                                <div className="option" id="characterImage Wizard" onClick={handleSelect}>
-                                    <span id="characterImage Wizard">Wizard</span>
+                                <div className="option" id="statsBackground Brown" onClick={handleSelect}>
+                                    <span id="statsBackground Brown">Brown</span>
                                 </div>
-                                <div className="option" id="characterImage Paladin" onClick={handleSelect}>
-                                    <span id="characterImage Paladin">Paladin</span>
+                                <div className="option" id="statsBackground Gold" onClick={handleSelect}>
+                                    <span id="statsBackground Gold">Gold</span>
                                 </div>
-                                <div className="option" id="characterImage Druid" onClick={handleSelect}>
-                                    <span id="characterImage Druid">Druid</span>
-                                </div>
-                                <div className="option" id="characterImage Warlock" onClick={handleSelect}>
-                                    <span id="characterImage Warlock">Warlock</span>
-                                </div>
-                                <div className="option" id="characterImage Warlock" onClick={handleSelect}>
-                                    <span id="characterImage Warlock">Warlock</span>
-                                </div>
-                                <div className="option" id="characterImage Warlock" onClick={handleSelect}>
-                                    <span id="characterImage Warlock">Warlock</span>
-                                </div>
-                                <div className="option" id="characterImage Warlock" onClick={handleSelect}>
-                                    <span id="characterImage Warlock">Warlock</span>
+                                <div className="option" id="statsBackground Shiny Gold" onClick={handleSelect}>
+                                    <span id="statsBackground Shiny Gold">Shiny Gold</span>
                                 </div></> : ""
                             }
                         </div>
@@ -275,7 +241,7 @@ export const CreateCard = () => {
                             statsBackgroundSelect.current.classList.toggle("active")
                             setStatsBackgroundSelected(!statsBackgroundSelected)
                         }}>
-                            {characterImage || "----"}
+                            {cardStatsBackground || "----"}
                         </div>
                     </div>
                 </div>
@@ -291,14 +257,14 @@ export const CreateCard = () => {
                     {submitButtonVisible()}
                 </div>
             </div>
-            <div className="card createCard" style={{ backgroundImage: `url(${cardBackground})` }}>
-                <div className="cardHeroImage" style={{ backgroundImage: `url(${cardBorder})` }}>
+            <div className="card createCard" style={{ backgroundImage: `url(/img/${`${`${cardBackground}Card.png`}` || "basecardbackground.png"})` }}>
+                <div className="cardHeroImage" style={{ backgroundImage: `url(/img/${`${cardBorder}CardBorder.png` || "baseCardBorder.png"})` }}>
                     <img src="/img/circleGray.png" className="circle"></img>
                     <span className="cost">{cost}</span>
                     <img className="characterImage" src={`/img/${characterImage}.png`}></img>
                 </div>
-                <h2>{name}</h2>
-                <div className="statsContainer" style={{ backgroundImage: `url(${cardStatsBackground})` }} >
+                <h2>{name || "Name"}</h2>
+                <div className="statsContainer" style={{ backgroundImage: `url(/img/statsBackground${cardStatsBackground}.png)` }} >
                     <div className="stats">
                         <img src="/img/cardDmg.png"></img>
                     </div>
