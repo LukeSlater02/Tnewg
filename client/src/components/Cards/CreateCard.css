@@ -1,11 +1,15 @@
 @import url(../../index.css);
 .create-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  display: -ms-grid;
+  display: grid;
+  gap: 6em;
+  -ms-grid-columns: (minmax(24em, 24em))[3];
+      grid-template-columns: repeat(3, minmax(24em, 24em));
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 5em;
+  justify-items: center;
   margin-top: 5em;
 }
 

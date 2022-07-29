@@ -7,8 +7,8 @@ $vamp: #080808;
 
 body {
   margin: 0;
-  background-image: url(../public/img/woodBackground.png);
-  background-color: #090909;
+  //background-image: url(../public/img/landingPage.png);
+  background-color: lightgray;
   background-repeat: repeat-y;
   background-position: top;
   background-size: cover;
@@ -161,31 +161,30 @@ select {
 }
 
 .selectBox {
-  margin: 0;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   width: 400px;
-
+  margin-bottom: 2em;
   .optionsContainer {
     background-color: whitesmoke;
     width: 80%;
-    //max-height: 0;
-    //opacity: 0;
+    max-height: 0;
+    opacity: 0;
     transition: all 0.4s;
     overflow: hidden;
     border-radius: 8px;
     order: 1;
   }
 
-  ::-webkit-scrollbar{
+  ::-webkit-scrollbar {
     width: 8px;
-    background-color: $vamp;
+    background-color: darkgray;
     border-radius: 0 8px 8px 0;
   }
 
-  ::-webkit-scrollbar-thumb{
-    background-color: darkgray;
+  ::-webkit-scrollbar-thumb {
+    background-color: $vamp;
     border-radius: 0 8px 8px 0;
   }
 
@@ -201,29 +200,29 @@ select {
     cursor: pointer;
   }
 
-  .selected{
+  .selected {
+    margin-top: 1em;
     border-radius: 8px;
     background-color: whitesmoke;
     margin-bottom: 8px;
     position: relative;
     order: 0;
-    &::after{
-      content: "";
-      background-image: url(../public/img/arrow-down.svg);
-      background-size: contain;
-      background-repeat: no-repeat;
-
-      position: absolute;
-      height: 100%;
-      width: 32px;
-      right: 10px;
-      right: 5px;
-
-      transition: all 0.4s;
-    }
   }
 
-  .active + .selected::after{
+  .selected::after {
+    content: "";
+    background-image: url(../public/img/arrow-down.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    height: 100%;
+    width: 32px;
+    right: 5px;
+    top: 5px;
+    transition: all .4s;
+  }
+
+  .active + .selected::after {
     transform: rotateX(180deg);
     top: -6px;
   }
@@ -233,7 +232,7 @@ select {
   }
 
   .option:hover {
-    background-color: lightgray;
+    background-color: darkgray;
   }
 
   label {

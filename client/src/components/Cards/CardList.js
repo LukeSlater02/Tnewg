@@ -47,9 +47,9 @@ export const CardList = () => {
                     window.alert(`That deck is full.`)
                 }
                 else {
-                    navigate(`/deck/${selectedDeck}`)
+                    //navigate(`/deck/${selectedDeck}`)
+                    modal.current.classList.remove('activeModal')
                 }
-
             })
         }
     }

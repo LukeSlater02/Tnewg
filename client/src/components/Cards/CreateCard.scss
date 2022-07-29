@@ -3,11 +3,15 @@ $vamp: #080808;
 @import url(../../index.css);
 
 .create-container {
-    display: flex;
-    justify-content: space-evenly;
+    display: grid;
+    gap: 6em;
+    grid-template-columns: repeat(3, minmax(24em, 24em));
+    justify-content: center;
+    margin-top: 5em;
+    justify-items: center;
     margin-top: 5em;
 
-    h2{
+    h2 {
         text-transform: capitalize;
     }
 }
