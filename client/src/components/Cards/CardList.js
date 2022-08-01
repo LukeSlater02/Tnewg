@@ -14,7 +14,9 @@ export const CardList = () => {
     const [selectedCard, setSelectedCard] = useState(0)
     const [user, setUser] = useState({})
     const [searchInput, setSearchInput] = useState("")
+    const [deckListSelected, setDeckListSelected] = useState(false)
     const modal = useRef()
+    let deckSelect = useRef()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -112,14 +114,38 @@ export const CardList = () => {
                 <div className="deckModalContent">
                     <button className="close-button" onClick={closeModal}>&times;</button>
                     <h4>Select the Deck to add Card to</h4>
-                    <select onChange={handleSelect}>
-                        <option value={0}>----</option>
-                        {decks.map(d => {
-                            return (
-                                <option key={d.id} value={d.id}>{d.name}</option>
-                            )
-                        })}
-                    </select>
+                    <div className="selectBox">
+                        <div className="optionsContainer" ref={deckSelect}>
+                            {deckListSelected ? <>
+                                {decks.map(d => {
+                                    return (<div className="option" id="statsBackground Gray" value={"VALUE"} onClick={(event) => {
+                                        event.stopPropagation();
+                                        console.log("Div");
+                                        console.log(event.attributes)
+                                        console.log(event.target.value);
+                                        console.log("currentTarget:", event.currentTarget.value);
+                                        console.log();
+                                    }}>
+                                        <span id="statsBackground Gray" value={"VALUE"} onClick={(event) => {
+                                            event.stopPropagation();
+                                            console.log("Span");
+                                            console.log(event.target.value);
+                                            console.log(event.target.attributes.value.value)
+                                            console.log("currentTarget:", event.currentTarget.value);
+                                            console.log();
+                                        }}>{d.name}</span>
+                                    </div>)
+                                })}
+                            </>
+                                : ""}
+                        </div>
+                        <div className="selected" onClick={() => {
+                            deckSelect.current.classList.toggle("active")
+                            setDeckListSelected(!deckListSelected)
+                        }}>
+                            {selectedDeck.name || "----"}
+                        </div>
+                    </div>
                     <div className="pixelButton add"><p id="add" onClick={handleButtonClick}>add</p></div>
                 </div>
             </div>

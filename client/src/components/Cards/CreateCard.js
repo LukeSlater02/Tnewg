@@ -70,29 +70,28 @@ export const CreateCard = () => {
             damage: 0,
             hitPoints: 0,
             cost: cost,
-            backgroundColor: cardBackground,
-            borderColor: cardBorder,
-            statsBackgroundColor: cardStatsBackground,
-            image: characterImage,
+            backgroundColor: `/img/${cardBackground}Card.png`,
+            borderColor: `/img/${cardBorder}CardBorder.png`,
+            statsBackgroundColor: `/img/statsBackground${cardStatsBackground}.png`,
+            image: `/img/${characterImage}.png`,
         }
         addCard(card).then(() => navigate("/cards/list"))
     }
 
     const submitButtonVisible = () => {
-        while (cardBackground === "" || cardBorder === "" || cardStatsBackground === "" || characterImage === "" || name === "" || cost === "") {
+        while (cardBackground === "" || cardBorder === "" || cardStatsBackground === "" || characterImage === "" || name === "Name" || name === "" || cost === "" || cost === 0) {
             return (
                 <>
                     <p style={{ fontFamily: "VT323", fontSize: "30px" }}>Please select/input a value for all fields.</p>
                 </>
             )
         }
-        {
-            return (
-                <>
-                    <div className="pixelButton add"><p onClick={handleAddClick}>submit</p></div>
-                </>
-            )
-        }
+
+        return (
+            <>
+                <div className="pixelButton add"><p onClick={handleAddClick}>submit</p></div>
+            </>
+        )
     }
 
     return (
@@ -173,14 +172,6 @@ export const CreateCard = () => {
                 </div>
                 <div>
                     BACKGROUND<br></br>
-                    {/* <select id="backgroundSelect" onChange={handleSelect}>
-                        <option>----</option>
-                        <option value={"/img/grayCard.png"}>Gray</option>
-                        <option value={"/img/blueCard.png"}>Blue</option>
-                        <option value={"/img/redCard.png"}>Red</option>
-                        <option value={"/img/greenCard.png"}>Green</option>
-                        <option value={"/img/yellowCard.png"}>Gold</option>
-                    </select> */}
                     <div className="selectBox">
                         <div className="optionsContainer" ref={backgroundSelect}>
                             {backgroundSelected ? <>
@@ -213,13 +204,6 @@ export const CreateCard = () => {
             <div>
                 <div>
                     STATS BACKGROUND<br></br>
-                    {/* <select id="statsBackgroundSelect" onChange={handleSelect}>
-                        <option>----</option>
-                        <option value={"/img/statsBackgroundGray.png"}>Gray</option>
-                        <option value={"/img/statsBackgroundBrown.png"}>Brown</option>
-                        <option value={"/img/statsBackgroundYellow.png"}>Gold</option>
-                        <option value={"/img/statsBackgroundShinyYellow.png"}>Shiny Gold</option>
-                    </select> */}
                     <div className="selectBox">
                         <div className="optionsContainer" ref={statsBackgroundSelect}>
                             {statsBackgroundSelected ? <>
@@ -257,14 +241,14 @@ export const CreateCard = () => {
                     {submitButtonVisible()}
                 </div>
             </div>
-            <div className="card createCard" style={{ backgroundImage: `url(/img/${`${`${cardBackground}Card.png`}` || "basecardbackground.png"})` }}>
-                <div className="cardHeroImage" style={{ backgroundImage: `url(/img/${`${cardBorder}CardBorder.png` || "baseCardBorder.png"})` }}>
+            <div className="card createCard" style={{ backgroundImage: cardBackground ? `url(/img/${`${cardBackground}Card.png`}` : ' url(/img/basecardbackground.png)' }}>
+                <div className="cardHeroImage" style={{ backgroundImage: cardBorder ? `url(/img/${cardBorder}CardBorder.png` : "url(/img/baseCardBorder.png)" }}>
                     <img src="/img/circleGray.png" className="circle"></img>
                     <span className="cost">{cost}</span>
-                    <img className="characterImage" src={`/img/${characterImage}.png`}></img>
+                    {characterImage ? <img className="characterImage" src={`/img/${characterImage}.png`}></img> : ""}
                 </div>
                 <h2>{name || "Name"}</h2>
-                <div className="statsContainer" style={{ backgroundImage: `url(/img/statsBackground${cardStatsBackground}.png)` }} >
+                <div className="statsContainer" style={{ backgroundImage: cardStatsBackground ? `url(/img/statsBackground${cardStatsBackground}.png` : "" }} >
                     <div className="stats">
                         <img src="/img/cardDmg.png"></img>
                     </div>

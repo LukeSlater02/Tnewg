@@ -66,7 +66,7 @@ export const DeckList = () => {
         }
 
         if (event.target.id == "add") {
-            const backgroundColors = ["../img/blueCard.png", "../img/yellowCard.png", "../img/redCard.png", "../img/greenCard.png", "../img/grayCard.png"]
+            const backgroundColors = ["../img/blueCard.png", "../img/goldCard.png", "../img/redCard.png", "../img/greenCard.png", "../img/grayCard.png"]
 
             const userId = await getCurrentUser(firebase.auth().currentUser.uid).then(userData => userData.id)
             
