@@ -74,6 +74,8 @@ export const CardList = () => {
     }
 
     const handleSelect = event => {
+        setDeckListSelected(false)
+        deckSelect.current.classList.remove("active")
         let newSelectedDeck = {
             name: event.target.attributes.value.value,
             id: event.target.id

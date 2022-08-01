@@ -20,7 +20,10 @@ export const EditCard = () => {
             imageDisplay: ""
         }
     )
-
+    const [borderColorSelectedDisplay, setborderColorSelectedDisplay] = useState(false)
+    const [characterImageSelectedDisplay, setCharacterImageSelectedDisplay] = useState(false)
+    const [backgroundSelectedDisplay, setBackgroundSelectedDisplay] = useState(false)
+    const [statsBackgroundSelectedDisplay, setStatsBackgroundSelectedDisplay] = useState(false)
     const [borderColorSelected, setborderColorSelected] = useState(false)
     const [characterImageSelected, setCharacterImageSelected] = useState(false)
     const [backgroundSelected, setBackgroundSelected] = useState(false)
@@ -40,31 +43,51 @@ export const EditCard = () => {
 
     const handleSelect = event => {
         let newCard = { ...card }
-        switch (event.target.id) {
-            case "cost":
-                if (parseInt(event.target.value) > 9 || event.target.value == "") {
-                    newCard.cost = 0
-                }
-                else {
-                    newCard.cost = parseInt(event.target.value)
-                }
-                break;
-            case "backgroundSelect":
-                newCard.backgroundColor = event.target.value
-                break;
-            case "borderSelect":
-                newCard.borderColor = event.target.value
-                break;
-            case "statsBackgroundSelect":
-                newCard.statsBackgroundColor = event.target.value
-                break;
-            case "name":
-                newCard.name = event.target.value
-                break;
-            case "characterImage":
-                newCard.image = event.target.value
-                break;
+        let value = event.target.attributes.value.value
+        if (event.target.id.includes("characterImage")) {
+            let imgUrl = event.target.id.split(" ")[1]
+            event.stopPropagation()
+            newCard.image = imgUrl
+            setCharacterImageSelectedDisplay(value)
+            setCharacterImageSelected(false)
+            imageSelect.current.classList.remove("active")
         }
+        if (event.target.id.includes("borderColor")) {
+            let imgUrl = event.target.id.split(" ")[1]
+            event.stopPropagation()
+            newCard.borderColor = imgUrl
+            setborderColorSelectedDisplay(value)
+            setborderColorSelected(false)
+            borderSelect.current.classList.remove("active")
+        }
+        if (event.target.id.includes("statsBackground")) {
+            let imgUrl = event.target.id.split(" ")[1]
+            event.stopPropagation()
+            newCard.statsBackgroundColor = imgUrl
+            setStatsBackgroundSelectedDisplay(value)
+            setStatsBackgroundSelected(false)
+            statsBackgroundSelect.current.classList.remove("active")
+        }
+        if (event.target.id.includes("backgroundColor")) {
+            let imgUrl = event.target.id.split(" ")[1]
+            event.stopPropagation()
+            newCard.backgroundColor = imgUrl
+            setBackgroundSelectedDisplay(value)
+            setBackgroundSelected(false)
+            backgroundSelect.current.classList.remove("active")
+        }
+        if (event.target.id === "cost") {
+            if (parseInt(event.target.value) > 9) {
+                newCard.cost = 9
+            }
+            else {
+                newCard.cost = event.target.value
+            }
+        }
+        if (event.target.id === "name") {
+            newCard.name = event.target.value
+        }
+
         setCard(newCard)
     }
 
@@ -80,26 +103,26 @@ export const EditCard = () => {
                     <div className="selectBox">
                         <div className="optionsContainer" ref={imageSelect}>
                             {characterImageSelected ? <>
-                                <div className="option" id="characterImage Warlock" onClick={handleSelect}>
-                                    <span id="characterImage Warlock">Warlock</span>
+                                <div className="option" id="characterImage Warlock" value={"warlock"} onClick={handleSelect}>
+                                    <span value={"warlock"} id="characterImage Warlock">Warlock</span>
                                 </div>
-                                <div className="option" id="characterImage Wizard" onClick={handleSelect}>
-                                    <span id="characterImage Wizard">Wizard</span>
+                                <div className="option" id="characterImage Wizard" value={"wizard"} onClick={handleSelect}>
+                                    <span value={"wizard"} id="characterImage Wizard">Wizard</span>
                                 </div>
-                                <div className="option" id="characterImage Paladin" onClick={handleSelect}>
-                                    <span id="characterImage Paladin">Paladin</span>
+                                <div className="option" id="characterImage Paladin" value={"paladin"} onClick={handleSelect}>
+                                    <span value={"paladin"} id="characterImage Paladin">Paladin</span>
                                 </div>
-                                <div className="option" id="characterImage Druid" onClick={handleSelect}>
-                                    <span id="characterImage Druid">Druid</span>
+                                <div className="option" id="characterImage Druid" value={"druid"} onClick={handleSelect}>
+                                    <span value={"druid"} id="characterImage Druid">Druid</span>
                                 </div>
-                                <div className="option" id="characterImage Lich" onClick={handleSelect}>
-                                    <span id="characterImage Lich">Lich</span>
+                                <div className="option" id="characterImage Lich" value={"lich"} onClick={handleSelect}>
+                                    <span id="characterImage Lich" value={"lich"}>Lich</span>
                                 </div>
-                                <div className="option" id="characterImage Orc" onClick={handleSelect}>
-                                    <span id="characterImage Orc">Orc</span>
+                                <div className="option" value={"orc"} id="characterImage Orc" onClick={handleSelect}>
+                                    <span value={"orc"} id="characterImage Orc">Orc</span>
                                 </div>
-                                <div className="option" id="characterImage Sphinx" onClick={handleSelect}>
-                                    <span id="characterImage Sphinx">Sphinx</span>
+                                <div className="option" value={"sphinx"} id="characterImage Sphinx" onClick={handleSelect}>
+                                    <span value={"sphinx"} id="characterImage Sphinx">Sphinx</span>
                                 </div>
                                 <div className="option" id="characterImage Swordsman" onClick={handleSelect}>
                                     <span id="characterImage Swordsman">Swordsman</span>
@@ -119,7 +142,7 @@ export const EditCard = () => {
                             imageSelect.current.classList.toggle("active")
                             setCharacterImageSelected(!characterImageSelected)
                         }}>
-                            {card.image || "----"}
+                            {characterImageSelectedDisplay || "----"}
                         </div>
                     </div>
                 </div>
@@ -144,7 +167,7 @@ export const EditCard = () => {
                             borderSelect.current.classList.toggle("active")
                             setborderColorSelected(!borderColorSelected)
                         }}>
-                            {card.borderColor || "----"}
+                            {borderColorSelectedDisplay || "----"}
                         </div>
                     </div>
                 </div>
@@ -174,7 +197,7 @@ export const EditCard = () => {
                             backgroundSelect.current.classList.toggle("active")
                             setBackgroundSelected(!backgroundSelected)
                         }}>
-                            {card.backgroundColor || "----"}
+                            {backgroundSelectedDisplay || "----"}
                         </div>
                     </div>
                 </div>
@@ -185,7 +208,7 @@ export const EditCard = () => {
                     <div className="selectBox">
                         <div className="optionsContainer" ref={statsBackgroundSelect}>
                             {statsBackgroundSelected ? <>
-                                <div className="option" id="statsBackground Gray" value={"VALUE" }onClick={(event) => {
+                                <div className="option" id="statsBackground Gray" value={"VALUE"} onClick={(event) => {
                                     event.stopPropagation();
                                     console.log("Div");
                                     console.log(event.target)
@@ -193,7 +216,7 @@ export const EditCard = () => {
                                     console.log("currentTarget:", event.currentTarget.value);
                                     console.log();
                                 }}>
-                                    <span id="statsBackground Gray" value={"VALUE" }onClick={(event) => {
+                                    <span id="statsBackground Gray" value={"VALUE"} onClick={(event) => {
                                         event.stopPropagation();
                                         console.log("Span");
                                         console.log(event.target.value);
@@ -216,7 +239,7 @@ export const EditCard = () => {
                             statsBackgroundSelect.current.classList.toggle("active")
                             setStatsBackgroundSelected(!statsBackgroundSelected)
                         }}>
-                            {card.statsBackgroundColor || "----"}
+                            {statsBackgroundSelectedDisplay || "----"}
                         </div>
                     </div>
                 </div>
