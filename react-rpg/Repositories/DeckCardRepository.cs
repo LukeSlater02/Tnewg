@@ -81,7 +81,7 @@ namespace Tnewg.Repositories
                                             declare @tableCount int
                                             select @tableCount = Count(DeckId)
                                             from DeckCard
-                                            where DeckId = @deckIdVar
+                                            where DeckId = @deckId
 
                                             if @tableCount > 20
                                             begin
