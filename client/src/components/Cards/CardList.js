@@ -10,7 +10,12 @@ import { useNavigate } from "react-router-dom";
 export const CardList = () => {
     const [cards, setCards] = useState([])
     const [decks, setDecks] = useState([])
-    const [selectedDeck, setSelectedDeck] = useState(0)
+    const [selectedDeck, setSelectedDeck] = useState(
+        {
+            name: "",
+            id: 0
+        }
+    )
     const [selectedCard, setSelectedCard] = useState(0)
     const [user, setUser] = useState({})
     const [searchInput, setSearchInput] = useState("")
@@ -39,9 +44,9 @@ export const CardList = () => {
             modal.current.classList.add('activeModal')
             setSelectedCard(cardId)
         }
-        if (event.target.id == "add" && selectedDeck != 0) {
+        if (event.target.id == "add" && selectedDeck.id != 0) {
             const deckCard = {
-                deckId: selectedDeck,
+                deckId: selectedDeck.id,
                 cardId: selectedCard
             }
             addCardToDeck(deckCard).then(data => {
@@ -49,7 +54,7 @@ export const CardList = () => {
                     window.alert(`That deck is full.`)
                 }
                 else {
-                    //navigate(`/deck/${selectedDeck}`)
+                    //navigate(`/deck/${selectedDeck.id}`)
                     modal.current.classList.remove('activeModal')
                 }
             })
@@ -69,7 +74,11 @@ export const CardList = () => {
     }
 
     const handleSelect = event => {
-        setSelectedDeck(event.target.value)
+        let newSelectedDeck = {
+            name: event.target.attributes.value.value,
+            id: event.target.id
+        }
+        setSelectedDeck(newSelectedDeck)
     }
 
     return (
@@ -118,22 +127,8 @@ export const CardList = () => {
                         <div className="optionsContainer" ref={deckSelect}>
                             {deckListSelected ? <>
                                 {decks.map(d => {
-                                    return (<div className="option" id="statsBackground Gray" value={"VALUE"} onClick={(event) => {
-                                        event.stopPropagation();
-                                        console.log("Div");
-                                        console.log(event.attributes)
-                                        console.log(event.target.value);
-                                        console.log("currentTarget:", event.currentTarget.value);
-                                        console.log();
-                                    }}>
-                                        <span id="statsBackground Gray" value={"VALUE"} onClick={(event) => {
-                                            event.stopPropagation();
-                                            console.log("Span");
-                                            console.log(event.target.value);
-                                            console.log(event.target.attributes.value.value)
-                                            console.log("currentTarget:", event.currentTarget.value);
-                                            console.log();
-                                        }}>{d.name}</span>
+                                    return (<div className="option" id={d.id} value={d.name} onClick={handleSelect}>
+                                        <span id={d.id} value={d.name} onClick={handleSelect}>{d.name}</span>
                                     </div>)
                                 })}
                             </>
