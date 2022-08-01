@@ -73,25 +73,27 @@ namespace Tnewg.Repositories
                 conn.Open();
                 using var cmd = conn.CreateCommand();
                 {
-                    cmd.CommandText = @"create trigger LimitCardsInDeck
+                    cmd.CommandText = @"EXEC sp_executeSQL
+                                        N'create trigger LimitCardsInDeck
                                         on DeckCard
                                         after insert
                                         as
                                             declare @tableCount int
                                             select @tableCount = Count(DeckId)
                                             from DeckCard
-                                            where DeckId = @DeckId
+                                            where DeckId = @deckIdVar
 
-                                            if @tableCount > 15
+                                            if @tableCount > 20
                                             begin
                                                 rollback
-                                            end
-                                        go
+                                            end',
+                                        N'@deckIdVar int',
+                                          @deckIdVar = @deckId
                                         INSERT INTO DeckCard(CardId, DeckId)
-                                        VALUES(@CardId, @DeckId)
+                                        VALUES(@cardId, @deckId)
                                         drop trigger LimitCardsInDeck";
-                    cmd.Parameters.AddWithValue("@CardId", dc.CardId);
-                    cmd.Parameters.AddWithValue("@DeckId", dc.DeckId);
+                    cmd.Parameters.AddWithValue("@cardId", dc.CardId);
+                    cmd.Parameters.AddWithValue("@deckId", dc.DeckId);
                     try
                     {
                         cmd.ExecuteNonQuery();
