@@ -21,20 +21,14 @@ Features include:
 #### Login
 ![Login page](public/images/readmelog.png)
 
-#### Class Selection
-![class select page](public/images/readmeclass.gif)
+#### Card List
+![card list](public/images/readmeclass.gif)
 
-#### Character Sheet
-![character sheet](public/images/readmesheet.gif)
+#### Card Create / Edit
+![card create](public/images/readmesheet.gif)
 
-#### Tavern
-![tavern](public/images/readmetavern.gif)
-
-#### Spellbook Search
-![spellbook search function](public/images/readmesearch.gif)
-
-#### Spell Description
-![spell description](public/images/readmedesc.gif)
+#### Deck List
+![deck list](public/images/readmetavern.gif)
 
 #### ERD
 ![erd](public/images/dndnearbyerd.png)
