@@ -49,8 +49,8 @@ export const CardList = () => {
                 deckId: selectedDeck.id,
                 cardId: selectedCard
             }
-            addCardToDeck(deckCard).then(data => {
-                if (data) {
+            addCardToDeck(deckCard).then(cardLimitTriggered => {
+                if (cardLimitTriggered) {
                     window.alert(`That deck is full.`)
                 }
                 else {
@@ -129,7 +129,7 @@ export const CardList = () => {
                         <div className="optionsContainer" ref={deckSelect}>
                             {deckListSelected ? <>
                                 {decks.map(d => {
-                                    return (<div className="option" id={d.id} value={d.name} onClick={handleSelect}>
+                                    return (<div key={d.id} className="option" id={d.id} value={d.name} onClick={handleSelect}>
                                         <span id={d.id} value={d.name} onClick={handleSelect}>{d.name}</span>
                                     </div>)
                                 })}

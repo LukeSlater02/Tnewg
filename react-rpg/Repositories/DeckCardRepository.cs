@@ -73,8 +73,23 @@ namespace Tnewg.Repositories
                 conn.Open();
                 using var cmd = conn.CreateCommand();
                 {
-                    cmd.CommandText = @"INSERT INTO DeckCard(CardId, DeckId)
-                                        VALUES(@CardId, @DeckId)";
+                    cmd.CommandText = @"create trigger LimitCardsInDeck
+                                        on DeckCard
+                                        after insert
+                                        as
+                                            declare @tableCount int
+                                            select @tableCount = Count(DeckId)
+                                            from DeckCard
+                                            where DeckId = @DeckId
+
+                                            if @tableCount > 15
+                                            begin
+                                                rollback
+                                            end
+                                        go
+                                        INSERT INTO DeckCard(CardId, DeckId)
+                                        VALUES(@CardId, @DeckId)
+                                        drop trigger LimitCardsInDeck";
                     cmd.Parameters.AddWithValue("@CardId", dc.CardId);
                     cmd.Parameters.AddWithValue("@DeckId", dc.DeckId);
                     try
