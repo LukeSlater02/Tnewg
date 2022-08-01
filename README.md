@@ -19,7 +19,7 @@ Features include:
 ### Image Gallery
 
 #### Login
-![Login page](public/images/loginView.png)
+![Login page](public/images/../../client/public/img/loginView.png)
 
 #### Card List
 ![card list](public/images/readmeclass.gif)
