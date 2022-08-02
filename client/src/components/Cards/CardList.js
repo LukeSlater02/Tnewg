@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { getAllCards, deleteCard, searchCards } from "../../modules/cardManager";
 import { getCurrentUser } from "../../modules/authManager";
 import { getCurrentUserDecks } from "../../modules/deckManager";
-import { addCardToDeck, getAllByDeck } from "../../modules/deckCardManager";
+import { addCardToDeck, getAllByDeck, deleteCardFromDeck } from "../../modules/deckCardManager";
 import './CardList.scss'
 import firebase from "firebase";
 import { useNavigate } from "react-router-dom";
@@ -45,7 +45,11 @@ export const CardList = () => {
     const handleButtonClick = event => {
         let cardId = event.target.id.split(" ")[1]
         if (event.target.id === "replace") {
-
+            const deckCard = {
+                deckId: selectedDeck.id,
+                cardId: selectedCard
+            }
+            deleteCardFromDeck(cardToBeReplaced.id).then(() => addCardToDeck(deckCard)).then(() => modal.current.classList.remove('activeModal'))
         }
         if (event.target.id.includes("delete")) {
             deleteCard(cardId).then(() => getAllCards().then(data => setCards(data)))
@@ -82,6 +86,9 @@ export const CardList = () => {
         modal.current.classList.remove('activeModal')
         setSelectedCard(0)
         setDeckIsFull(false)
+        deckSelect.current.classList.toggle("active")
+        setDeckListSelected(!deckListSelected)
+        setCardToBeReplaced({})
     }
 
     const handleSelect = event => {
@@ -178,7 +185,7 @@ export const CardList = () => {
                                 {deckListSelected ? <>
                                     {cardsInFullDeck.map(deckCard => {
                                         return (<div key={deckCard.id} className="option" id={deckCard.id} value={deckCard.card.name} onClick={handleSelect}>
-                                            <span id={deckCard.id} value={`${deckCard.id} ${deckCard.card.name}`} onClick={handleSelect}>{deckCard.card.name}</span>
+                                            <span id={deckCard.id} value={deckCard.card.name} onClick={handleSelect}>{deckCard.card.name}</span>
                                         </div>)
                                     })}
                                 </>
