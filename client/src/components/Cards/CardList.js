@@ -68,7 +68,6 @@ export const CardList = () => {
                     setDeckIsFull(true)
                 }
                 else {
-                    //navigate(`/deck/${selectedDeck.id}`)
                     modal.current.classList.remove('activeModal')
                 }
             })
