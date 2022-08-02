@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { getAllCards, deleteCard, searchCards } from "../../modules/cardManager";
 import { getCurrentUser } from "../../modules/authManager";
 import { getCurrentUserDecks } from "../../modules/deckManager";
-import { addCardToDeck } from "../../modules/deckCardManager";
+import { addCardToDeck, getAllByDeck } from "../../modules/deckCardManager";
 import './CardList.scss'
 import firebase from "firebase";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +20,9 @@ export const CardList = () => {
     const [user, setUser] = useState({})
     const [searchInput, setSearchInput] = useState("")
     const [deckListSelected, setDeckListSelected] = useState(false)
+    const [deckIsFull, setDeckIsFull] = useState(false)
+    const [cardsInFullDeck, setCardsInFullDeck] = useState([])
+    const [cardToBeReplaced, setCardToBeReplaced] = useState({})
     const modal = useRef()
     let deckSelect = useRef()
     const navigate = useNavigate()
@@ -27,6 +30,10 @@ export const CardList = () => {
     useEffect(() => {
         getAllCards().then(data => setCards(data))
     }, [])
+
+    useEffect(() => {
+        getAllByDeck(selectedDeck.id).then(data => setCardsInFullDeck(data))
+    }, [deckIsFull])
 
     useEffect(() => {
         getCurrentUser(firebase.auth().currentUser.uid).then(userData => {
@@ -37,6 +44,9 @@ export const CardList = () => {
 
     const handleButtonClick = event => {
         let cardId = event.target.id.split(" ")[1]
+        if (event.target.id === "replace") {
+
+        }
         if (event.target.id.includes("delete")) {
             deleteCard(cardId).then(() => getAllCards().then(data => setCards(data)))
         }
@@ -44,14 +54,14 @@ export const CardList = () => {
             modal.current.classList.add('activeModal')
             setSelectedCard(cardId)
         }
-        if (event.target.id == "add" && selectedDeck.id != 0) {
+        if (event.target.id === "add" && selectedDeck.id != 0) {
             const deckCard = {
                 deckId: selectedDeck.id,
                 cardId: selectedCard
             }
             addCardToDeck(deckCard).then(cardLimitTriggered => {
                 if (cardLimitTriggered) {
-                    window.alert(`That deck is full.`)
+                    setDeckIsFull(true)
                 }
                 else {
                     //navigate(`/deck/${selectedDeck.id}`)
@@ -71,16 +81,28 @@ export const CardList = () => {
     const closeModal = () => {
         modal.current.classList.remove('activeModal')
         setSelectedCard(0)
+        setDeckIsFull(false)
     }
 
     const handleSelect = event => {
-        setDeckListSelected(false)
-        deckSelect.current.classList.remove("active")
-        let newSelectedDeck = {
-            name: event.target.attributes.value.value,
-            id: event.target.id
+        if (deckIsFull) {
+            let card = {
+                id: event.target.id,
+                name: event.target.attributes.value.value
+            }
+            setCardToBeReplaced(card)
+            setDeckListSelected(false)
+            deckSelect.current.classList.remove("active")
         }
-        setSelectedDeck(newSelectedDeck)
+        else {
+            setDeckListSelected(false)
+            deckSelect.current.classList.remove("active")
+            let newSelectedDeck = {
+                name: event.target.attributes.value.value,
+                id: event.target.id
+            }
+            setSelectedDeck(newSelectedDeck)
+        }
     }
 
     return (
@@ -111,7 +133,7 @@ export const CardList = () => {
                             </div>
                             <div className="buttons" >
                                 <div className="pixelButton add"><p id={`openAddModal ${c.id}`} onClick={handleButtonClick}>add</p></div>
-                                {user.userType == "admin" ? <>
+                                {user.userType === "admin" ? <>
                                     <div className="pixelButton edit" onClick={() => navigate(`/card/${c.id}/${c.name}/edit`)}><p>edit</p></div>
 
                                     <div className="pixelButton delete"><p id={`delete ${c.id}`} onClick={handleButtonClick}>delete</p></div>
@@ -122,29 +144,56 @@ export const CardList = () => {
                 })}
             </div>
             <div ref={modal} className="deckModal">
-                <div className="deckModalContent">
-                    <button className="close-button" onClick={closeModal}>&times;</button>
-                    <h4>Select the Deck to add Card to</h4>
-                    <div className="selectBox">
-                        <div className="optionsContainer" ref={deckSelect}>
-                            {deckListSelected ? <>
-                                {decks.map(d => {
-                                    return (<div key={d.id} className="option" id={d.id} value={d.name} onClick={handleSelect}>
-                                        <span id={d.id} value={d.name} onClick={handleSelect}>{d.name}</span>
-                                    </div>)
-                                })}
-                            </>
-                                : ""}
+                {!deckIsFull ?
+                    <div className="deckModalContent">
+                        <button className="close-button" onClick={closeModal}>&times;</button>
+                        <h4>Select the Deck to add Card to</h4>
+                        <div className="selectBox">
+                            <div className="optionsContainer" ref={deckSelect}>
+                                {deckListSelected ? <>
+                                    {decks.map(d => {
+                                        return (<div key={d.id} className="option" id={d.id} value={d.name} onClick={handleSelect}>
+                                            <span id={d.id} value={d.name} onClick={handleSelect}>{d.name}</span>
+                                        </div>)
+                                    })}
+                                </>
+                                    : ""}
+                            </div>
+                            <div className="selected" onClick={() => {
+                                deckSelect.current.classList.toggle("active")
+                                setDeckListSelected(!deckListSelected)
+                            }}>
+                                {selectedDeck.name || "----"}
+                            </div>
                         </div>
-                        <div className="selected" onClick={() => {
-                            deckSelect.current.classList.toggle("active")
-                            setDeckListSelected(!deckListSelected)
-                        }}>
-                            {selectedDeck.name || "----"}
-                        </div>
+                        <div className="pixelButton add"><p id="add" onClick={handleButtonClick}>add</p></div>
                     </div>
-                    <div className="pixelButton add"><p id="add" onClick={handleButtonClick}>add</p></div>
-                </div>
+                    :
+
+                    <div className="deckModalContent">
+                        <button className="close-button" onClick={closeModal}>&times;</button>
+                        <h4>{selectedDeck.name} is full</h4>
+                        <div className="selectBox">
+                            <div className="optionsContainer" ref={deckSelect}>
+                                {deckListSelected ? <>
+                                    {cardsInFullDeck.map(deckCard => {
+                                        return (<div key={deckCard.id} className="option" id={deckCard.id} value={deckCard.card.name} onClick={handleSelect}>
+                                            <span id={deckCard.id} value={`${deckCard.id} ${deckCard.card.name}`} onClick={handleSelect}>{deckCard.card.name}</span>
+                                        </div>)
+                                    })}
+                                </>
+                                    : ""}
+                            </div>
+                            <div className="selected" onClick={() => {
+                                deckSelect.current.classList.toggle("active")
+                                setDeckListSelected(!deckListSelected)
+                            }}>
+                                {cardToBeReplaced?.name || "Choose a card to replace"}
+                            </div>
+                        </div>
+                        <div className="pixelButton add"><p id="replace" onClick={handleButtonClick}>replace</p></div>
+                    </div>}
+
             </div>
         </>
     )

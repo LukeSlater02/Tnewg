@@ -79,13 +79,13 @@ namespace Tnewg.Repositories
                                         after insert 
                                         as
                                             declare @deckIdVar int
-                                            select @deckIdVar = 
+                                            select @deckIdVar = DeckId FROM INSERTED
                                             declare @tableCount int
                                             select @tableCount = Count(DeckId)
                                             from DeckCard
-                                            where DeckId = DeckId FROM INSERTED
+                                            where DeckId = @deckIdVar
 
-                                            if @tableCount > 10
+                                            if @tableCount > 15
                                             begin
                                                 rollback
                                             end'
