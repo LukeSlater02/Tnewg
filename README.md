@@ -19,19 +19,25 @@ Features include:
 ### Image Gallery
 
 #### Login
-![Login page](public/images/../../client/public/img/loginView.png)
+![Login page](public/images/../../client/public/img/loginView.gif)
 
 #### Card List
-![card list](public/images/readmeclass.gif)
+![card list](public/images/../../client/public/img/cardList.gif)
 
-#### Card Create / Edit
-![card create](public/images/readmesheet.gif)
+#### Card Create
+![card create](public/images/../../client/public/img/createView.gif)
 
-#### Deck List
-![deck list](public/images/readmetavern.gif)
+#### Add Card to Full Deck
+![card add](public/images/../../client/public/img/addCardView.gif)
+
+#### Deck View / Edit / List
+![deck](public/images/../../client/public/img/deckView.gif)
+
+#### Card Edit
+![card edit](public/images/../../client/public/img/cardEdit.gif)
 
 #### ERD
-![erd](public/images/dndnearbyerd.png)
+![erd](public/images/../../client/public/img/erd.png)
 
 #### Wireframe
 ![wireframe](public/images/dndnearbywireframe.png)

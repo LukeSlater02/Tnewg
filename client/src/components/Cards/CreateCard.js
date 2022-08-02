@@ -134,7 +134,11 @@ export const CreateCard = () => {
                                 </div>
                                 <div className="option" id="characterImage Devil" onClick={handleSelect}>
                                     <span id="characterImage Devil">Devil</span>
-                                </div></> : ""
+                                </div>
+                                <div className="option" id="characterImage Vampire" onClick={handleSelect}>
+                                    <span id="characterImage Vampire">Vampire</span>
+                                </div>
+                            </> : ""
                             }
                         </div>
                         <div className="selected" onClick={() => {
