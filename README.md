@@ -38,6 +38,3 @@ Features include:
 
 #### ERD
 ![erd](public/images/../../client/public/img/erd.png)
-
-#### Wireframe
-![wireframe](public/images/dndnearbywireframe.png)
