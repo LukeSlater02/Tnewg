@@ -28,10 +28,10 @@ export const DeckList = () => {
     }, [isEditing])
 
     const handleInput = event => {
-        if (event.target.id === "deckEditInput") {
+        if (event.target.id == "deckEditInput") {
             setDeckNameUpdate(event.target.value)
         }
-        if (event.target.id === "deckAddInput") {
+        if (event.target.id == "deckAddInput") {
             setNewDeckName(event.target.value)
         }
     }
@@ -44,7 +44,7 @@ export const DeckList = () => {
         }
 
         if (event.target.id.includes("save")) {
-            if (deckNameUpdate === "") {
+            if (deckNameUpdate == "") {
                 setIsEditing(0)
                 return
             }
@@ -59,13 +59,13 @@ export const DeckList = () => {
             deleteDeck(deckId).then(() => getDecks())
         }
 
-        if (event.target.id === "openAddModal") {
+        if (event.target.id == "openAddModal") {
             setNewDeckName("")
             modal.current.classList.add('activeModal')
             modalInput.current.focus()
         }
 
-        if (event.target.id === "add") {
+        if (event.target.id == "add") {
             const backgroundColors = ["../img/blueCard.png", "../img/goldCard.png", "../img/redCard.png", "../img/greenCard.png", "../img/grayCard.png"]
 
             const userId = await getCurrentUser(firebase.auth().currentUser.uid).then(userData => userData.id)
@@ -93,18 +93,18 @@ export const DeckList = () => {
                 {decks.map(d => {
                     return (
                         <div key={d.id} className="deck" style={{ backgroundImage: `url(${d.backgroundImage})` }}>
-                            {isEditing === d.id ?
+                            {isEditing == d.id ?
                                 <input maxLength={14} id="deckEditInput" ref={nameEditField} placeholder={d.name} className="deckEdit" value={deckNameUpdate} onChange={handleInput}></input>
                                 :
                                 <h2>{d.name}</h2>}
-                                <span className="cardCount">{d.cardCount} / 15</span>
+                                <span className="cardCount">{d.cardCount} / 30</span>
                             <div className="buttons">
                                 <div className="pixelButton"><p onClick={() => navigate(`/deck/${d.id}/${d.name}`)}>view</p></div>
-                                {isEditing === d.id ?
+                                {isEditing == d.id ?
                                     <div className="pixelButton save"><p id={`save ${d.id}`} onClick={handleButtonClick}>save</p></div>
                                     :
                                     <div className="pixelButton edit" ><p id={`edit ${d.id}`} onClick={handleButtonClick}>edit</p></div>}
-                                {isEditing === d.id ?
+                                {isEditing == d.id ?
                                     <div className="pixelButton cancel" onClick={() => {
                                         setIsEditing(0)
                                         setDeckNameUpdate("")

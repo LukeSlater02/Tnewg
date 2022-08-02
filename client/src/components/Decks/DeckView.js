@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getAllByDeck, deleteCardFromDeck } from "../../modules/deckCardManager";
+import { Link } from "react-router-dom";
 
 export const DeckView = () => {
     const [deckCards, setDeckCards] = useState([])
@@ -23,6 +24,7 @@ export const DeckView = () => {
     return (
         <>
             <h1 className="deckViewTitle">{deckName}</h1>
+            <h3 className="deckViewAddCards">{deckCards[3] ? "" : <>Looking a little empty in here...why not <Link to={"/cards/list"}>add some cards?</Link></>}</h3>
             <div className="cardsContainer">
                 {deckCards.map(c => {
                     return (

@@ -219,7 +219,7 @@ select {
     width: 32px;
     right: 5px;
     top: 5px;
-    transition: all .4s;
+    transition: all 0.4s;
   }
 
   .active + .selected::after {
@@ -313,5 +313,14 @@ select {
   margin-bottom: -14px;
   font-family: "VT323", monospace;
   font-size: 60px;
+  padding: 0;
+}
+
+.deckViewAddCards {
+  text-align: center;
+  margin-top: 2em;
+  margin-bottom: -14px;
+  font-family: "VT323", monospace;
+  font-size: 40px;
   padding: 0;
 }
