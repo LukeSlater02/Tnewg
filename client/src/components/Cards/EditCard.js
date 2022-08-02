@@ -138,7 +138,7 @@ export const EditCard = () => {
                             imageSelect.current.classList.toggle("active")
                             setCharacterImageSelected(!characterImageSelected)
                         }}>
-                            {characterImageSelectedDisplay || "----"}
+                            {characterImageSelectedDisplay || card?.image?.split("g/")[1]?.split(".")[0]}
                         </div>
                     </div>
                 </div>
@@ -163,7 +163,7 @@ export const EditCard = () => {
                             borderSelect.current.classList.toggle("active")
                             setborderColorSelected(!borderColorSelected)
                         }}>
-                            {borderColorSelectedDisplay || "----"}
+                            {borderColorSelectedDisplay || card?.borderColor?.split("g/")[1]?.split("Card")[0]}
                         </div>
                     </div>
                 </div>
@@ -193,7 +193,7 @@ export const EditCard = () => {
                             backgroundSelect.current.classList.toggle("active")
                             setBackgroundSelected(!backgroundSelected)
                         }}>
-                            {backgroundSelectedDisplay || "----"}
+                            {backgroundSelectedDisplay || card?.backgroundColor?.split("g/")[1]?.split("Card")[0]}
                         </div>
                     </div>
                 </div>
@@ -222,7 +222,7 @@ export const EditCard = () => {
                             statsBackgroundSelect.current.classList.toggle("active")
                             setStatsBackgroundSelected(!statsBackgroundSelected)
                         }}>
-                            {statsBackgroundSelectedDisplay || "----"}
+                            {statsBackgroundSelectedDisplay || card?.statsBackgroundColor?.split("g/")[1]?.split("Background")[1]?.split(".png")[0]}
                         </div>
                     </div>
                 </div>

@@ -73,27 +73,36 @@ namespace Tnewg.Repositories
                 conn.Open();
                 using var cmd = conn.CreateCommand();
                 {
-                    cmd.CommandText = @"EXEC sp_executeSQL
+                    cmd.Parameters.AddWithValue("@cardId", dc.CardId);
+                    cmd.Parameters.AddWithValue("@deckId", dc.DeckId);
+                    cmd.CommandText = @"
+                                        SELECT @deckId deckIdVar INTO #deckIdVar
+                                        UPDATE tblData
+                                        SET    Value = @deckId
+
+                                        EXECUTE sp_executesql  
                                         N'create trigger LimitCardsInDeck
                                         on DeckCard
-                                        after insert
+                                        after insert 
                                         as
+                                            declare @deckIdVar int
+                                            set @deckIdVar = @deckId
                                             declare @tableCount int
                                             select @tableCount = Count(DeckId)
                                             from DeckCard
-                                            where DeckId = @deckId
+                                            where DeckId = @deckIdVar
 
                                             if @tableCount > 20
                                             begin
                                                 rollback
-                                            end',
-                                        N'@deckIdVar int',
-                                          @deckIdVar = @deckId
+                                            end'";
+
+                    cmd.ExecuteNonQuery();
+
+                    cmd.CommandText = @"
                                         INSERT INTO DeckCard(CardId, DeckId)
                                         VALUES(@cardId, @deckId)
                                         drop trigger LimitCardsInDeck";
-                    cmd.Parameters.AddWithValue("@cardId", dc.CardId);
-                    cmd.Parameters.AddWithValue("@deckId", dc.DeckId);
                     try
                     {
                         cmd.ExecuteNonQuery();
