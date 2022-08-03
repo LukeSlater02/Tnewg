@@ -4,7 +4,7 @@
 ### Project Description
 The culmination of my time at Nashville Software School. A fullstack app built with React, C#, SQL and SCSS. It was made for fans of the very real and definitely playable Tnewg card game.
 Features include:
-* Creating a Deck, which you can then add cards to from the searchable card list. You are limited to 20 cards in a deck, and will be prompted to either cancel your attempt to add more, or replace one of the cards in the deck with whatever card you are trying to add to it.
+* Creating a Deck, which you can then add cards to from the searchable card list. You are limited to 15 cards in a deck, if you attempt to add more cards than that to the deck, you will be prevented from doing so and prompted to either cancel your attempt, or select a card from that deck to be replaced.
 * Change the name of your deck, as well as delete it. Remove cards that have been added.
 * As an admin, you can create and update cards, inputting a name as well as choosing a variety of cosmetic options from a custom select menu, such as the background or border color of the card. As you do so, a dynamic preview of the card is shown.
 
@@ -38,6 +38,3 @@ Features include:
 
 #### ERD
 ![erd](public/images/../../client/public/img/erd.png)
-
-#### Wireframe
-![wireframe](public/images/dndnearbywireframe.png)
