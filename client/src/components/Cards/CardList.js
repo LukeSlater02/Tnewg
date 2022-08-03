@@ -127,13 +127,10 @@ export const CardList = () => {
                                 <h2>{c.name}</h2>
                                 <div className="statsContainer" style={{ backgroundImage: `url(${c.statsBackgroundColor})` }} >
                                     <div className="stats">
-                                        <img src="/img/cardDmg.png"></img>
+                                        <img src="/img/cardDmg.png"></img>{c.damage}
                                     </div>
                                     <div className="stats">
-                                        <img src="/img/cardArmor.png"></img>
-                                    </div>
-                                    <div className="stats">
-                                        <img src="/img/cardHp.png"></img>
+                                        <img src="/img/cardHp.png"></img>{c.hitPoints}
                                     </div>
                                 </div>
                             </div>

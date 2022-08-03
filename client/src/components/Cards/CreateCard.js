@@ -9,6 +9,8 @@ export const CreateCard = () => {
     const [cardBorder, setCardBorder] = useState("")
     const [cardStatsBackground, setCardStatsBackground] = useState("")
     const [characterImage, setCharacterImage] = useState("")
+    const [damage, setDamage] = useState(0)
+    const [hitPoints, setHitPoints] = useState(0)
 
     const [borderColorSelected, setborderColorSelected] = useState(false)
     const [characterImageSelected, setCharacterImageSelected] = useState(false)
@@ -56,19 +58,35 @@ export const CreateCard = () => {
                 setCost(9)
             }
             else {
-                setCost(event.target.value)
+                setCost(parseInt(event.target.value))
             }
         }
         if (event.target.id === "name") {
             setName(event.target.value)
+        }
+        if (event.target.id === "damage") {
+            if (parseInt(event.target.value) > 9) {
+                setDamage(9)
+            }
+            else {
+                setDamage(parseInt(event.target.value))
+            }
+        }
+        if (event.target.id === "hitPoints") {
+            if (parseInt(event.target.value) > 9) {
+                setHitPoints(9)
+            }
+            else {
+                setHitPoints(parseInt(event.target.value))
+            }
         }
     }
 
     const handleAddClick = () => {
         const card = {
             name: name,
-            damage: 0,
-            hitPoints: 0,
+            damage: damage,
+            hitPoints: hitPoints,
             cost: cost,
             backgroundColor: `/img/${cardBackground}Card.png`,
             borderColor: `/img/${cardBorder}CardBorder.png`,
@@ -79,19 +97,21 @@ export const CreateCard = () => {
     }
 
     const submitButtonVisible = () => {
-        while (cardBackground === "" || cardBorder === "" || cardStatsBackground === "" || characterImage === "" || name === "Name" || name === "" || cost === "" || cost === 0) {
+        console.log("hello");
+        if (cardBackground === "" || cardBorder === "" || cardStatsBackground === "" || characterImage === "" || name === "Name" || name === "" || isNaN(cost) || cost === 0 || damage === 0 || isNaN(damage) || isNaN(hitPoints) || hitPoints === 0) {
             return (
                 <>
                     <p style={{ fontFamily: "VT323", fontSize: "30px" }}>Please select/input a value for all fields.</p>
                 </>
             )
         }
-
-        return (
-            <>
-                <div className="pixelButton add"><p onClick={handleAddClick}>submit</p></div>
-            </>
-        )
+        else {
+            return (
+                <>
+                    <div className="pixelButton add"><p onClick={handleAddClick}>submit</p></div>
+                </>
+            )
+        }
     }
 
     return (
@@ -175,6 +195,16 @@ export const CreateCard = () => {
                     </div>
                 </div>
                 <div>
+                    NAME<br></br>
+                    <input id="name" onChange={handleSelect} maxLength={13} />
+                </div>
+                <div>
+                    Cost<br></br>
+                    <input id="cost" type="number" max={9} onChange={handleSelect} />
+                </div>
+            </div>
+            <div>
+                <div>
                     BACKGROUND<br></br>
                     <div className="selectBox">
                         <div className="optionsContainer" ref={backgroundSelect}>
@@ -204,8 +234,6 @@ export const CreateCard = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div>
                 <div>
                     STATS BACKGROUND<br></br>
                     <div className="selectBox">
@@ -234,12 +262,12 @@ export const CreateCard = () => {
                     </div>
                 </div>
                 <div>
-                    NAME<br></br>
-                    <input id="name" onChange={handleSelect} maxLength={13} />
+                    damage<br></br>
+                    <input id="damage" type="number" max={9} onChange={handleSelect} />
                 </div>
                 <div>
-                    Cost<br></br>
-                    <input id="cost" type="number" max={9} onChange={handleSelect} />
+                    hit points<br></br>
+                    <input id="hitPoints" type="number" max={9} onChange={handleSelect} />
                 </div>
                 <div>
                     {submitButtonVisible()}
@@ -248,19 +276,16 @@ export const CreateCard = () => {
             <div className="card createCard" style={{ backgroundImage: cardBackground ? `url(/img/${`${cardBackground}Card.png`}` : ' url(/img/basecardbackground.png)' }}>
                 <div className="cardHeroImage" style={{ backgroundImage: cardBorder ? `url(/img/${cardBorder}CardBorder.png` : "url(/img/baseCardBorder.png)" }}>
                     <img src="/img/circleGray.png" className="circle"></img>
-                    <span className="cost">{cost}</span>
+                    <span className="cost">{cost || 0}</span>
                     {characterImage ? <img className="characterImage" src={`/img/${characterImage}.png`}></img> : ""}
                 </div>
                 <h2>{name || "Name"}</h2>
                 <div className="statsContainer" style={{ backgroundImage: cardStatsBackground ? `url(/img/statsBackground${cardStatsBackground}.png` : "" }} >
                     <div className="stats">
-                        <img src="/img/cardDmg.png"></img>
+                        <img src="/img/cardDmg.png"></img>{damage || 0}
                     </div>
                     <div className="stats">
-                        <img src="/img/cardArmor.png"></img>
-                    </div>
-                    <div className="stats">
-                        <img src="/img/cardHp.png"></img>
+                        <img src="/img/cardHp.png"></img>{hitPoints || 0}
                     </div>
                 </div>
             </div>

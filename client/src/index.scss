@@ -67,8 +67,12 @@ a {
       height: 60px;
     }
     .stats {
+      color: black;
+      font-weight: bold;
+      font-size: larger;
       display: flex;
-      align-items: center;
+      justify-content: center;
+      align-items: baseline;
     }
   }
 

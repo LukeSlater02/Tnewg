@@ -16,7 +16,7 @@ namespace Tnewg.Repositories
                 conn.Open();
                 using var cmd = conn.CreateCommand();
                 {
-                    cmd.CommandText = @"SELECT MAX(Deck.Id) as Id, count(deckId) as CardCount, MAX(Name) as Name, MAX(BackgroundImage) as BackgroundImage, MAX(UserProfileId) as UserProfileId FROM Deck LEFT JOIN DeckCard on Deck.Id = DeckId WHERE UserProfileId = 1 GROUP BY Deck.Id";
+                    cmd.CommandText = @"SELECT MAX(Deck.Id) as Id, count(deckId) as CardCount, MAX(Name) as Name, MAX(BackgroundImage) as BackgroundImage, MAX(UserProfileId) as UserProfileId FROM Deck LEFT JOIN DeckCard on Deck.Id = DeckId WHERE UserProfileId = @id GROUP BY Deck.Id";
                     cmd.Parameters.AddWithValue("@id", id);
                     var reader = cmd.ExecuteReader();
 

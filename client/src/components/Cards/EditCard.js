@@ -7,8 +7,8 @@ export const EditCard = () => {
     const [card, setCard] = useState(
         {
             name: "",
-            damage: "",
-            hitPoints: "",
+            damage: 0,
+            hitPoints: 0,
             cost: 0,
             backgroundColor: "",
             borderColor: "",
@@ -37,7 +37,7 @@ export const EditCard = () => {
         getCardById(cardId).then(data => setCard(data))
     }, [])
 
-    const handleSelect = event => {
+    const handleInput = event => {
         let newCard = { ...card }
         let value = event.target.attributes.value.value
         if (event.target.id.includes("characterImage")) {
@@ -83,6 +83,12 @@ export const EditCard = () => {
         if (event.target.id === "name") {
             newCard.name = event.target.value
         }
+        if (event.target.id === "damage") {
+            newCard.damage = event.target.value
+        }
+        if (event.target.id === "hitPoints") {
+            newCard.hitPoints = event.target.value
+        }
 
         setCard(newCard)
     }
@@ -99,37 +105,37 @@ export const EditCard = () => {
                     <div className="selectBox">
                         <div className="optionsContainer" ref={imageSelect}>
                             {characterImageSelected ? <>
-                                <div className="option" id="characterImage Warlock" value={"warlock"} onClick={handleSelect}>
+                                <div className="option" id="characterImage Warlock" value={"warlock"} onClick={handleInput}>
                                     <span value={"warlock"} id="characterImage Warlock">Warlock</span>
                                 </div>
-                                <div className="option" id="characterImage Wizard" value={"wizard"} onClick={handleSelect}>
+                                <div className="option" id="characterImage Wizard" value={"wizard"} onClick={handleInput}>
                                     <span value={"wizard"} id="characterImage Wizard">Wizard</span>
                                 </div>
-                                <div className="option" id="characterImage Paladin" value={"paladin"} onClick={handleSelect}>
+                                <div className="option" id="characterImage Paladin" value={"paladin"} onClick={handleInput}>
                                     <span value={"paladin"} id="characterImage Paladin">Paladin</span>
                                 </div>
-                                <div className="option" id="characterImage Druid" value={"druid"} onClick={handleSelect}>
+                                <div className="option" id="characterImage Druid" value={"druid"} onClick={handleInput}>
                                     <span value={"druid"} id="characterImage Druid">Druid</span>
                                 </div>
-                                <div className="option" id="characterImage Lich" value={"lich"} onClick={handleSelect}>
+                                <div className="option" id="characterImage Lich" value={"lich"} onClick={handleInput}>
                                     <span id="characterImage Lich" value={"lich"}>Lich</span>
                                 </div>
-                                <div className="option" value={"orc"} id="characterImage Orc" onClick={handleSelect}>
+                                <div className="option" value={"orc"} id="characterImage Orc" onClick={handleInput}>
                                     <span value={"orc"} id="characterImage Orc">Orc</span>
                                 </div>
-                                <div className="option" value={"sphinx"} id="characterImage Sphinx" onClick={handleSelect}>
+                                <div className="option" value={"sphinx"} id="characterImage Sphinx" onClick={handleInput}>
                                     <span value={"sphinx"} id="characterImage Sphinx">Sphinx</span>
                                 </div>
-                                <div className="option" value={"swordsman"} id="characterImage Swordsman" onClick={handleSelect}>
+                                <div className="option" value={"swordsman"} id="characterImage Swordsman" onClick={handleInput}>
                                     <span value={"swordsman"} id="characterImage Swordsman">Swordsman</span>
                                 </div>
-                                <div className="option" value={"seraphine"} id="characterImage Seraphine" onClick={handleSelect}>
+                                <div className="option" value={"seraphine"} id="characterImage Seraphine" onClick={handleInput}>
                                     <span value={"seraphine"} id="characterImage Seraphine">Seraphine</span>
                                 </div>
-                                <div className="option" value={"minotaur"} id="characterImage Minotaur" onClick={handleSelect}>
+                                <div className="option" value={"minotaur"} id="characterImage Minotaur" onClick={handleInput}>
                                     <span value={"minotaur"} id="characterImage Minotaur">Minotaur</span>
                                 </div>
-                                <div className="option" value={"devil"} id="characterImage Devil" onClick={handleSelect}>
+                                <div className="option" value={"devil"} id="characterImage Devil" onClick={handleInput}>
                                     <span value={"devil"} id="characterImage Devil">Devil</span>
                                 </div></> : ""
                             }
@@ -147,13 +153,13 @@ export const EditCard = () => {
                     <div className="selectBox">
                         <div className="optionsContainer" ref={borderSelect}>
                             {borderColorSelected ? <>
-                                <div className="option" value={"Gold"} id="borderColor Gold" onClick={handleSelect}>
+                                <div className="option" value={"Gold"} id="borderColor Gold" onClick={handleInput}>
                                     <span value={"Gold"} id="borderColor Gold">Gold</span>
                                 </div>
-                                <div className="option" value={"Brown"} id="borderColor Brown" onClick={handleSelect}>
+                                <div className="option" value={"Brown"} id="borderColor Brown" onClick={handleInput}>
                                     <span value={"Brown"} id="borderColor Brown">Brown</span>
                                 </div>
-                                <div className="option" value={"Silver"} id="borderColor Silver" onClick={handleSelect}>
+                                <div className="option" value={"Silver"} id="borderColor Silver" onClick={handleInput}>
                                     <span value={"Silver"} id="borderColor Silver">Silver</span>
                                 </div>
                             </> : ""
@@ -168,23 +174,33 @@ export const EditCard = () => {
                     </div>
                 </div>
                 <div>
+                    NAME<br></br>
+                    <input id="name" onChange={handleInput} value={card.name} maxLength={13} />
+                </div>
+                <div>
+                    Cost<br></br>
+                    <input id="cost" type="number" max={9} value={card.cost} onChange={handleInput} />
+                </div>
+            </div>
+            <div>
+                <div>
                     BACKGROUND<br></br>
                     <div className="selectBox">
                         <div className="optionsContainer" ref={backgroundSelect}>
                             {backgroundSelected ? <>
-                                <div className="option" value={"Gray"} id="backgroundColor Gray" onClick={handleSelect}>
+                                <div className="option" value={"Gray"} id="backgroundColor Gray" onClick={handleInput}>
                                     <span value={"Gray"} id="backgroundColor Gray">Gray</span>
                                 </div>
-                                <div className="option" value={"Blue"} id="backgroundColor Blue" onClick={handleSelect}>
+                                <div className="option" value={"Blue"} id="backgroundColor Blue" onClick={handleInput}>
                                     <span value={"Blue"} id="backgroundColor Blue">Blue</span>
                                 </div>
-                                <div className="option" value={"Red"} id="backgroundColor Red" onClick={handleSelect}>
+                                <div className="option" value={"Red"} id="backgroundColor Red" onClick={handleInput}>
                                     <span value={"Red"} id="backgroundColor Red">Red</span>
                                 </div>
-                                <div className="option" value={"Green"} id="backgroundColor Green" onClick={handleSelect}>
+                                <div className="option" value={"Green"} id="backgroundColor Green" onClick={handleInput}>
                                     <span value={"Green"} id="backgroundColor Green">Green</span>
                                 </div>
-                                <div className="option" value={"Gold"} id="backgroundColor Gold" onClick={handleSelect}>
+                                <div className="option" value={"Gold"} id="backgroundColor Gold" onClick={handleInput}>
                                     <span value={"Gold"} id="backgroundColor Gold">Gold</span>
                                 </div></> : ""
                             }
@@ -197,23 +213,21 @@ export const EditCard = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div>
                 <div>
                     STATS BACKGROUND<br></br>
                     <div className="selectBox">
                         <div className="optionsContainer" ref={statsBackgroundSelect}>
                             {statsBackgroundSelected ? <>
-                                <div className="option" value={"Gray"} id="statsBackground Gray" onClick={handleSelect}>
-                                    <span value={"Gray"} id="statsBackground Gray" onClick={handleSelect}>Gray</span>
+                                <div className="option" value={"Gray"} id="statsBackground Gray" onClick={handleInput}>
+                                    <span value={"Gray"} id="statsBackground Gray" onClick={handleInput}>Gray</span>
                                 </div>
-                                <div className="option" value={"Brown"} id="statsBackground Brown" onClick={handleSelect}>
+                                <div className="option" value={"Brown"} id="statsBackground Brown" onClick={handleInput}>
                                     <span value={"Brown"} id="statsBackground Brown">Brown</span>
                                 </div>
-                                <div className="option" value={"Gold"} id="statsBackground Gold" onClick={handleSelect}>
+                                <div className="option" value={"Gold"} id="statsBackground Gold" onClick={handleInput}>
                                     <span value={"Gold"} id="statsBackground Gold">Gold</span>
                                 </div>
-                                <div className="option" value={"Shiny Gold"} id="statsBackground Shiny Gold" onClick={handleSelect}>
+                                <div className="option" value={"Shiny Gold"} id="statsBackground Shiny Gold" onClick={handleInput}>
                                     <span value={"Shiny Gold"} id="statsBackground Shiny Gold">Shiny Gold</span>
                                 </div></> : ""
                             }
@@ -227,12 +241,12 @@ export const EditCard = () => {
                     </div>
                 </div>
                 <div>
-                    NAME<br></br>
-                    <input id="name" onChange={handleSelect} value={card.name} maxLength={13} />
+                    damage<br></br>
+                    <input id="damage" type="number" max={9} value={card.damage} onChange={handleInput} />
                 </div>
                 <div>
-                    Cost<br></br>
-                    <input id="cost" type="number" max={9} value={card.cost} onChange={handleSelect} />
+                    hit Points<br></br>
+                    <input id="hitPoints" type="number" max={9} value={card.hitPoints} onChange={handleInput} />
                 </div>
                 <div>
                     <div className="pixelButton add"><p onClick={handleAddClick}>submit</p></div>
@@ -247,13 +261,10 @@ export const EditCard = () => {
                 <h2>{card.name || "Name"}</h2>
                 <div className="statsContainer" style={{ backgroundImage: `url(${card.statsBackgroundColor})` }} >
                     <div className="stats">
-                        <img src="/img/cardDmg.png"></img>
+                        <img src="/img/cardDmg.png"></img>{card.damage || 0}
                     </div>
                     <div className="stats">
-                        <img src="/img/cardArmor.png"></img>
-                    </div>
-                    <div className="stats">
-                        <img src="/img/cardHp.png"></img>
+                        <img src="/img/cardHp.png"></img>{card.hitPoints || 0}
                     </div>
                 </div>
             </div>
