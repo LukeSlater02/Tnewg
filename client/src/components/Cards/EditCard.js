@@ -174,16 +174,6 @@ export const EditCard = () => {
                     </div>
                 </div>
                 <div>
-                    NAME<br></br>
-                    <input id="name" onChange={handleInput} value={card.name} maxLength={13} />
-                </div>
-                <div>
-                    Cost<br></br>
-                    <input id="cost" type="number" max={9} value={card.cost} onChange={handleInput} />
-                </div>
-            </div>
-            <div>
-                <div>
                     BACKGROUND<br></br>
                     <div className="selectBox">
                         <div className="optionsContainer" ref={backgroundSelect}>
@@ -212,33 +202,44 @@ export const EditCard = () => {
                             {backgroundSelectedDisplay || card?.backgroundColor?.split("g/")[1]?.split("Card")[0]}
                         </div>
                     </div>
-                </div>
-                <div>
-                    STATS BACKGROUND<br></br>
-                    <div className="selectBox">
-                        <div className="optionsContainer" ref={statsBackgroundSelect}>
-                            {statsBackgroundSelected ? <>
-                                <div className="option" value={"Gray"} id="statsBackground Gray" onClick={handleInput}>
-                                    <span value={"Gray"} id="statsBackground Gray" onClick={handleInput}>Gray</span>
-                                </div>
-                                <div className="option" value={"Brown"} id="statsBackground Brown" onClick={handleInput}>
-                                    <span value={"Brown"} id="statsBackground Brown">Brown</span>
-                                </div>
-                                <div className="option" value={"Gold"} id="statsBackground Gold" onClick={handleInput}>
-                                    <span value={"Gold"} id="statsBackground Gold">Gold</span>
-                                </div>
-                                <div className="option" value={"Shiny Gold"} id="statsBackground Shiny Gold" onClick={handleInput}>
-                                    <span value={"Shiny Gold"} id="statsBackground Shiny Gold">Shiny Gold</span>
-                                </div></> : ""
-                            }
-                        </div>
-                        <div className="selected" onClick={() => {
-                            statsBackgroundSelect.current.classList.toggle("active")
-                            setStatsBackgroundSelected(!statsBackgroundSelected)
-                        }}>
-                            {statsBackgroundSelectedDisplay || card?.statsBackgroundColor?.split("g/")[1]?.split("Background")[1]?.split(".png")[0]}
+                    <div>
+                        STATS BACKGROUND<br></br>
+                        <div className="selectBox">
+                            <div className="optionsContainer" ref={statsBackgroundSelect}>
+                                {statsBackgroundSelected ? <>
+                                    <div className="option" value={"Gray"} id="statsBackground Gray" onClick={handleInput}>
+                                        <span value={"Gray"} id="statsBackground Gray" onClick={handleInput}>Gray</span>
+                                    </div>
+                                    <div className="option" value={"Brown"} id="statsBackground Brown" onClick={handleInput}>
+                                        <span value={"Brown"} id="statsBackground Brown">Brown</span>
+                                    </div>
+                                    <div className="option" value={"Gold"} id="statsBackground Gold" onClick={handleInput}>
+                                        <span value={"Gold"} id="statsBackground Gold">Gold</span>
+                                    </div>
+                                    <div className="option" value={"Shiny Gold"} id="statsBackground Shiny Gold" onClick={handleInput}>
+                                        <span value={"Shiny Gold"} id="statsBackground Shiny Gold">Shiny Gold</span>
+                                    </div></> : ""
+                                }
+                            </div>
+                            <div className="selected" onClick={() => {
+                                statsBackgroundSelect.current.classList.toggle("active")
+                                setStatsBackgroundSelected(!statsBackgroundSelected)
+                            }}>
+                                {statsBackgroundSelectedDisplay || card?.statsBackgroundColor?.split("g/")[1]?.split("Background")[1]?.split(".png")[0]}
+                            </div>
                         </div>
                     </div>
+
+                </div>
+            </div>
+            <div>
+                <div>
+                    NAME<br></br>
+                    <input id="name" onChange={handleInput} value={card.name} maxLength={13} />
+                </div>
+                <div>
+                    Cost<br></br>
+                    <input id="cost" type="number" max={9} value={card.cost} onChange={handleInput} />
                 </div>
                 <div>
                     damage<br></br>

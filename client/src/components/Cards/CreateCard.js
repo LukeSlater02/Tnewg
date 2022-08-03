@@ -97,7 +97,6 @@ export const CreateCard = () => {
     }
 
     const submitButtonVisible = () => {
-        console.log("hello");
         if (cardBackground === "" || cardBorder === "" || cardStatsBackground === "" || characterImage === "" || name === "Name" || name === "" || isNaN(cost) || cost === 0 || damage === 0 || isNaN(damage) || isNaN(hitPoints) || hitPoints === 0) {
             return (
                 <>
@@ -195,16 +194,6 @@ export const CreateCard = () => {
                     </div>
                 </div>
                 <div>
-                    NAME<br></br>
-                    <input id="name" onChange={handleSelect} maxLength={13} />
-                </div>
-                <div>
-                    Cost<br></br>
-                    <input id="cost" type="number" max={9} onChange={handleSelect} />
-                </div>
-            </div>
-            <div>
-                <div>
                     BACKGROUND<br></br>
                     <div className="selectBox">
                         <div className="optionsContainer" ref={backgroundSelect}>
@@ -261,6 +250,16 @@ export const CreateCard = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div>
+                <div>
+                    NAME<br></br>
+                    <input id="name" onChange={handleSelect} maxLength={13} />
+                </div>
+                <div>
+                    Cost<br></br>
+                    <input id="cost" type="number" max={9} onChange={handleSelect} />
+                </div>
                 <div>
                     damage<br></br>
                     <input id="damage" type="number" max={9} onChange={handleSelect} />
@@ -269,7 +268,7 @@ export const CreateCard = () => {
                     hit points<br></br>
                     <input id="hitPoints" type="number" max={9} onChange={handleSelect} />
                 </div>
-                <div>
+                <div style={{width: "384px"}}>
                     {submitButtonVisible()}
                 </div>
             </div>
