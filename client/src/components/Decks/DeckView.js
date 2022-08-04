@@ -24,7 +24,7 @@ export const DeckView = () => {
     return (
         <>
             <h1 className="deckViewTitle">{deckName}</h1>
-            <h3 className="deckViewAddCards">{deckCards[3] ? "" : <>Looking a little empty in here...why not <Link to={"/cards/list"}>add some cards?</Link></>}</h3>
+            {deckCards[3] ? "" : <><h3 className="deckViewAddCards">Looking a little empty in here...why not <Link to={"/cards/list"}>add some cards?</Link></h3></>}
             <div className="cardsContainer">
                 {deckCards.map(c => {
                     return (
