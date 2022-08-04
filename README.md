@@ -25,7 +25,7 @@ Features include:
 ![card list](public/images/../../client/public/img/cardList.gif)
 
 #### Card Create
-![card create](public/images/../../client/public/img/createView.gif)
+![card create](public/images/../../client/public/img/createCard.gif)
 
 #### Add Card to Full Deck
 ![card add](public/images/../../client/public/img/addCardView.gif)
@@ -34,7 +34,7 @@ Features include:
 ![deck](public/images/../../client/public/img/deckView.gif)
 
 #### Card Edit
-![card edit](public/images/../../client/public/img/cardEdit.gif)
+![card edit](public/images/../../client/public/img/editCard.gif)
 
 #### ERD
 ![erd](public/images/../../client/public/img/erd.png)
